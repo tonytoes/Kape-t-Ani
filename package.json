@@ -1,0 +1,23 @@
+{
+  "name": "kape-t-ani",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonytoes/Kape-t-Ani.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tonytoes/Kape-t-Ani/issues"
+  },
+  "homepage": "https://github.com/tonytoes/Kape-t-Ani#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.8"
+  }
+}
