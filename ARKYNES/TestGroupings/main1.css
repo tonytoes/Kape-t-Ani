@@ -1,9 +1,10 @@
 :root {
   --deep-roast: #3C2A21;
-  --velvet-cream: #FAF3E0;
+  --velvet-cream: #94855d;
   --golden-caramel: #D4A373;
   --forest-sage: #6B8D73;
   --text-light: #ffffff;
+  --light-coffee: #68552e;
 }
 
 body {
@@ -171,11 +172,11 @@ body::before {
 
 /* --- Product Carousel --- */
 #products {
-  background-color: var(--velvet-cream);
+  background-color: var(--light-coffee);
 }
 
 #products h2 {
-  color: var(--deep-roast);
+  color: var(--velvet-cream);
 }
 
 #coffeeCarousel img {
@@ -195,7 +196,7 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(255, 255, 255);
   text-align: center;
   position: relative;
   overflow: hidden;
