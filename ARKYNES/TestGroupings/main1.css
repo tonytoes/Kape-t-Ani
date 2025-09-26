@@ -10,22 +10,6 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  position: relative;
-  background-color: var(--velvet-cream);
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("images/Grinder.webp") no-repeat center center fixed;
-  background-size: cover;
-  filter: blur(6px);
-  z-index: -1;
 }
 
 .navbar {
@@ -97,7 +81,7 @@ body::before {
 
 .hero {
   height: 100vh;
-  background: url("coffee-bg.jpg") no-repeat center center/cover;
+  background: url("images/Grinder.webp") no-repeat center center/cover;
   display: flex;
   align-items: center;
   padding: 0 5%;
@@ -156,6 +140,7 @@ body::before {
 /* --- Product Carousel --- */
 #products {
   background-color: var(--light-coffee);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
 }
 
 #products h2 {
