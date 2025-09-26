@@ -113,13 +113,33 @@ body {
 #footer{
   
   background-color:  var(--golden-caramel);
-  color: white;
-  padding: 10px 10px;
-  
-  
+  padding-top:30px;
+  padding-bottom:30px;
   
   
 }
-#footer p{
-  color:white;
+
+#footer h5
+{
+  text-align:left;
+  color: var(--velvet-cream);
+  
+}
+
+#footer p
+{
+  text-align:left;
+  
+}
+
+#About-Us h5{
+  color: var(--velvet-cream);
+  
+}
+#Contact-Us{
+
+}
+
+#copyright p{
+  text-align:center;
 }
