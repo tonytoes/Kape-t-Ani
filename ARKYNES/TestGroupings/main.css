@@ -1,0 +1,111 @@
+:root {
+  --deep-roast: #3C2A21;
+  --velvet-cream: #FAF3E0;
+  --golden-caramel: #D4A373;
+  --forest-sage: #6B8D73;
+  --text-light: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--velvet-cream);
+}
+
+.navbar {
+  padding: 1rem 5%;
+  background: linear-gradient(to bottom,
+              rgba(0,0,0,1) 0%,
+              rgba(0,0,0,0.7) 60%,
+              rgba(0,0,0,0) 100%);
+  transition: all 0.3s ease;
+}
+
+.navbar.shrink {
+  padding: 0.5rem 5%;
+  background: rgba(0,0,0,0.9) !important;
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--velvet-cream) !important;
+}
+
+.navbar-nav .nav-link {
+  color: var(--velvet-cream) !important;
+  font-weight: 500;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--golden-caramel) !important;
+}
+
+.navbar-collapse {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-actions a {
+  color: var(--velvet-cream);
+  font-size: 1.3rem;
+}
+
+.nav-actions a:hover {
+  color: var(--golden-caramel);
+}
+
+.hero {
+  height: 100vh;
+  background: url('coffee-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  color: var(--text-light);
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(ellipse at center, 
+              rgba(0,0,0,0.4) 70%, 
+              rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 550px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.btn-custom {
+  background: var(--golden-caramel);
+  color: var(--text-light);
+  padding: 0.9em 2em;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-custom:hover {
+  background: var(--forest-sage);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
