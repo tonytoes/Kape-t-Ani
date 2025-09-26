@@ -112,14 +112,14 @@ body {
 
 #footer{
   
-  background-color: #000;
+  background-color:  var(--golden-caramel);
   color: white;
   padding: 10px 10px;
   
   
-  text-align: center;
+  
   
 }
 #footer p{
-  color:blue;
+  color:white;
 }
