@@ -168,3 +168,68 @@ body::before {
 #copyright p {
   text-align: center;
 }
+
+/* --- Product Carousel --- */
+#products {
+  background-color: var(--velvet-cream);
+}
+
+#products h2 {
+  color: var(--deep-roast);
+}
+
+#coffeeCarousel img {
+  object-fit: cover;
+  height: 260px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+#coffeeCarousel img:hover {
+  transform: scale(1.05);
+}
+
+.banner {
+  background: #442808;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+  z-index: 0;
+}
+
+.banner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.footer_section {
+  background: url("assets/images/Rectangle 14.png") center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer_section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(68, 40, 8, 0.8);
+  z-index: 0;
+}
+
+.footer_section > * {
+  position: relative;
+  z-index: 1;
+}
