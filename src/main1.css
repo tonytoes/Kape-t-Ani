@@ -135,7 +135,7 @@ body::before {
 }
 
 .banner {
-  background-color: #442808;
+  background: #442808;
   height: 40vh;
   display: flex;
   align-items: center;
@@ -149,10 +149,10 @@ body::before {
 .banner::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 0 0 auto 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
   z-index: 0;
-  background: url("assets/images/bg-coffee-beans 1.png") center/cover no-repeat;
-  opacity: 0.9;
 }
 
 .banner > * {
