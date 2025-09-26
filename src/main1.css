@@ -10,7 +10,6 @@ body {
   margin: 0;
   font-family: "Poppins", sans-serif;
   position: relative;
-  background-color: var(--velvet-cream);
   overflow-x: hidden;
 }
 
@@ -133,6 +132,32 @@ body::before {
   background: var(--forest-sage);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.banner {
+  background-color: #442808;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("assets/images/bg-coffee-beans 1.png") center/cover no-repeat;
+  opacity: 0.9;
+}
+
+.banner > * {
+  position: relative;
+  z-index: 1;
 }
 
 .footer_section {
