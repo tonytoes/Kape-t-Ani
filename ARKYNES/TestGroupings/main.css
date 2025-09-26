@@ -109,3 +109,17 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
+
+#footer{
+  
+  background-color: #000;
+  color: white;
+  padding: 1 1;
+  
+  
+  text-align: center;
+  
+}
+#footer p{
+  color:blue;
+}
