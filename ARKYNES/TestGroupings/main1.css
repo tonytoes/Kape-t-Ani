@@ -153,29 +153,6 @@ body::before {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-#footer {
-  background-color: var(--golden-caramel);
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-#footer h5 {
-  text-align: left;
-  color: var(--velvet-cream);
-}
-
-#footer p {
-  text-align: left;
-}
-
-#About-Us h5 {
-  color: var(--velvet-cream);
-}
-
-#copyright p {
-  text-align: center;
-}
-
 /* --- Product Carousel --- */
 #products {
   background-color: var(--light-coffee);
