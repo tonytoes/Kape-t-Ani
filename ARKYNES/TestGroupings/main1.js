@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     cartCount.textContent = cartItems;
   });
 
-  // Smooth scroll (Bootstrap doesn’t provide this by default)
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       const target = document.querySelector(this.getAttribute("href"));

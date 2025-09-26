@@ -14,7 +14,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Blurry background */
 body::before {
   content: "";
   position: fixed;
@@ -25,10 +24,8 @@ body::before {
   background: url("images/Grinder.webp") no-repeat center center fixed;
   background-size: cover;
   filter: blur(6px);
-  z-index: -1; /* push behind everything */
+  z-index: -1;
 }
-
-
 
 .navbar {
   padding: 1rem 5%;
@@ -59,7 +56,6 @@ body::before {
   color: var(--golden-caramel) !important;
 }
 
-/* Only center the nav on large screens */
 @media (min-width: 992px) {
   .navbar-collapse {
     position: absolute;
@@ -68,6 +64,15 @@ body::before {
   }
 }
 
+.nav-actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1050;
+}
 
 .nav-actions a {
   color: var(--velvet-cream);
@@ -76,6 +81,15 @@ body::before {
 
 .nav-actions a:hover {
   color: var(--golden-caramel);
+}
+
+.navbar-toggler {
+  border: none;
+  outline: none;
+  padding: 0;
+}
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 
 .hero {
@@ -132,33 +146,25 @@ body::before {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-#footer{
-  
+#footer {
   background-color:  var(--golden-caramel);
-  padding-top:30px;
-  padding-bottom:30px;
-  
-  
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
-#footer h5
-{
-  text-align:left;
+#footer h5 {
+  text-align: left;
   color: var(--velvet-cream);
-  
 }
 
-#footer p
-{
-  text-align:left;
-  
+#footer p {
+  text-align: left;
 }
 
-#About-Us h5{
+#About-Us h5 {
   color: var(--velvet-cream);
-  
 }
 
-#copyright p{
-  text-align:center;
+#copyright p {
+  text-align: center;
 }
