@@ -4,28 +4,12 @@
   --golden-caramel: #d4a373;
   --forest-sage: #6b8d73;
   --text-light: #ffffff;
-  --light-coffee: #68552e;
+  --light-coffee: #ffffff;
 }
 
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  position: relative;
-  background-color: var(--velvet-cream);
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("images/Grinder.webp") no-repeat center center fixed;
-  background-size: cover;
-  filter: blur(6px);
-  z-index: -1;
 }
 
 .navbar {
@@ -97,7 +81,7 @@ body::before {
 
 .hero {
   height: 100vh;
-  background: url("coffee-bg.jpg") no-repeat center center/cover;
+  background: url("assets/images/Grinder.webp") no-repeat center center/cover;
   display: flex;
   align-items: center;
   padding: 0 5%;
@@ -153,32 +137,10 @@ body::before {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-#footer {
-  background-color: var(--golden-caramel);
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-#footer h5 {
-  text-align: left;
-  color: var(--velvet-cream);
-}
-
-#footer p {
-  text-align: left;
-}
-
-#About-Us h5 {
-  color: var(--velvet-cream);
-}
-
-#copyright p {
-  text-align: center;
-}
-
 /* --- Product Carousel --- */
 #products {
   background-color: var(--light-coffee);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
 }
 
 #products h2 {
@@ -223,7 +185,7 @@ body::before {
 }
 
 .footer_section {
-  background: url("images/Rectangle 14.png") center/cover no-repeat;
+  background: url("assets/images/Rectangle 14.png") center/cover no-repeat;
   position: relative;
   overflow: hidden;
 }
@@ -241,33 +203,15 @@ body::before {
   z-index: 1;
 }
 
-.login-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 100px;
+.ui-dialog-titlebar {
+  display: none !important;
 }
 
-.login-card {
-  background-color: rgba(68, 40, 8, 1);
-  color: var(--text-light);
-  max-width: 400px;
-  width: 100%;
-  text-align: center;
+.ui-dialog-titlebar-close {
+  display: block !important;
 }
 
-.login-card .btn {
-  background: var(--golden-caramel);
-  color: #fff;
-  font-weight: 600;
-  border-radius: 50px; /* makes it ellipse */
-  padding: 0.75rem 2rem; /* more height + width for ellipse look */
+.ui-widget-overlay {
+  background: black !important;
+  opacity: 0.5 !important;
 }
-.login-card .btn:hover {
-  background: var(--forest-sage);
-}
-
-
-
-
