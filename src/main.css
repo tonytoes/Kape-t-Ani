@@ -215,3 +215,105 @@ body {
   background: black !important;
   opacity: 0.5 !important;
 }
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.scroll-prompt {
+  animation: fadeIn 2s ease-in-out;
+  bottom: 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Promo Section Bar --- */
+.promo-section {
+  background: rgba(0, 0, 0, 0.6); /* translucent overlay bar */
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(6px);
+  max-width: 380px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.promo-card h3 {
+  color: var(--golden-caramel);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.promo-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+.promo-card .btn-custom {
+  background: var(--golden-caramel);
+  color: black;
+}
+
+.promo-card .btn-custom:hover {
+  background: var(--forest-sage);
+  color: white;
+}
+
+.hero .container {
+  gap: 2rem; /* adds spacing between left and right columns */
+  flex-wrap: wrap;
+}
+
+
+/* --- Scroll Prompt Enhanced Animation --- */
+.scroll-prompt {
+  animation: fadeIn 2s ease-in-out;
+  bottom: 20px;
+  text-align: center;
+}
+
+.scroll-prompt span {
+  display: inline-block;
+  font-weight: 500;
+  color: var(--text-light);
+  animation: textBounce 2s infinite ease-in-out;
+}
+
+.scroll-prompt i {
+  color: var(--golden-caramel);
+  font-size: 1.5rem;
+  animation: iconBounce 1.5s infinite ease-in-out;
+  display: inline-block;
+}
+
+/* --- Text Bounce (gentle up-down motion) --- */
+@keyframes textBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* --- Icon Bounce (larger motion to catch the eye) --- */
+@keyframes iconBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
