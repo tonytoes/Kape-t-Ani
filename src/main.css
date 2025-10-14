@@ -202,3 +202,16 @@ body {
   position: relative;
   z-index: 1;
 }
+
+.ui-dialog-titlebar {
+  display: none !important;
+}
+
+.ui-dialog-titlebar-close {
+  display: block !important;
+}
+
+.ui-widget-overlay {
+  background: black !important;
+  opacity: 0.5 !important;
+}
