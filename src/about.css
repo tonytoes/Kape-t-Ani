@@ -75,6 +75,7 @@ body {
   outline: none;
   padding: 0;
 }
+
 .navbar-toggler:focus {
   box-shadow: none;
 }
@@ -137,51 +138,36 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.contact h1 {
-  font-weight: bold;
+/* About Us Section */
+.about-section {
+  background-color: #fdfaf6;
 }
 
-.banner {
-  background: #442808;
-  height: 40vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgb(255, 255, 255);
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+.team-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(60, 42, 33, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.banner::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 40%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
-  z-index: 0;
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(60, 42, 33, 0.2);
 }
 
-.banner > * {
-  position: relative;
-  z-index: 1;
+.team-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 4px solid var(--golden-caramel);
 }
 
+/* Footer */
 .footer_section {
-  background: url("assets/images/Rectangle 14.png") center/cover no-repeat;
-  position: relative;
-  overflow: hidden;
+  background-color: var(--deep-roast);
+  color: var(--text-light);
 }
 
-.footer_section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: rgba(68, 40, 8, 0.8);
-  z-index: 0;
-}
-
-.footer_section > * {
-  position: relative;
-  z-index: 1;
+.footer_section a:hover {
+  color: var(--golden-caramel) !important;
 }
