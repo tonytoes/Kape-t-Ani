@@ -137,25 +137,8 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* --- Product Carousel --- */
-#products {
-  background-color: var(--light-coffee);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-}
-
-#products h2 {
-  color: var(--velvet-cream);
-}
-
-#coffeeCarousel img {
-  object-fit: cover;
-  height: 260px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
-}
-
-#coffeeCarousel img:hover {
-  transform: scale(1.05);
+.contact h1 {
+  font-weight: bold;
 }
 
 .banner {
@@ -201,17 +184,4 @@ body {
 .footer_section > * {
   position: relative;
   z-index: 1;
-}
-
-.ui-dialog-titlebar {
-  display: none !important;
-}
-
-.ui-dialog-titlebar-close {
-  display: block !important;
-}
-
-.ui-widget-overlay {
-  background: black !important;
-  opacity: 0.5 !important;
 }
