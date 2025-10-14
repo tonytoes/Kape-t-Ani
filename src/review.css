@@ -165,6 +165,24 @@ body {
 
 /* Review Container */
 
+.average-rating{
+  text-align:left;
+  background-color:var(--golden-caramel);
+}
+
+.average-rating h3{
+  text-align:left;
+  font-weight:bold;
+  color: var(--golden-caramel);
+}
+
+.average-rating p{
+  color:var(--forest-sage);
+}
+
+.progress-bar{
+  background-color:#f9c25b
+}
 .shadow-lg.p-3.mb-5.bg-body-tertiary.rounded {
   display: block;
 }
