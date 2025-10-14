@@ -75,24 +75,21 @@ body {
   outline: none;
   padding: 0;
 }
-
 .navbar-toggler:focus {
   box-shadow: none;
 }
 
-.hero-section {
+.hero {
   height: 100vh;
-  background: url("assets/images/Bg Image.jpg") no-repeat center center/cover;
+  background: url("assets/images/Grinder.webp") no-repeat center center/cover;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
   padding: 0 5%;
   color: var(--text-light);
   position: relative;
 }
 
-.hero-section::before {
+.hero::before {
   content: "";
   position: absolute;
   top: 0;
@@ -110,14 +107,16 @@ body {
 .hero-content {
   position: relative;
   z-index: 2;
+  max-width: 550px;
 }
 
-.hero-content h1 {
+.hero h1 {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.hero-content p {
+.hero p {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -138,36 +137,95 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* About Us Section */
-.about-section {
-  background-color: #fdfaf6;
+.banner {
+  background: #442808;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.team-card {
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(60, 42, 33, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 40%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+  z-index: 0;
 }
 
-.team-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 6px 18px rgba(60, 42, 33, 0.2);
+.banner > * {
+  position: relative;
+  z-index: 1;
 }
 
-.team-img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border: 4px solid var(--golden-caramel);
+/* Review Container */
+
+.shadow-lg.p-3.mb-5.bg-body-tertiary.rounded {
+  display: block;
 }
 
-/* Footer */
+
+.shadow-lg.p-3.mb-5.bg-body-tertiary.rounded .col {
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.shadow-lg.p-3.mb-5.bg-body-tertiary.rounded p {
+  text-align: justify;
+  word-wrap: break-word;
+}
+.shadow-lg.p-3.mb-5.bg-body-tertiary.rounded h5{
+  text-align:justify;
+} 
+
+.shadow-lg.p-3.mb-5.bg-body-tertiary.rounded h6{
+  text-align:justify;
+  color: #6b8d73;
+} 
+
+/* Pagination */
+.page-link{
+  color: var(--golden-caramel);
+}
+
+.page-link:hover{
+  color: var(--forest-sage);
+}
+
 .footer_section {
-  background-color: var(--deep-roast);
-  color: var(--text-light);
+  background: url("assets/images/Rectangle 14.png") center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
 }
 
-.footer_section a:hover {
-  color: var(--golden-caramel) !important;
+.footer_section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(68, 40, 8, 0.8);
+  z-index: 0;
+}
+
+.footer_section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ui-dialog-titlebar {
+  display: none !important;
+}
+
+.ui-dialog-titlebar-close {
+  display: block !important;
+}
+
+.ui-widget-overlay {
+  background: black !important;
+  opacity: 0.5 !important;
 }
