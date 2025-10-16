@@ -12,6 +12,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+
 .navbar {
   padding: 1rem 5%;
   background: linear-gradient(
@@ -75,6 +76,7 @@ body {
   outline: none;
   padding: 0;
 }
+
 .navbar-toggler:focus {
   box-shadow: none;
 }
@@ -105,9 +107,10 @@ body {
 }
 
 .hero-content {
-  position: relative;
+  
   z-index: 2;
-  max-width: 550px;
+  width:100%;
+  text-align:center;
 }
 
 .hero h1 {
@@ -122,21 +125,9 @@ body {
   margin-bottom: 2rem;
 }
 
-.btn-custom {
-  background: var(--golden-caramel);
-  color: var(--text-light);
-  padding: 0.9em 2em;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+.title{
+  text-align: center;
 }
-
-.btn-custom:hover {
-  background: var(--forest-sage);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
 .banner {
   background: #442808;
   height: 40vh;
@@ -180,18 +171,25 @@ body {
   color:var(--forest-sage);
 }
 
+
 .progress-bar{
   background-color:#f9c25b
 }
+
+#avg-container h3{
+  font-size: 2.5rem;
+  text-align:center;
+}
+#avgRating, #avgRating h3{
+  font-size: 4rem;
+  text-align:center;
+  font-weight:bold;
+  color: var(--golden-caramel);
+  padding-top: 20px;
+  padding-bottom:20px;
+}
 .shadow-lg.p-3.mb-5.bg-body-tertiary.rounded {
   display: block;
-}
-
-
-.shadow-lg.p-3.mb-5.bg-body-tertiary.rounded .col {
-  max-height: 100px;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .shadow-lg.p-3.mb-5.bg-body-tertiary.rounded p {
