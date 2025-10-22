@@ -8,233 +8,199 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
   <style>
-      body {
-        font-family: "Poppins", sans-serif;
-        background-color: #f9f9f9;
+    /* --- GLOBAL COLOR VARIABLES --- */
+    :root {
+      --deep-roast: #3c2a21;
+      --velvet-cream: #94855d;
+      --golden-caramel: #d4a373;
+      --forest-sage: #6b8d73;
+      --text-light: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* --- NAVBAR (copied from index.html) --- */
+    .navbar {
+      padding: 1rem 5%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.7) 60%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      transition: all 0.3s ease;
+    }
+
+    .navbar.shrink {
+      padding: 0.5rem 5%;
+      background: rgba(0, 0, 0, 0.9) !important;
+    }
+
+    .navbar-brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--velvet-cream) !important;
+    }
+
+    .navbar-nav .nav-link {
+      color: var(--velvet-cream) !important;
+      font-weight: 500;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: var(--golden-caramel) !important;
+    }
+
+    @media (min-width: 992px) {
+      .navbar-collapse {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
       }
+    }
 
-:root {
-  --deep-roast: #3c2a21;
-  --velvet-cream: #94855d;
-  --golden-caramel: #d4a373;
-  --forest-sage: #6b8d73;
-  --text-light: #ffffff;
-  --light-coffee: #ffffff;
-}
+    .nav-actions {
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 1050;
+    }
 
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-}
+    .nav-actions a {
+      color: var(--velvet-cream);
+      font-size: 1.3rem;
+    }
 
-.navbar {
-  padding: 1rem 5%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.7) 60%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  transition: all 0.3s ease;
-}
+    .nav-actions a:hover {
+      color: var(--golden-caramel);
+    }
 
-.navbar.shrink {
-  padding: 0.5rem 5%;
-  background: rgba(0, 0, 0, 0.9) !important;
-}
+    .navbar-toggler {
+      border: none;
+      outline: none;
+      padding: 0;
+    }
 
-.navbar-brand {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--velvet-cream) !important;
-}
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
 
-.navbar-nav .nav-link {
-  color: var(--velvet-cream) !important;
-  font-weight: 500;
-}
+    /* --- HERO SECTION --- */
+    .hero-section {
+      height: 100vh;
+      background: url("assets/images/Bg Image.jpg") no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 5%;
+      color: var(--text-light);
+      position: relative;
+    }
 
-.navbar-nav .nav-link:hover {
-  color: var(--golden-caramel) !important;
-}
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.4) 70%,
+        rgba(0, 0, 0, 0.7) 100%
+      );
+      z-index: 1;
+    }
 
-@media (min-width: 992px) {
-  .navbar-collapse {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
 
-.nav-actions {
-  position: absolute;
-  top: 0.5rem;
-  right: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  z-index: 1050;
-}
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
 
-.nav-actions a {
-  color: var(--velvet-cream);
-  font-size: 1.3rem;
-}
+    .hero-content p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
 
-.nav-actions a:hover {
-  color: var(--golden-caramel);
-}
+    .btn-custom {
+      background: var(--golden-caramel);
+      color: var(--text-light);
+      padding: 0.9em 2em;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
 
-.navbar-toggler {
-  border: none;
-  outline: none;
-  padding: 0;
-}
+    .btn-custom:hover {
+      background: var(--forest-sage);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
 
-.navbar-toggler:focus {
-  box-shadow: none;
-}
+    /* --- PRODUCT CARDS --- */
+    .card-img-top {
+      height: 220px;
+      width: 100%;
+      object-fit: contain;
+      background-color: #ffffff;
+      border-radius: 0.5rem 0.5rem 0 0;
+      padding: 10px;
+    }
 
-.hero-section {
-  height: 100vh;
-  background: url("assets/images/Bg Image.jpg") no-repeat center center/cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 5%;
-  color: var(--text-light);
-  position: relative;
-}
+    .card {
+      height: 100%;
+    }
 
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0, 0, 0, 0.4) 70%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
-  z-index: 1;
-}
+    /* --- FOOTER --- */
+    .footer_section {
+      background-color: #2c1a0e;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+      color: #fff;
+    }
 
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
+    .footer_section h5 {
+      color: #dcb764;
+    }
 
-.hero-content h1 {
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-.hero-content p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
-.btn-custom {
-  background: var(--golden-caramel);
-  color: var(--text-light);
-  padding: 0.9em 2em;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.btn-custom:hover {
-  background: var(--forest-sage);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-      /* Product Section */
-      .product-section {
-        padding: 60px 0;
-      }
-
-      .section-title {
-        text-align: center;
-        font-weight: 700;
-        margin-bottom: 40px;
-        color: #3c2a1e;
-      }
-
-      .card-img-top {
-    height: 220px;              /* keeps all images same height */
-    width: 100%;
-    object-fit: contain;        /* show full image, no cropping */
-    background-color: #ffffff;  /* pure white background */
-    border-radius: 0.5rem 0.5rem 0 0;
-    padding: 10px;              /* space for images that don’t fill fully */
-  }
-
-  .card {
-    height: 100%;
-  }
-
-      /* Footer */
-      .footer_section {
-        background-color: #2c1a0e; /* deep coffee brown */
-        padding-top: 5rem;
-        padding-bottom: 5rem;
-        min-height: 300px;
-        color: #fff;
-      }
-
-      .footer_section h5 {
-        color: #dcb764; /* gold accent headings */
-      }
-
-      .footer_section a:hover {
-        color: #dcb764;
-      }
-
-      .footer_section input[type="email"] {
-        border-radius: 8px;
-        border: none;
-        padding: 8px 12px;
-      }
-
-      .footer_section .btn-warning {
-        background-color: #dcb764;
-        border: none;
-        color: #2c1a0e;
-        font-weight: 600;
-      }
-
-      .footer_section .btn-warning:hover {
-        background-color: #e8c978;
-      }
-    </style>
+    .footer_section a:hover {
+      color: #dcb764;
+    }
+  </style>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top" style="background-color:#442808;">
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
-      <a class="navbar-brand d-flex align-items-center text-light" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
         <img src="assets/images/coffee.png" alt="Kape't Ani Logo" height="40" class="me-2" />
         <span class="fw-semibold">Kape't Ani</span>
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
-      </button>
-
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav gap-3">
-          <li class="nav-item"><a class="nav-link text-light" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active text-warning fw-semibold" href="product.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="review.html">Reviews</a></li>
-          <li class="nav-item"><a class="nav-link text-light" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="product.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="review.html">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
         </ul>
       </div>
 
@@ -247,7 +213,12 @@ body {
         </a>
         <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" class="position-relative">
           <img src="assets/icons/bi_bag (1).png" alt="Cart" width="22" />
+          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">0</span>
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
       </div>
     </div>
   </nav>
@@ -260,7 +231,7 @@ body {
     </div>
   </section>
 
-  <!-- PRODUCT PAGE -->
+  <!-- Product Section -->
   <section class="py-5">
     <div class="container">
       <h2 class="fw-bold mb-4 text-center" style="color:#442808;">Our Products</h2>
@@ -268,19 +239,19 @@ body {
         Discover the heart of Filipino coffee and artisan culture — now featuring our cozy Autumn Specials!
       </p>
 
-      <!-- COFFEE COLLECTION -->
+      <!-- Coffee -->
       <h4 class="fw-bold mb-4" style="color:#442808;">Coffee and Matcha</h4>
       <div class="row g-4" id="coffee-products"></div>
 
       <hr class="my-5" style="border-top: 2px solid #dcb764; opacity: 0.5;" />
 
-      <!-- CULTURAL KITS -->
+      <!-- Cultural Kits -->
       <h4 class="fw-bold mb-4" style="color:#442808;">Cultural Kits</h4>
       <div class="row g-4" id="kit-products"></div>
 
       <hr class="my-5" style="border-top: 3px dashed #b66d2f; opacity: 0.8;" />
 
-      <!-- SEASONAL AUTUMN SPECIALS -->
+      <!-- Autumn Specials -->
       <div class="text-center mb-4">
         <h4 class="fw-bold" style="color:#b66d2f;">Seasonal Specials</h4>
         <p class="text-muted">Limited edition flavors and cultural kits to celebrate the cozy season!</p>
@@ -308,9 +279,9 @@ body {
           <h5 class="fw-bold mb-3">About</h5>
           <ul class="list-unstyled">
             <li class="pt-2"><a href="#" class="text-light text-decoration-none">Menu</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Features</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Blogs</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Help & Supports</a></li>
+            <li class="pt-2"><a href="#" class="text-light text-decoration-none">Features</a></li>
+            <li class="pt-2"><a href="#" class="text-light text-decoration-none">Blogs</a></li>
+            <li class="pt-2"><a href="#" class="text-light text-decoration-none">Help & Supports</a></li>
           </ul>
         </div>
 
@@ -318,9 +289,9 @@ body {
           <h5 class="fw-bold mb-3">Company</h5>
           <ul class="list-unstyled">
             <li class="pt-2"><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">How we work</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Pricing</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">FAQS</a></li>
+            <li class="pt-2"><a href="#" class="text-light text-decoration-none">How we work</a></li>
+            <li class="pt-2"><a href="#" class="text-light text-decoration-none">Pricing</a></li>
+            <li class="pt-2"><a href="#" class="text-light text-decoration-none">FAQS</a></li>
           </ul>
         </div>
 
@@ -338,21 +309,15 @@ body {
     </div>
   </footer>
 
-
-  <!-- Back Arrow -->
-  <a href="index.html" class="back-arrow">
-    <i class="bi bi-arrow-left"></i>
-  </a>
-
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Inline JS for Products -->
+  <!-- Product Render -->
   <script>
     const coffeeProducts = [
       ["Benguet Arabica", "Rich, smooth, earthy taste", "₱250", "coffee1.png"],
       ["Sagada Medium Roast", "Balanced & aromatic", "₱260", "coffee2.png"],
-      ["Mt. Apo Dark Roast", "Deep & bold roast flavor", "₱270", "coffee3.png"],
+      ["Mt. Apo Dark Roast", "Deep & bold roast flavor", "₱270", "coffee3.jpg"],
       ["Bukidnon Matcha Process", "Unique green aroma", "₱280", "coffee4.jpg"],
       ["Kalinga Robusta Blend", "Strong and full-bodied", "₱290", "coffee5.jpg"],
       ["Barako (Liberica) Bold Roast", "Iconic Filipino taste", "₱300", "matcha3.jpg"],
@@ -383,8 +348,7 @@ body {
 
     function renderProducts(id, products, color = "#442808") {
       document.getElementById(id).innerHTML = products
-        .map(
-          ([name, desc, price, img]) => `
+        .map(([name, desc, price, img]) => `
           <div class="col-md-3 col-sm-6">
             <div class="card border-0 shadow-sm h-100">
               <img src="assets/images/${img}" class="card-img-top" alt="${name}">
@@ -392,17 +356,35 @@ body {
                 <h6 class="fw-bold">${name}</h6>
                 <p class="small text-muted mb-1">${desc}</p>
                 <p class="fw-semibold mb-2" style="color:${color};">${price}</p>
-                <button class="btn btn-sm w-100 text-light" style="background-color:${color};">Add to Cart</button>
+                <button id="addToCartBtn" class="btn btn-sm w-100 text-light" style="background-color:${color};">Add to Cart</button>
               </div>
             </div>
-          </div>`
-        )
-        .join("");
+          </div>`).join("");
     }
 
     renderProducts("coffee-products", coffeeProducts);
     renderProducts("kit-products", kitProducts);
     renderProducts("autumn-products", autumnProducts, "#b66d2f");
+  </script>
+
+  <!-- Navbar and Cart Behavior -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cartCount = document.getElementById("cart-count");
+      const navbar = document.querySelector(".navbar");
+      let cartItems = 0;
+
+      document.body.addEventListener("click", (e) => {
+        if (e.target && e.target.id === "addToCartBtn") {
+          cartItems++;
+          if (cartCount) cartCount.textContent = cartItems;
+        }
+      });
+
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("shrink", window.scrollY > 50);
+      });
+    });
   </script>
 </body>
 </html>
