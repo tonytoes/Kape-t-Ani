@@ -170,3 +170,22 @@ body {
 .footer_section a:hover {
   color: #dcb764;
 }
+
+.footer_section {
+  background: url("assets/images/Rectangle 14.png") center/cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer_section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(68, 40, 8, 0.8);
+  z-index: 0;
+}
+
+.footer_section > * {
+  position: relative;
+  z-index: 1;
+}
