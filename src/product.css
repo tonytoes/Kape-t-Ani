@@ -1,6 +1,7 @@
+/* --- GLOBAL COLOR VARIABLES --- */
 :root {
   --deep-roast: #3c2a21;
-  --velvet-cream: #faf3e0;
+  --velvet-cream: #94855d;
   --golden-caramel: #d4a373;
   --forest-sage: #6b8d73;
   --text-light: #ffffff;
@@ -9,24 +10,10 @@
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
-  position: relative;
-  overflow-x: hidden;
+  background-color: #f9f9f9;
 }
 
-/* Blurry background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url("images/Grinder.webp") no-repeat center center fixed;
-  background-size: cover;
-  filter: blur(6px);
-  z-index: -1; /* push behind everything */
-}
-
+/* --- NAVBAR (copied from index.html) --- */
 .navbar {
   padding: 1rem 5%;
   background: linear-gradient(
@@ -58,13 +45,22 @@ body::before {
   color: var(--golden-caramel) !important;
 }
 
-/* Only center the nav on large screens */
 @media (min-width: 992px) {
   .navbar-collapse {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
+}
+
+.nav-actions {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1050;
 }
 
 .nav-actions a {
@@ -76,17 +72,30 @@ body::before {
   color: var(--golden-caramel);
 }
 
-.hero {
+.navbar-toggler {
+  border: none;
+  outline: none;
+  padding: 0;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
   height: 100vh;
-  background: url("assets/images/Grinder.webp") no-repeat center center/cover;
+  background: url("assets/images/Bg Image.jpg") no-repeat center center/cover;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 0 5%;
   color: var(--text-light);
   position: relative;
 }
 
-.hero::before {
+.hero-section::before {
   content: "";
   position: absolute;
   top: 0;
@@ -104,16 +113,14 @@ body::before {
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 550px;
 }
 
-.hero h1 {
+.hero-content h1 {
   font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  font-weight: bold;
 }
 
-.hero p {
+.hero-content p {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
@@ -134,30 +141,34 @@ body::before {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.banner {
-  background: #442808;
-  height: 40vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
+/* --- PRODUCT CARDS --- */
+.card-img-top {
+  height: 220px;
+  width: 100%;
+  object-fit: contain;
+  background-color: #ffffff;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 10px;
 }
 
-.banner::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 40%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
-  z-index: 0;
+.card {
+  height: 100%;
 }
 
-.banner > * {
-  position: relative;
-  z-index: 1;
+/* --- FOOTER --- */
+.footer_section {
+  background-color: #2c1a0e;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  color: #fff;
+}
+
+.footer_section h5 {
+  color: #dcb764;
+}
+
+.footer_section a:hover {
+  color: #dcb764;
 }
 
 .footer_section {
