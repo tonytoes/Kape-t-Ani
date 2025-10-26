@@ -104,36 +104,34 @@ function isActiveForm($formName, $activeForm)
 
   <!-- Login Section -->
   <section class="login-section">
-    <div class="container">
-      <div class="form-box <?= isActiveForm('login', $activeForm); ?>" id="login-form">
-        <form action="login_register.php" method="post">
-          <h2>Login</h2>
-          <?= showError($errors['login']); ?>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="password" name="password" placeholder="Password" required>
-          <button type="submit" name="login">Login</button>
-          <p>Don't have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
-        </form>
-      </div>
+    <div class="form-box <?= isActiveForm('login', $activeForm); ?>" id="login-form">
+      <form action="login_register.php" method="post">
+        <h2>Welcome Back!</h2>
+        <p>Please login to your account</p>
+        <?= showError($errors['login']); ?>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit" name="login">Login</button>
+        <p>Don't have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
+      </form>
+    </div>
 
 
-      <div class="form-box <?= isActiveForm('register', $activeForm); ?>" id="register-form">
-        <form action="login_register.php" method="post">
-          <h2>Register</h2>
-          <?= showError($errors['register']); ?>
-          <input type="text" name="name" placeholder="Name" required>
-          <input type="email" name="email" placeholder="Email" required>
-          <input type="password" name="password" placeholder="Password" required>
-          <select name="role" required>
-            <option value="">--Select Role--</option>
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
-          <button type="submit" name="register">Register</button>
-          <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
-        </form>
-      </div>
-
+    <div class="form-box <?= isActiveForm('register', $activeForm); ?>" id="register-form">
+      <form action="login_register.php" method="post">
+        <h2>Register</h2>
+        <?= showError($errors['register']); ?>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <select name="role" required>
+          <option value="">--Select Role--</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button type="submit" name="register">Register</button>
+        <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
+      </form>
     </div>
   </section>
 
