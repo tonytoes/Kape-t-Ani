@@ -1,3 +1,26 @@
+<?php
+
+session_start();
+
+$errors = [
+  'login' => $_SESSION['login_error'] ?? '',
+  'register' => $_SESSION['register_error'] ?? ''
+];
+$activeForm = $_SESSION['active_form'] ?? 'login';
+
+session_unset();
+
+function showError($error)
+{
+  return !empty($error) ? "<p class='error-message'>$error</p>" : '';
+}
+
+function isActiveForm($formName, $activeForm)
+{
+  return $formName === $activeForm ? 'active' : '';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,18 +43,6 @@
     rel="stylesheet" />
 
   <link rel="stylesheet" href="login.css" />
-
-  <style>
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center,
-          rgba(0, 0, 0, 0) 70%,
-          rgba(0, 0, 0, 0.7) 100%);
-      z-index: -1;
-    }
-  </style>
 </head>
 
 <body>
@@ -40,7 +51,7 @@
     <div class="container-fluid position-relative">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
         <img
-          src="images/coffee.png"
+          src="assets/images/coffee.png"
           alt="Kape't Ani Logo"
           height="40"
           class="me-2" />
@@ -92,32 +103,37 @@
   </nav>
 
   <!-- Login Section -->
-  <section
-    class="login-section d-flex align-items-center justify-content-center">
-    <div class="login-card p-5 rounded shadow-lg">
-      <h2 class="text-center mb-4">Welcome Back</h2>
-      <form>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email Address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="Enter your email"
-            required />
-        </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input
-            type="password"
-            class="form-control"
-            id="password"
-            placeholder="Enter your password"
-            required />
-        </div>
-        <button type="submit" class="btn w-100">Login</button>
-        <p class="text-center mt-3"><a href="#">Forgot Password?</a></p>
-      </form>
+  <section class="login-section">
+    <div class="container">
+      <div class="form-box <?= isActiveForm('login', $activeForm); ?>" id="login-form">
+        <form action="login_register.php" method="post">
+          <h2>Login</h2>
+          <?= showError($errors['login']); ?>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <button type="submit" name="login">Login</button>
+          <p>Don't have an account? <a href="#" onclick="showForm('register-form')">Register</a></p>
+        </form>
+      </div>
+
+
+      <div class="form-box <?= isActiveForm('register', $activeForm); ?>" id="register-form">
+        <form action="login_register.php" method="post">
+          <h2>Register</h2>
+          <?= showError($errors['register']); ?>
+          <input type="text" name="name" placeholder="Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="password" name="password" placeholder="Password" required>
+          <select name="role" required>
+            <option value="">--Select Role--</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button type="submit" name="register">Register</button>
+          <p>Already have an account? <a href="#" onclick="showForm('login-form')">Login</a></p>
+        </form>
+      </div>
+
     </div>
   </section>
 
