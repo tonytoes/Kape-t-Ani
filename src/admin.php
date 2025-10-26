@@ -14,7 +14,7 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">
-      <img src="kape't ani logo (1).png" alt="Kape't Ani Logo">
+      <img src="assets/images/kape't_ani_logo_white.png" alt="Kape't Ani Logo">
       <h1>Kape’t Ani Admin</h1>
     </div>
     <ul class="nav-links">

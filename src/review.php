@@ -49,10 +49,10 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
 
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav gap-3">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
-          <li class="nav-item "><a class="nav-link active" href="review.html">Reviews</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="product.php">Products</a></li>
+          <li class="nav-item "><a class="nav-link active" href="review.php">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
         </ul>
       </div>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,13 +25,13 @@
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
   <script>
-    $(function () {
+    $(function() {
       $("#dialog").dialog({
         width: 650,
         height: 430,
         modal: true,
-        create: function () {
-          $("#dialog .btn-close").on("click", function () {
+        create: function() {
+          $("#dialog .btn-close").on("click", function() {
             $("#dialog").dialog("close");
           });
         }
@@ -38,6 +39,7 @@
     });
   </script>
 </head>
+
 <body>
 
   <!-- Subscribe Dialog -->
@@ -62,7 +64,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
@@ -75,10 +77,10 @@
       <!-- Centered menu -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav gap-3">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="product.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="review.html">Reviews</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="product.php">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="review.php">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
         </ul>
       </div>
 
@@ -320,4 +322,5 @@
   <!-- Custom JS -->
   <script src="main.js"></script>
 </body>
+
 </html>
