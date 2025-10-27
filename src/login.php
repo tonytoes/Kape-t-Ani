@@ -46,7 +46,6 @@ function isActiveForm($formName, $activeForm)
 </head>
 
 <body>
-  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
       <a class="navbar-brand d-flex align-items-center" href="index.html">

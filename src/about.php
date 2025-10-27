@@ -57,7 +57,7 @@
 
       <div class="nav-actions">
         <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal"><img src="assets/icons/material-symbols_search.png" alt="" /></a>
-        <a class="nav-link" href="login.html"><img src="assets/icons/uil_user.png" alt="" /></a>
+        <a class="nav-link" href="user.php"><img src="assets/icons/uil_user.png" alt="" /></a>
         <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"><img src="assets/icons/bi_bag (1).png" alt="" /></a>
       </div>
     </div>
