@@ -44,7 +44,7 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
     <div class="container-fluid position-relative">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
         <img src="assets/images/coffee.png" alt="Logo" height="40" class="me-2">
-        <span class="fw-semibold">Kape't Ani</span>
+        <span class="fw-semibold">Kape't Ani | review</span>
       </a>
 
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">

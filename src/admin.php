@@ -14,7 +14,8 @@ if (!isset($_SESSION['email'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kape't Ani Admin Dashboard</title>
+  <link rel="icon" href="assets/images/coffee.png" type="image/x-icon" />
+  <title>Kape't Ani Admin | Dashboard</title>
   <link rel="stylesheet" href="admin.css" />
   <script src="main" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
@@ -29,9 +30,9 @@ if (!isset($_SESSION['email'])) {
     </div>
     <ul class="nav-links">
       <li><a href="#">Dashboard</a></li>
+      <li><a href="user_admin.php">Users</a></li>
       <li><a href="#">Products</a></li>
       <li><a href="#">Orders</a></li>
-      <li><a href="#">Users</a></li>
       <li><a href="#">Reports</a></li>
       <li><a href="logout.php" class="logout">Logout</a></li>
     </ul>
