@@ -21,7 +21,7 @@ include 'config.php';
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet" />
-  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="user_admin.css" />
 </head>
 
 <body>
@@ -42,19 +42,17 @@ include 'config.php';
 
 
   <section class="table-section py-5">
-    <div class="container">
+    <div class="container justify-center">
       <div class="row align-items-start">
-
-        <div class="col-lg-6">
-          <table class="table table-bordered">
+        <h2 class="mb-3">User Management</h2>
+        <div class="table-container col-lg-12">
+          <table class="styled-table">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Edit</th>
-                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -62,12 +60,10 @@ include 'config.php';
               $res = mysqli_query($conn, 'select * from users');
               while ($row = mysqli_fetch_array($res)) {
                 echo "<tr>";
-                echo "<td>{$row['id']}</td>";
+                echo "<td><span></span>{$row['id']}</td>";
                 echo "<td>{$row['name']}</td>";
                 echo "<td>{$row['email']}</td>";
                 echo "<td>{$row['role']}</td>";
-                echo "<td><a href='edit.php?id={$row['id']}' class='btn btn-success'>Edit</a></td>";
-                echo "<td><a href='delete.php?id={$row['id']}' class='btn btn-danger'>Delete</a></td>";
                 echo "</tr>";
               }
               ?>
