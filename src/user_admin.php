@@ -27,13 +27,13 @@ include 'config.php';
 <body>
   <nav class="navbar">
     <div class="logo">
-      <img src="assets/images/kape't_ani_logo_white.png" alt="Kape't Ani Logo">
+      <img src="assets/images/kapenamaywhitebackground.jpg" alt="Kape't Ani Logo">
       <h1>Kape’t Ani Admin</h1>
     </div>
     <ul class="nav-links">
       <li><a href="admin.php">Dashboard</a></li>
       <li><a href="user_admin.php">Users</a></li>
-      <li><a href="#">Products</a></li>
+      <li><a href="product_admin.php">Products</a></li>
       <li><a href="#">Orders</a></li>
       <li><a href="#">Reports</a></li>
       <li><a href="logout.php" class="logout">Logout</a></li>
