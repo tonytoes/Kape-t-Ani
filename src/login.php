@@ -56,48 +56,6 @@ function isActiveForm($formName, $activeForm)
           class="me-2" />
         <span class="fw-semibold">Kape't Ani</span>
       </a>
-
-      <div
-        class="collapse navbar-collapse justify-content-center"
-        id="navbarNav">
-        <ul class="navbar-nav gap-3">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="product.html">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="review.php">Reviews</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.php">About</a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="nav-actions">
-        <a href="login.html"><i class="fa-solid fa-user"></i></a>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
-          <i class="bi bi-search"></i>
-        </a>
-        <a href="#" class="position-relative">
-          <i class="bi bi-cart3"></i>
-          <span
-            id="cart-count"
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">0</span>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
-        </button>
-      </div>
     </div>
   </nav>
 

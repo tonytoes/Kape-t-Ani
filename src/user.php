@@ -83,13 +83,13 @@ if (!isset($_SESSION['email'])) {
       <div class="col-md-3 mb-4">
         <div class="sidebar text-center shadow-sm">
           <img src="assets/images/userprofile.jpg" alt="Profile Picture">
-          <h6 class="mt-2 mb-0">Welcome </h6>
+          <h6 class="mt-2 mb-0">Welcome back <span><?= $_SESSION['name']; ?></span> !</h6>
           <a href="#" class="small text-decoration-none"><i class="bi bi-pencil"></i> Edit Profile</a>
           <hr>
           <div class="text-start ps-3">
             <a href="userprofile.html" class="active"><i class="bi bi-person"></i> My Account</a>
             <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
-            <a href="logout.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@ if (!isset($_SESSION['email'])) {
               <label class="col-sm-3 col-form-label">Username</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" value="">
-                <small class="text-muted">Username can only be changed once.</small>
+                <small>Username can only be changed once.</small>
               </div>
             </div>
 
