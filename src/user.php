@@ -57,15 +57,12 @@ if (!isset($_SESSION['email'])) {
       </div>
 
       <div class="nav-actions">
-        <a href="login.html"><i class="fa-solid fa-user"></i></a>
         <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
           <i class="bi bi-search"></i>
         </a>
+        <a href="login.html"><i class="fa-solid fa-user"></i></a>
         <a href="#" class="position-relative">
-          <i class="bi bi-cart3"></i>
-          <span
-            id="cart-count"
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">0</span>
+          <i class="bi bi-cart2 fs-4"></i>
         </a>
         <button
           class="navbar-toggler"

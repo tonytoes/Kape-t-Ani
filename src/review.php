@@ -57,9 +57,13 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
       </div>
 
       <div class="nav-actions">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal"><img src="assets/icons/material-symbols_search.png" alt=""></a>
-        <a class="nav-link" href="login.html"><img src="assets/icons/uil_user.png" alt=""></a>
-        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"><img src="assets/icons/bi_bag (1).png" alt=""></a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
+          <i class="bi bi-search"></i>
+        </a>
+        <a href="user.php"><i class="fa-solid fa-user"></i></a>
+        <a href="#" class="position-relative">
+          <i class="bi bi-cart2 fs-4"></i>
+        </a>
         <button
           class="navbar-toggler"
           type="button"
