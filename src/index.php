@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,13 +25,13 @@
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
   <script>
-    $(function () {
+    $(function() {
       $("#dialog").dialog({
         width: 650,
         height: 430,
         modal: true,
-        create: function () {
-          $("#dialog .btn-close").on("click", function () {
+        create: function() {
+          $("#dialog .btn-close").on("click", function() {
             $("#dialog").dialog("close");
           });
         }
@@ -38,9 +39,9 @@
     });
   </script>
 </head>
+
 <body>
 
-  <!-- Subscribe Dialog -->
   <div id="dialog" title="Subscribe Emails">
     <button type="button" class="btn-close position-absolute" style="right:10px; top:10px;" aria-label="Close"></button>
     <div class="d-flex align-items-center h-100 text-center">
@@ -62,40 +63,40 @@
       </div>
     </div>
   </div>
-  
-  <!-- Navbar -->
+
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
-      <!-- Logo left -->
       <a class="navbar-brand d-flex align-items-center" href="#">
         <img src="assets/images/coffee.png" alt="Kape't Ani Logo" height="40" class="me-2">
         <span class="fw-semibold">Kape't Ani</span>
       </a>
 
-      <!-- Centered menu -->
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav gap-3">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="product.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="review.html">Reviews</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="product.php">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="review.php">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
         </ul>
       </div>
 
-      <!-- Right side icons -->
       <div class="nav-actions">
         <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
-          <img src="assets/icons/material-symbols_search.png" alt="">
+          <i class="bi bi-search"></i>
         </a>
-        <a class="nav-link" href="login.html">
-          <img src="assets/icons/uil_user.png" alt="">
+        <a href="user.php"><i class="fa-solid fa-user"></i></a>
+        <a href="#" class="position-relative">
+          <i class="bi bi-cart2 fs-4"></i>
         </a>
-        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" class="position-relative">
-          <img src="assets/icons/bi_bag (1).png" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
         </button>
       </div>
     </div>
@@ -320,4 +321,5 @@
   <!-- Custom JS -->
   <script src="main.js"></script>
 </body>
+
 </html>
