@@ -42,7 +42,7 @@
             <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="product.php">Products</a>
+            <a class="nav-link" href="product.html">Products</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="review.php">Reviews</a>

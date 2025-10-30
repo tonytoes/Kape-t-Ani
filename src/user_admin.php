@@ -33,7 +33,7 @@ include 'config.php';
     <ul class="nav-links">
       <li><a href="admin.php">Dashboard</a></li>
       <li><a href="user_admin.php">Users</a></li>
-      <li><a href="#">Products</a></li>
+      <li><a href="product_admin.php">Products</a></li>
       <li><a href="#">Orders</a></li>
       <li><a href="#">Reports</a></li>
       <li><a href="logout.php" class="logout">Logout</a></li>

@@ -80,12 +80,7 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
   </nav>
 
   <!-- Hero Section -->
-  <section
-    class="hero"
-    style="
-        background: url('assets/images/Grinder.webp') no-repeat center center/cover;
-        height: 60vh;
-      ">
+  <section class="hero">
     <div class="hero-content">
       <h1>Product Reviews</h1>
       <p>
