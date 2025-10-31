@@ -156,7 +156,67 @@
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="product.js"></script>
+  <script> 
+      const coffeeProducts = [
+        <?php
+          $table = mysqli_query($linkToDB, "SELECT * FROM coffee_products");
+          while ($row = mysqli_fetch_array($table)) {
+              $imgBase64 = base64_encode($row["image_blob"]);
+              $imageType = $row["image_type"];
+
+              echo '[';
+                echo '"'.$row["id"].'",';
+                echo '"'.$row["name"].'",';
+                echo '"'.$row["description"].'",';
+                echo '"₱'.$row["price"].'",';
+                echo '"'.$imgBase64.'",';
+                echo '"'.$imageType.'"';
+              echo '],';
+          }
+        ?>
+      ];
+
+
+      const kitProducts = [
+        <?php
+          $table = mysqli_query($linkToDB, "SELECT * FROM cultural_products");
+          while ($row = mysqli_fetch_array($table)) {
+              $imgBase64 = base64_encode($row["image_blob"]);
+              $imageType = $row["image_type"];
+
+              echo '[';
+                echo '"'.$row["id"].'",';
+                echo '"'.$row["name"].'",';
+                echo '"'.$row["description"].'",';
+                echo '"₱'.$row["price"].'",';
+                echo '"'.$imgBase64.'",';
+                echo '"'.$imageType.'"';
+              echo '],';
+          }
+        ?>
+      ];
+
+      const autumnProducts = [
+        <?php
+          $table = mysqli_query($linkToDB, "SELECT * FROM seasonal_products");
+          while ($row = mysqli_fetch_array($table)) {
+              $imgBase64 = base64_encode($row["image_blob"]);
+              $imageType = $row["image_type"];
+
+              echo '[';
+                echo '"'.$row["id"].'",';
+                echo '"'.$row["name"].'",';
+                echo '"'.$row["description"].'",';
+                echo '"₱'.$row["price"].'",';
+                echo '"'.$imgBase64.'",';
+                echo '"'.$imageType.'"';
+              echo '],';
+          }
+        ?>
+      ];
+    </script>
+
+    <script src="product_user.js"></script>
 </body>
 
 </html>
