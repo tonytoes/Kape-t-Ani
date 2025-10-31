@@ -1,3 +1,8 @@
+<?php
+
+  include "config.php";
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -159,7 +164,7 @@
   <script> 
       const coffeeProducts = [
         <?php
-          $table = mysqli_query($linkToDB, "SELECT * FROM coffee_products");
+          $table = mysqli_query($conn, "SELECT * FROM coffee_products");
           while ($row = mysqli_fetch_array($table)) {
               $imgBase64 = base64_encode($row["image_blob"]);
               $imageType = $row["image_type"];
@@ -179,7 +184,7 @@
 
       const kitProducts = [
         <?php
-          $table = mysqli_query($linkToDB, "SELECT * FROM cultural_products");
+          $table = mysqli_query($conn, "SELECT * FROM cultural_products");
           while ($row = mysqli_fetch_array($table)) {
               $imgBase64 = base64_encode($row["image_blob"]);
               $imageType = $row["image_type"];
@@ -198,7 +203,7 @@
 
       const autumnProducts = [
         <?php
-          $table = mysqli_query($linkToDB, "SELECT * FROM seasonal_products");
+          $table = mysqli_query($conn, "SELECT * FROM seasonal_products");
           while ($row = mysqli_fetch_array($table)) {
               $imgBase64 = base64_encode($row["image_blob"]);
               $imageType = $row["image_type"];
