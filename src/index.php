@@ -66,15 +66,15 @@
 
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
-      <a class="navbar-brand d-flex align-items-center" href="#">
+      <a class="navbar-brand d-flex align-items-center" href="index.php">
         <img src="assets/images/coffee.png" alt="Kape't Ani Logo" height="40" class="me-2">
         <span class="fw-semibold">Kape't Ani</span>
       </a>
 
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav gap-3">
-          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="product.php">Products</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="product_user.php">Products</a></li>
           <li class="nav-item"><a class="nav-link" href="review.php">Reviews</a></li>
           <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
         </ul>
@@ -113,6 +113,7 @@
       </div>
 
       <!-- RIGHT: Rainy Monday Specials Promo (now dynamic) -->
+      <!-- 
       <div class="promo-section">
         <div class="promo-card text-center text-light p-4 rounded-4 shadow" style="background: rgba(68, 40, 8, 0.85); max-width: 300px;">
           <h3>Promo Vouchers</h3>
@@ -120,13 +121,13 @@
           <button id="voucherBtn" class="btn btn-custom btn-sm" style="display: none;">Get Voucher</button>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <!-- Scroll Prompt -->
-    <div class="scroll-prompt position-absolute bottom-3 start-50 translate-middle-x text-center" style="z-index: 3;">
-      <span>Scroll to explore</span><br>
-      <i class="bi bi-chevron-double-down"></i>
-    </div>
+      <!-- Scroll Prompt -->
+      <div class="scroll-prompt position-absolute bottom-3 start-50 translate-middle-x text-center" style="z-index: 3;">
+        <span>Scroll to explore</span><br>
+        <i class="bi bi-chevron-double-down"></i>
+      </div>
   </section>
 
   <!-- Search Modal -->
@@ -151,12 +152,12 @@
   </div>
 
   <!-- Discover Section -->
-  <section class="py-5">
+  <section class="discover_section py-5">
     <div class="container">
       <div class="row align-items-center">
         <!-- TEXT LEFT -->
         <div class="col-lg-6">
-          <h2 class="mb-4" style="color: #442808; font-weight: bold;">Discover the best coffee and cultural products</h2>
+          <h2 class="mb-4">Discover the best coffee and cultural products</h2>
           <p>Kape’t Ani was founded to promote and sell curated kits that combine Filipino coffee with cultural harvest products such as handmade baskets and native mugs.</p>
           <a href="about.html" class="btn btn-custom" style="color: black;">Learn More</a>
         </div>
@@ -172,10 +173,10 @@
   </section>
 
   <!-- Products Carousel Section -->
-  <section class="py-5">
+  <section class="product_section py-5">
     <div class="container">
-      <h2 class="text-center mb-4 fw-bold" style="color: #442808;">Our Filipino Coffee and Traditional Crafts</h2>
-
+      <h2 class="text-center mb-4 fw-bold">Our Filipino Coffee and Traditional Crafts</h2>
+      <p class="text-center mb-4">Rooted in Tradition, Inspired by Passion</p>
       <div id="coffeeCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -230,10 +231,10 @@
         <div class="col-md-3 mb-4 text-center">
           <img src="assets/images/kape't_ani_logo_white.png" alt="" style="width: 250px" />
           <div class="d-flex justify-content-center gap-3 my-3">
-            <a href="#" class="text-light fs-5"><i class="fab fa-facebook"></i></a>
-            <a href="#" class="text-light fs-5"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="text-light fs-5"><i class="fab fa-tiktok"></i></a>
-            <a href="#" class="text-light fs-5"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-instagram"></i></a>
           </div>
           <p class="small">&copy; 2025 All rights reserved</p>
         </div>
@@ -242,19 +243,19 @@
           <h5 class="fw-bold mb-3">About</h5>
           <ul class="list-unstyled">
             <li class="pt-2"><a href="#" class="text-light text-decoration-none">Menu</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Features</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Blogs</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Help & Supports</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Features</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Blogs</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Help & Supports</a></li>
           </ul>
         </div>
 
         <div class="col-md-3 mb-4">
           <h5 class="fw-bold mb-3">Company</h5>
           <ul class="list-unstyled">
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">How we work</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Pricing</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">FAQS</a></li>
+            <li class="pt-2"><a href="#" class="link text-light text-decoration-none">Terms of Service</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">How we work</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Pricing</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">FAQS</a></li>
           </ul>
         </div>
 
@@ -263,9 +264,9 @@
           <p class="mb-1">938 Aurora Boulevard,</p>
           <p class="mb-3">Cubao, Quezon City, Metro Manila</p>
           <ul class="list-unstyled">
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">+1 202-918-2132</a></li>
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">kapetani@gmail.com</a></li>
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">www.kapetani.com</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">+1 202-918-2132</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">kapetani@gmail.com</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">www.kapetani.com</a></li>
           </ul>
         </div>
       </div>

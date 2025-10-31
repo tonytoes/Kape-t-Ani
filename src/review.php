@@ -42,15 +42,15 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
   <!-- Navbar (copied from index.html) -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="index.php">
         <img src="assets/images/coffee.png" alt="Logo" height="40" class="me-2">
-        <span class="fw-semibold">Kape't Ani | review</span>
+        <span class="fw-semibold">Kape't Ani | Review</span>
       </a>
 
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav gap-3">
           <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="product.php">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="product_user.php">Products</a></li>
           <li class="nav-item "><a class="nav-link active" href="review.php">Reviews</a></li>
           <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
         </ul>
@@ -443,20 +443,20 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
         <div class="col-md-3 mb-4">
           <h5 class="fw-bold mb-3">About</h5>
           <ul class="list-unstyled">
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">Menu</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Features</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Blogs</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Help & Supports</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">Menu</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Features</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Blogs</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Help & Supports</a></li>
           </ul>
         </div>
 
         <div class="col-md-3 mb-4">
           <h5 class="fw-bold mb-3">Company</h5>
           <ul class="list-unstyled">
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">Terms of Service</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">How we work</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">Pricing</a></li>
-            <li class="pt-2"><a href="room.html" class="text-light text-decoration-none">FAQS</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">Terms of Service</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">How we work</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Pricing</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">FAQS</a></li>
           </ul>
         </div>
 
@@ -465,9 +465,9 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
           <p class="mb-1">938 Aurora Boulevard,</p>
           <p class="mb-3">Cubao, Quezon City, Metro Manila</p>
           <ul class="list-unstyled">
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">+1 202-918-2132</a></li>
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">kapetani@gmail.com</a></li>
-            <li class="pt-2"><a href="#" class="text-light text-decoration-none">www.kapetani.com</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">+1 202-918-2132</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">kapetani@gmail.com</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">www.kapetani.com</a></li>
           </ul>
         </div>
       </div>

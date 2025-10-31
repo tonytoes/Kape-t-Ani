@@ -1,5 +1,5 @@
-<?php 
-  include 'config.php';
+<?php
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,13 +28,13 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="index.php">
         <img
           src="assets/images/coffee.png"
           alt="Kape't Ani Logo"
           height="40"
           class="me-2" />
-        <span class="fw-semibold">Kape't Ani</span>
+        <span class="fw-semibold">Kape't Ani | Products</span>
       </a>
 
       <div
@@ -42,36 +42,31 @@
         id="navbarNav">
         <ul class="navbar-nav gap-3">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="product.html">Products</a>
+            <a class="nav-link active" href="product_user.php">Products</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="review.html">Reviews</a>
+            <a class="nav-link" href="review.php">Reviews</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
+            <a class="nav-link" href="about.php">About</a>
           </li>
         </ul>
       </div>
 
       <div class="nav-actions d-flex align-items-center gap-3">
         <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
-          <img
-            src="assets/icons/material-symbols_search.png"
-            alt="Search"
-            width="22" />
+          <i class="bi bi-search"></i>
         </a>
-        <a class="nav-link" href="login.html">
-          <img src="assets/icons/uil_user.png" alt="User" width="22" />
-        </a>
+        <a href="user.php"><i class="fa-solid fa-user"></i></a>
         <a
           href="#"
           data-bs-toggle="offcanvas"
           data-bs-target="#cartOffcanvas"
           class="position-relative">
-          <img src="assets/icons/bi_bag (1).png" alt="Cart" width="22" />
+          <i class="bi bi-cart2 fs-4"></i>
         </a>
         <button
           class="navbar-toggler"
@@ -126,11 +121,53 @@
   <!-- FOOTER -->
   <footer class="footer_section text-light pt-5 pb-5">
     <div class="container">
-      <!-- (unchanged footer content) -->
+      <div class="row">
+        <div class="col-md-3 mb-4 text-center">
+          <img src="assets/images/kape't_ani_logo_white.png" alt="" style="width: 250px" />
+          <div class="d-flex justify-content-center gap-3 my-3">
+            <a href="#" class="fs-5"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-instagram"></i></a>
+          </div>
+          <p class="small">&copy; 2025 All rights reserved</p>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">About</h5>
+          <ul class="list-unstyled">
+            <li class="pt-2"><a href="#" class="text-decoration-none">Menu</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Features</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Blogs</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Help & Supports</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Company</h5>
+          <ul class="list-unstyled">
+            <li class="pt-2"><a href="#" class="text-decoration-none">Terms of Service</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">How we work</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Pricing</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">FAQS</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Our Location</h5>
+          <p class="mb-1">938 Aurora Boulevard,</p>
+          <p class="mb-3">Cubao, Quezon City, Metro Manila</p>
+          <ul class="list-unstyled">
+            <li class="pt-2"><a href="#" class="text-decoration-none">+1 202-918-2132</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">kapetani@gmail.com</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">www.kapetani.com</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- ✅ SIDEBAR CART -->
+  <!-- SIDEBAR CART -->
   <div
     class="offcanvas offcanvas-end"
     tabindex="-1"
@@ -159,67 +196,67 @@
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script> 
-      const coffeeProducts = [
-        <?php
-          $table = mysqli_query($conn, "SELECT * FROM coffee_products");
-          while ($row = mysqli_fetch_array($table)) {
-              $imgBase64 = base64_encode($row["image_blob"]);
-              $imageType = $row["image_type"];
+  <script>
+    const coffeeProducts = [
+      <?php
+      $table = mysqli_query($conn, "SELECT * FROM coffee_products");
+      while ($row = mysqli_fetch_array($table)) {
+        $imgBase64 = base64_encode($row["image_blob"]);
+        $imageType = $row["image_type"];
 
-              echo '[';
-                echo '"'.$row["id"].'",';
-                echo '"'.$row["name"].'",';
-                echo '"'.$row["description"].'",';
-                echo '"₱'.$row["price"].'",';
-                echo '"'.$imgBase64.'",';
-                echo '"'.$imageType.'"';
-              echo '],';
-          }
-        ?>
-      ];
+        echo '[';
+        echo '"' . $row["id"] . '",';
+        echo '"' . $row["name"] . '",';
+        echo '"' . $row["description"] . '",';
+        echo '"₱' . $row["price"] . '",';
+        echo '"' . $imgBase64 . '",';
+        echo '"' . $imageType . '"';
+        echo '],';
+      }
+      ?>
+    ];
 
 
-      const kitProducts = [
-        <?php
-          $table = mysqli_query($conn, "SELECT * FROM cultural_products");
-          while ($row = mysqli_fetch_array($table)) {
-              $imgBase64 = base64_encode($row["image_blob"]);
-              $imageType = $row["image_type"];
+    const kitProducts = [
+      <?php
+      $table = mysqli_query($conn, "SELECT * FROM cultural_products");
+      while ($row = mysqli_fetch_array($table)) {
+        $imgBase64 = base64_encode($row["image_blob"]);
+        $imageType = $row["image_type"];
 
-              echo '[';
-                echo '"'.$row["id"].'",';
-                echo '"'.$row["name"].'",';
-                echo '"'.$row["description"].'",';
-                echo '"₱'.$row["price"].'",';
-                echo '"'.$imgBase64.'",';
-                echo '"'.$imageType.'"';
-              echo '],';
-          }
-        ?>
-      ];
+        echo '[';
+        echo '"' . $row["id"] . '",';
+        echo '"' . $row["name"] . '",';
+        echo '"' . $row["description"] . '",';
+        echo '"₱' . $row["price"] . '",';
+        echo '"' . $imgBase64 . '",';
+        echo '"' . $imageType . '"';
+        echo '],';
+      }
+      ?>
+    ];
 
-      const autumnProducts = [
-        <?php
-          $table = mysqli_query($conn, "SELECT * FROM seasonal_products");
-          while ($row = mysqli_fetch_array($table)) {
-              $imgBase64 = base64_encode($row["image_blob"]);
-              $imageType = $row["image_type"];
+    const autumnProducts = [
+      <?php
+      $table = mysqli_query($conn, "SELECT * FROM seasonal_products");
+      while ($row = mysqli_fetch_array($table)) {
+        $imgBase64 = base64_encode($row["image_blob"]);
+        $imageType = $row["image_type"];
 
-              echo '[';
-                echo '"'.$row["id"].'",';
-                echo '"'.$row["name"].'",';
-                echo '"'.$row["description"].'",';
-                echo '"₱'.$row["price"].'",';
-                echo '"'.$imgBase64.'",';
-                echo '"'.$imageType.'"';
-              echo '],';
-          }
-        ?>
-      ];
-    </script>
+        echo '[';
+        echo '"' . $row["id"] . '",';
+        echo '"' . $row["name"] . '",';
+        echo '"' . $row["description"] . '",';
+        echo '"₱' . $row["price"] . '",';
+        echo '"' . $imgBase64 . '",';
+        echo '"' . $imageType . '"';
+        echo '],';
+      }
+      ?>
+    ];
+  </script>
 
-    <script src="product_user.js"></script>
+  <script src="product_user.js"></script>
 </body>
 
 </html>
