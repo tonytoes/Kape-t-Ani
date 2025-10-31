@@ -67,7 +67,7 @@
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
       <a class="navbar-brand d-flex align-items-center" href="#">
-        <img src="assets/images/coffee.png" alt="Kape't Ani Logo" height="40" class="me-2">
+        <img src="assets/images/" alt="Kape't Ani Logo" height="40" class="me-2">
         <span class="fw-semibold">Kape't Ani</span>
       </a>
 
