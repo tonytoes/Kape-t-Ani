@@ -8,13 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let cartItems = 0;
 
-  // Add sample item to cart
   addToCartBtn.addEventListener("click", () => {
     cartItems++;
     cartCount.textContent = cartItems;
   });
 
-  // Smooth scroll (Bootstrap doesn’t provide this by default)
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
       const target = document.querySelector(this.getAttribute("href"));
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Navbar shrink effect
   window.addEventListener("scroll", () => {
     if (window.scrollY > 50) {
       navbar.classList.add("shrink");
@@ -34,15 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* -----------------------------------------------------------
-     Reusable Product Carousel (no conflicts with existing code)
-     ----------------------------------------------------------- */
+
   const carouselElement = document.querySelector('#coffeeCarousel');
   if (carouselElement) {
-    // Initialize a Bootstrap Carousel instance if present
-    // (ensures correct autoplay/controls when reused elsewhere)
     const carousel = new bootstrap.Carousel(carouselElement, {
-      interval: 4000,      // auto-slide every 4 seconds
+      interval: 4000,      
       ride: 'carousel',
       pause: 'hover'
     });

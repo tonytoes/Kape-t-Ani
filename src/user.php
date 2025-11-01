@@ -46,7 +46,7 @@ if (!isset($_SESSION['email'])) {
             <a class="nav-link" href="index.php">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="product.php">Products</a>
+            <a class="nav-link active" href="product_user.php">Products</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="review.php">Reviews</a>

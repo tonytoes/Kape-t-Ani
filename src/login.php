@@ -49,7 +49,7 @@ function isActiveForm($formName, $activeForm)
 <body>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="index.php">
         <img
           src="assets/images/coffee.png"
           alt="Kape't Ani Logo"

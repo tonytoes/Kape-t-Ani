@@ -13,7 +13,6 @@ body {
   background-color: #f9f9f9;
 }
 
-/* --- NAVBAR (copied from index.html) --- */
 .navbar {
   padding: 1rem 5%;
   background: linear-gradient(
@@ -43,6 +42,11 @@ body {
 
 .navbar-nav .nav-link:hover {
   color: var(--golden-caramel) !important;
+}
+
+.nav-link.active {
+  color: var(--golden-caramel) !important;
+  font-weight: bold;
 }
 
 @media (min-width: 992px) {
@@ -156,20 +160,6 @@ body {
 }
 
 /* --- FOOTER --- */
-.footer_section {
-  background-color: #2c1a0e;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  color: #fff;
-}
-
-.footer_section h5 {
-  color: #dcb764;
-}
-
-.footer_section a:hover {
-  color: #dcb764;
-}
 
 .footer_section {
   background: url("assets/images/Rectangle 14.png") center/cover no-repeat;
@@ -188,4 +178,17 @@ body {
 .footer_section > * {
   position: relative;
   z-index: 1;
+}
+
+.footer_section h5 {
+  color: var(--golden-caramel);
+}
+
+.footer_section a {
+  color: var(--text-light);
+}
+
+.footer_section a:hover {
+  color: var(--golden-caramel);
+  text-decoration: none;
 }
