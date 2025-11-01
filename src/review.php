@@ -44,22 +44,26 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
     <div class="container-fluid position-relative">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
         <img src="assets/images/coffee.png" alt="Logo" height="40" class="me-2">
-        <span class="fw-semibold">Kape't Ani</span>
+        <span class="fw-semibold">Kape't Ani | review</span>
       </a>
 
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav gap-3">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
-          <li class="nav-item "><a class="nav-link active" href="review.html">Reviews</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="product.php">Products</a></li>
+          <li class="nav-item "><a class="nav-link active" href="review.php">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.php">About</a></li>
         </ul>
       </div>
 
       <div class="nav-actions">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal"><img src="assets/icons/material-symbols_search.png" alt=""></a>
-        <a class="nav-link" href="login.html"><img src="assets/icons/uil_user.png" alt=""></a>
-        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas"><img src="assets/icons/bi_bag (1).png" alt=""></a>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
+          <i class="bi bi-search"></i>
+        </a>
+        <a href="user.php"><i class="fa-solid fa-user"></i></a>
+        <a href="#" class="position-relative">
+          <i class="bi bi-cart2 fs-4"></i>
+        </a>
         <button
           class="navbar-toggler"
           type="button"
