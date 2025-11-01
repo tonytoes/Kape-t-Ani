@@ -8,6 +8,20 @@ if (!isset($_SESSION['email'])) {
 
 include 'config.php';
 
+$email_session = $_SESSION['email'];
+
+$first_name = "";
+$last_name = "";
+$email = "";
+
+$res = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email_session'");
+if ($row = mysqli_fetch_assoc($res)) {
+  $first_name = $row['first_name'];
+  $last_name = $row['last_name'];
+  $email = $row['email'];
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +100,7 @@ include 'config.php';
       <div class="col-md-3 mb-4">
         <div class="sidebar text-center shadow-sm">
           <img src="assets/images/userprofile.jpg" alt="Profile Picture">
-          <h6 class="mt-2 mb-0">Welcome back <span><?= $_SESSION['name']; ?></span> !</h6>
+          <h6 class="mt-2 mb-0">Welcome back <span><?= $_SESSION['first_name']; ?></span> !</h6>
           <a href="#" class="small text-decoration-none"><i class="bi bi-pencil"></i> Edit Profile</a>
           <hr>
           <div class="text-start ps-3">
@@ -99,58 +113,72 @@ include 'config.php';
       </div>
 
       <div class="col-md-9">
-        <div class="profile-card shadow-sm">
-          <h4 class="fw-bold">My Profile</h4>
-          <p>Manage and protect your account</p>
-          <hr>
+        <form method="POST" action="">
+          <div class="col-md-9">
+            <div class="profile-card shadow-sm">
+              <h4 class="fw-bold">My Profile</h4>
+              <p>Manage and protect your account</p>
+              <hr>
 
-          <form>
-            <div class="mb-3 row">
-              <label class="col-sm-3 col-form-label">Username</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="">
-                <small>Username can only be changed once.</small>
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">First Name</label>
+                <div class="col-sm-9">
+                  <input type="text" name="first_name" class="form-control" value="<?php echo $first_name ?>">
+                </div>
               </div>
-            </div>
 
-            <div class="mb-3 row">
-              <label class="col-sm-3 col-form-label">Full Name</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="">
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Last Name</label>
+                <div class="col-sm-9">
+                  <input type="text" name="last_name" class="form-control" value="<?php echo $last_name ?>">
+                </div>
               </div>
-            </div>
 
-            <div class="mb-3 row">
-              <label class="col-sm-3 col-form-label">Email</label>
-              <div class="col-sm-9">
-                <input type="email" class="form-control" value="">
+              <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="email" name="email" class="form-control" value="<?php echo $email ?>">
+                </div>
               </div>
-            </div>
 
-            <!-- <div class="mb-3 row">
-              <label class="col-sm-3 col-form-label">Phone</label>
-              <div class="col-sm-9">
-                <input type="text" class="form-control" value="+63 912 345 6789">
+              <!--  <div class="mb-3 row">
+            <label class="col-sm-3 col-form-label">Address</label>
+            <div class="col-sm-9">
+              <textarea class="form-control" rows="2"></textarea>
+            </div>
+          </div> -->
+
+              <div class="text-end">
+                <button type="submit" name="update" class="btn btn-custom px-4">Save Changes</button>
               </div>
-            </div>
-
-            <div class="mb-3 row">
-              <label class="col-sm-3 col-form-label">Address</label>
-              <div class="col-sm-9">
-                <textarea class="form-control" rows="2">938 Aurora Boulevard, Quezon City</textarea>
-              </div>
-            </div> -->
-
-            <div class="text-end">
-              <button type="submit" class="btn btn-custom px-4">Save Changes</button>
-            </div>
-          </form>
-        </div>
+        </form>
       </div>
     </div>
+  </div>
+  </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+
+<?php
+if (isset($_POST["update"])) {
+  $first_name = $_POST['first_name'];
+  $last_name = $_POST['last_name'];
+  $email = $_POST['email'];
+
+  $email_session = $_SESSION['email'];
+
+  $query = "UPDATE users SET first_name='$first_name', last_name='$last_name', email='$email' WHERE email='$email_session'";
+
+  mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+  $_SESSION['first_name'] = $first_name;
+  $_SESSION['last_name'] = $last_name;
+  $_SESSION['email'] = $email;
+
+  echo "<script>window.location.href='user.php';</script>";
+}
+?>

@@ -50,7 +50,8 @@ include 'config.php';
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
                 <th>Role</th>
               </tr>
@@ -61,7 +62,8 @@ include 'config.php';
               while ($row = mysqli_fetch_array($res)) {
                 echo "<tr>";
                 echo "<td><span></span>{$row['id']}</td>";
-                echo "<td>{$row['name']}</td>";
+                echo "<td>{$row['first_name']}</td>";
+                echo "<td>{$row['last_name']}</td>";
                 echo "<td>{$row['email']}</td>";
                 echo "<td>{$row['role']}</td>";
                 echo "</tr>";

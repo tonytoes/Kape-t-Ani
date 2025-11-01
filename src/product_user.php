@@ -7,6 +7,7 @@ if (!isset($_SESSION['email'])) {
 }
 
 include 'config.php';
+
 ?>
 
 <!DOCTYPE html>
