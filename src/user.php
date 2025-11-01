@@ -6,6 +6,8 @@ if (!isset($_SESSION['email'])) {
   exit();
 }
 
+include 'config.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +91,7 @@ if (!isset($_SESSION['email'])) {
           <hr>
           <div class="text-start ps-3">
             <a href="userprofile.html" class="active"><i class="bi bi-person"></i> My Account</a>
+            <a href="order_history.php"><i class="bi bi-cart"></i>Order History</a>
             <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
             <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
           </div>
