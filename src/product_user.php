@@ -186,7 +186,7 @@ include 'config.php';
       </div>
 
       <a
-        href="checkout.html"
+        href="checkout.php"
         class="btn w-100 mt-4"
         style="background:#442808; color:white;">
         Checkout
