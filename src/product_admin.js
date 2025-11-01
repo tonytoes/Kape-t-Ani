@@ -1,16 +1,25 @@
-function renderProducts(id, products, color = "#442808", ed = "#ffb157ff", del = "#20160aff") {
-  document.getElementById(id).innerHTML = products
+function renderProducts(id, products) {
+  const container = document.getElementById(id);
+  if (!container) return;
+
+  container.innerHTML = products
     .map(
-      ([id, name, desc, price, img, type, category]) => `
-        <div class="col-md-3 col-sm-6">
-          <div class="card border-0 shadow-sm h-100"> 
-            <img src="data:${type};base64,${img}" class="card-img-top" alt="${name}">
-            <div class="card-body text-center">
-              <h6 class="fw-bold">${name}</h6>
-              <p class="small text-muted mb-1">${desc}</p>
-              <p class="fw-semibold mb-2" style="color:${color};">${price}</p>
-              <button id="${id}" data-bs-toggle="modal" data-bs-target="#editModal" name ="${category}" class="btn btn-sm w-100 text-light mb-3" style="background-color:${ed};">Edit</button>
-              <button id="${id}" data-bs-toggle="modal" data-bs-target="#deleteModal" name="${category}" class="btn btn-sm w-100 text-light" style="background-color:${del};">Delete</button>
+      ([pid, name, desc, price, qty, img, type, category]) => `
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="product-card">
+            <img src="data:${type};base64,${img}" alt="${name}" class="product-img">
+            <div class="product-info">
+              <h5 class="product-title">${name}</h5>
+              <p class="product-desc">${desc}</p>
+              <span class="product-price">${price}</span>
+              <div class="product-actions">
+                <button id="${pid}" name="${category}" data-bs-toggle="modal" data-bs-target="#editModal" class="edit-btn">
+                  <i class="bi bi-pencil-square me-1"></i>Edit
+                </button>
+                <button id="${pid}" name="${category}" data-bs-toggle="modal" data-bs-target="#deleteModal" class="delete-btn">
+                  <i class="bi bi-trash me-1"></i>Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>`

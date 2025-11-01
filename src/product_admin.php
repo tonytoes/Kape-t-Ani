@@ -55,7 +55,7 @@ include "config.php";
       <!-- Add Button -->
       <div class="row g-4 mt-3">
         <div class="col-md-3 col-sm-6">
-          <div class="card border-0 shadow-sm h-100">
+          <div class="card custom-card border-0 shadow-sm h-100">
             <div class="card-body text-center">
               <button type="button" id="Coffee" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light" style="background-color:green;"> Add</button>
             </div>
@@ -140,6 +140,11 @@ include "config.php";
               </div>
 
               <div class="mb-3">
+                <label for="product_qty" class="form-label">Quantity:</label>
+                <input type="number" class="form-control" id="product_qty" name="product_qty" min="0" value="0">
+              </div>
+
+              <div class="mb-3">
                 <label for="product_image" class="form-label">Image: </label>
                 <input type="file" id="product_image" name="product_image" accept="image/*" required>
               </div>
@@ -189,6 +194,11 @@ include "config.php";
               <div class=mb-3>
                 <label for="product_price" class="form-label">Price: </label>
                 <input type="text" class="form-control" id="product_price" name="product_price">
+              </div>
+
+              <div class="mb-3">
+                <label for="product_qty" class="form-label">Quantity:</label>
+                <input type="number" class="form-control" id="product_qty" name="product_qty" min="0" value="0">
               </div>
 
               <div class="mb-3">
@@ -250,14 +260,15 @@ include "config.php";
     $name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $description = mysqli_real_escape_string($conn, $_POST['product_description']);
     $price = mysqli_real_escape_string($conn, $_POST['product_price']);
+    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
     $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
     $imageData = mysqli_real_escape_string($conn, $image);
     $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
 
 
     //Insert values to table 
-    mysqli_query($conn, "INSERT INTO coffee_products (id, name, description, price, image_name, image_blob, image_type)
-          VALUES(NULL, '$name', '$description', '$price', '$imageName', '$imageData', '$imageType')");
+    mysqli_query($conn, "INSERT INTO coffee_products (id, name, description, price, qty, image_name, image_blob, image_type)
+          VALUES(NULL, '$name', '$description', '$price', '$qty', '$imageName', '$imageData', '$imageType')");
   ?>
     <script type="text/javascript">
       window.location.href = window.location.href;
@@ -273,14 +284,15 @@ include "config.php";
     $name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $description = mysqli_real_escape_string($conn, $_POST['product_description']);
     $price = mysqli_real_escape_string($conn, $_POST['product_price']);
+    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
     $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
     $imageData = mysqli_real_escape_string($conn, $image);
     $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
 
 
     //Insert values to table 
-    mysqli_query($conn, "INSERT INTO cultural_products (id, name, description, price, image_name, image_blob, image_type)
-          VALUES(NULL, '$name', '$description', '$price', '$imageName', '$imageData', '$imageType')");
+    mysqli_query($conn, "INSERT INTO cultural_products (id, name, description, price, qty, image_name, image_blob, image_type)
+          VALUES(NULL, '$name', '$description', '$price','$qty','$imageName', '$imageData', '$imageType')");
   ?>
     <script type="text/javascript">
       window.location.href = window.location.href;
@@ -295,14 +307,15 @@ include "config.php";
     $name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $description = mysqli_real_escape_string($conn, $_POST['product_description']);
     $price = mysqli_real_escape_string($conn, $_POST['product_price']);
+    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
     $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
     $imageData = mysqli_real_escape_string($conn, $image);
     $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
 
 
     //Insert values to table 
-    mysqli_query($conn, "INSERT INTO seasonal_products (id, name, description, price, image_name, image_blob, image_type)
-          VALUES(NULL, '$name', '$description', '$price', '$imageName', '$imageData', '$imageType')");
+    mysqli_query($conn, "INSERT INTO seasonal_products (id, name, description, price, qty, image_name, image_blob, image_type)
+          VALUES(NULL, '$name', '$description', '$price', '$qty', '$imageName', '$imageData', '$imageType')");
   ?>
     <script type="text/javascript">
       window.location.href = window.location.href;
@@ -321,6 +334,7 @@ include "config.php";
     $name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $description = mysqli_real_escape_string($conn, $_POST['product_description']);
     $price = mysqli_real_escape_string($conn, $_POST['product_price']);
+    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
     $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
     $imageData = mysqli_real_escape_string($conn, $image);
     $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
@@ -331,6 +345,7 @@ include "config.php";
             `name` = '$name', 
             `description` = '$description',  
             `price` = '$price',  
+            `qty` = '$qty', 
             `image_name` = '$imageName',
             `image_blob` = '$imageData',
             `image_type` = '$imageType' 
@@ -351,6 +366,7 @@ include "config.php";
     $name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $description = mysqli_real_escape_string($conn, $_POST['product_description']);
     $price = mysqli_real_escape_string($conn, $_POST['product_price']);
+    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
     $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
     $imageData = mysqli_real_escape_string($conn, $image);
     $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
@@ -361,6 +377,7 @@ include "config.php";
             `name` = '$name', 
             `description` = '$description',  
             `price` = '$price',  
+            `qty` = '$qty', 
             `image_name` = '$imageName',
             `image_blob` = '$imageData',
             `image_type` = '$imageType' 
@@ -381,6 +398,7 @@ include "config.php";
     $name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $description = mysqli_real_escape_string($conn, $_POST['product_description']);
     $price = mysqli_real_escape_string($conn, $_POST['product_price']);
+    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
     $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
     $imageData = mysqli_real_escape_string($conn, $image);
     $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
@@ -391,6 +409,7 @@ include "config.php";
             `name` = '$name', 
             `description` = '$description',  
             `price` = '$price',  
+            `qty` = '$qty', 
             `image_name` = '$imageName',
             `image_blob` = '$imageData',
             `image_type` = '$imageType' 
@@ -457,6 +476,7 @@ include "config.php";
         echo '"' . $row["name"] . '",';
         echo '"' . $row["description"] . '",';
         echo '"₱' . $row["price"] . '",';
+        echo '"' . $row["qty"] . '",';
         echo '"' . $imgBase64 . '",';
         echo '"' . $imageType . '",';
         echo '"Coffee"';
@@ -478,6 +498,7 @@ include "config.php";
         echo '"' . $row["name"] . '",';
         echo '"' . $row["description"] . '",';
         echo '"₱' . $row["price"] . '",';
+        echo '"' . $row["qty"] . '"';
         echo '"' . $imgBase64 . '",';
         echo '"' . $imageType . '",';
         echo '"Cultural"';
@@ -498,6 +519,7 @@ include "config.php";
         echo '"' . $row["name"] . '",';
         echo '"' . $row["description"] . '",';
         echo '"₱' . $row["price"] . '",';
+        echo '"' . $row["qty"] . '"';
         echo '"' . $imgBase64 . '",';
         echo '"' . $imageType . '",';
         echo '"Seasonal"';
