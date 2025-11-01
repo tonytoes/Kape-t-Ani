@@ -1,6 +1,13 @@
 <?php
-include 'config.php';
+
+session_start();
+if (!isset($_SESSION['email'])) {
+  header("Location: login.php");
+  exit();
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -102,7 +109,8 @@ include 'config.php';
     <div class="offcanvas-body d-flex flex-column">
       <ul id="cartItems" class="list-group mb-3"></ul>
       <div class="d-flex justify-content-between align-items-center mt-auto">
-        <h6>Total:</h6><h6 id="cartTotal">₱0</h6>
+        <h6>Total:</h6>
+        <h6 id="cartTotal">₱0</h6>
       </div>
       <a href="checkout.php" class="btn mt-3 text-light" style="background:#442808;">Checkout</a>
     </div>
@@ -148,4 +156,5 @@ include 'config.php';
 
   <script src="product_user.js"></script>
 </body>
+
 </html>

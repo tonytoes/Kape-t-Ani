@@ -1,5 +1,16 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['email'])) {
+  header("Location: login.php");
+  exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -40,10 +51,8 @@
         <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="bi bi-search"></i></a>
         <a href="user.php"><i class="fa-solid fa-user"></i></a>
 
-        <!-- 🛒 Cart Icon -->
-        <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" class="position-relative">
+        <a href="product_user.php" class="position-relative">
           <i class="bi bi-cart2 fs-4"></i>
-          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -53,22 +62,6 @@
       </div>
     </div>
   </nav>
-
-  <!-- 🛍️ Offcanvas Sidebar Cart -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title fw-bold" id="cartOffcanvasLabel">Your Cart</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-    </div>
-
-    <div class="offcanvas-body d-flex flex-column">
-      <ul class="list-group mb-3" id="cartItems"></ul>
-      <div class="d-flex justify-content-between fw-bold fs-6 mt-3">
-        <span>Total:</span> <span id="cartTotal">₱0.00 Php</span>
-      </div>
-      <a href="checkout.php" class="btn w-100 mt-4" style="background:#442808; color:white;">Proceed to Checkout</a>
-    </div>
-  </div>
 
   <!-- Hero/About Header -->
   <section class="hero-section">
@@ -189,41 +182,6 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- 🧾 Cart Sidebar Script -->
-  <script>
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  function updateCartUI() {
-    const container = document.getElementById("cartItems");
-    const totalEl = document.getElementById("cartTotal");
-    const countEl = document.getElementById("cart-count");
-    if (!container) return;
-
-    container.innerHTML = cart.length
-      ? cart.map(item => `
-        <li class="list-group-item d-flex align-items-center justify-content-between">
-          <div class="d-flex align-items-center">
-            <img src="data:image/png;base64,${item.img}" class="me-3" width="50" height="50" style="object-fit:cover; border-radius:8px;">
-            <div>
-              <strong>${item.name}</strong><br>
-              <small>${item.price}</small><br>
-              <small>Qty: ${item.qty}</small>
-            </div>
-          </div>
-        </li>`).join("")
-      : `<p class="text-center text-muted mt-4">Your cart is empty.</p>`;
-
-    let total = cart.reduce((sum, item) => {
-      const numeric = parseFloat(item.price.replace(/[₱Php\s]/g, ""));
-      return sum + numeric * item.qty;
-    }, 0);
-
-    totalEl.textContent = `₱${total.toFixed(2)} Php`;
-    countEl.textContent = cart.reduce((sum, i) => sum + i.qty, 0);
-  }
-
-  document.addEventListener("DOMContentLoaded", updateCartUI);
-  </script>
 </body>
+
 </html>

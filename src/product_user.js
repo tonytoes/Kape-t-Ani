@@ -1,7 +1,7 @@
-// ✅ Load Cart from Local Storage
+/* Local storage of the item cart */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// ✅ Render Products
+/* Card of the product on the side cart*/
 function renderProducts(id, products, color = "#442808") {
   document.getElementById(id).innerHTML = products
     .map(([pid, name, desc, price, img, type]) => `
@@ -29,7 +29,7 @@ renderProducts("coffee-products", coffeeProducts);
 renderProducts("kit-products", kitProducts);
 renderProducts("autumn-products", autumnProducts, "#b66d2f");
 
-// ✅ Add to Cart
+/* Add to side cart */
 document.addEventListener("click", (e) => {
   if (!e.target.classList.contains("add-to-cart-btn")) return;
 
@@ -48,20 +48,20 @@ document.addEventListener("click", (e) => {
   saveCart();
 });
 
-// ✅ Remove Item
+/* Remove from cart*/
 function removeFromCart(id) {
   cart = cart.filter((item) => item.id !== id);
   saveCart();
 }
 
-// ✅ Change Quantity
+/* qnty change */
 function changeQuantity(id, qty) {
   const item = cart.find((i) => i.id === id);
   if (item) item.qty = Math.max(1, parseInt(qty) || 1);
   saveCart();
 }
 
-// ✅ Update Cart UI
+/* Updating the cart ui */
 function updateCartUI() {
   const cartList = document.getElementById("cartItems");
   const totalEl = document.getElementById("cartTotal");
@@ -100,11 +100,17 @@ function updateCartUI() {
   countEl.textContent = count;
 }
 
-// ✅ Save Cart
+
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartUI();
 }
 
-// ✅ Initialize Cart
 updateCartUI();
+
+if (cart.length > 0 && coffeeProducts.length + kitProducts.length + autumnProducts.length === 0) {
+  localStorage.removeItem("cart");
+  cart = [];
+  updateCartUI();
+}
+

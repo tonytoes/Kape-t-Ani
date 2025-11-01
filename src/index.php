@@ -85,7 +85,7 @@
           <i class="bi bi-search"></i>
         </a>
         <a href="user.php"><i class="fa-solid fa-user"></i></a>
-        <a href="#" class="position-relative">
+        <a href="product_user.php" class="position-relative">
           <i class="bi bi-cart2 fs-4"></i>
         </a>
         <button
