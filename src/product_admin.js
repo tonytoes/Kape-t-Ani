@@ -12,6 +12,7 @@ function renderProducts(id, products) {
               <h5 class="product-title">${name}</h5>
               <p class="product-desc">${desc}</p>
               <span class="product-price">${price}</span>
+              <p class="product-qty">Stock: <strong>${qty}</strong></p>
               <div class="product-actions">
                 <button id="${pid}" name="${category}" data-bs-toggle="modal" data-bs-target="#editModal" class="edit-btn">
                   <i class="bi bi-pencil-square me-1"></i>Edit
