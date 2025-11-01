@@ -55,8 +55,8 @@ if (!isset($_SESSION['email'])) {
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero-section text-center text-light d-flex flex-column justify-content-center align-items-center">
-    <div>
+  <section class="hero-section text-center d-flex flex-column justify-content-center align-items-center">
+    <div class="hero-content">
       <h1>Kape’t Ani</h1>
       <p>Empowering Local Farmers and Sharing Filipino Coffee Culture with the World</p>
     </div>
@@ -86,17 +86,51 @@ if (!isset($_SESSION['email'])) {
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer_section text-light pt-5 pb-5">
-    <div class="container text-center">
-      <img src="assets/images/kape't_ani_logo_white.png" alt="" style="width:250px;" class="mb-3" />
-      <div class="d-flex justify-content-center gap-3 my-3">
-        <a href="#" class="fs-5"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="fs-5"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="fs-5"><i class="fab fa-tiktok"></i></a>
-        <a href="#" class="fs-5"><i class="fab fa-instagram"></i></a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 mb-4 text-center">
+          <img src="assets/images/kape't_ani_logo_white.png" alt="" style="width: 250px" />
+          <div class="d-flex justify-content-center gap-3 my-3">
+            <a href="#" class="fs-5"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="fs-5"><i class="fab fa-instagram"></i></a>
+          </div>
+          <p class="small">&copy; 2025 All rights reserved</p>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">About</h5>
+          <ul class="list-unstyled">
+            <li class="pt-2"><a href="#" class="text-decoration-none">Menu</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Features</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Blogs</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Help & Supports</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Company</h5>
+          <ul class="list-unstyled">
+            <li class="pt-2"><a href="#" class="link text-decoration-none">Terms of Service</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">How we work</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">Pricing</a></li>
+            <li class="pt-2"><a href="room.html" class="text-decoration-none">FAQS</a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <h5 class="fw-bold mb-3">Our Location</h5>
+          <p class="mb-1">938 Aurora Boulevard,</p>
+          <p class="mb-3">Cubao, Quezon City, Metro Manila</p>
+          <ul class="list-unstyled">
+            <li class="pt-2"><a href="#" class="text-decoration-none">+1 202-918-2132</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">kapetani@gmail.com</a></li>
+            <li class="pt-2"><a href="#" class="text-decoration-none">www.kapetani.com</a></li>
+          </ul>
+        </div>
       </div>
-      <p class="small">&copy; 2025 All rights reserved</p>
     </div>
   </footer>
 

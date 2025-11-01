@@ -95,7 +95,6 @@ body {
   justify-content: center;
   text-align: center;
   padding: 0 5%;
-  color: var(--text-light);
   position: relative;
 }
 
@@ -122,12 +121,14 @@ body {
 .hero-content h1 {
   font-size: 3rem;
   font-weight: bold;
+  color: var(--text-light);
 }
 
 .hero-content p {
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 2rem;
+  color: var(--text-light);
 }
 
 .btn-custom {
@@ -165,6 +166,7 @@ body {
   background: url("assets/images/Rectangle 14.png") center/cover no-repeat;
   position: relative;
   overflow: hidden;
+  margin-top: 15rem;
 }
 
 .footer_section::before {
