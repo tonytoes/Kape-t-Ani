@@ -140,6 +140,9 @@ body {
   box-shadow: 0 4px 12px rgba(60, 42, 33, 0.4);
 }
 
+#Coffee, #Cultural, #Seasonal{
+  background-color: var(--forest-sage);
+}
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
   .cards {
