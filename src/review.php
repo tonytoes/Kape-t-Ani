@@ -9,6 +9,17 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
 
 ?>
 
+<?php
+
+session_start();
+if (!isset($_SESSION['email'])) {
+  header("Location: login.php");
+  exit();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +72,7 @@ mysqli_select_db($link, "kapetani") or die(mysqli_error($link));
           <i class="bi bi-search"></i>
         </a>
         <a href="user.php"><i class="fa-solid fa-user"></i></a>
-        <a href="#" class="position-relative">
+        <a href="product_user.php" class="position-relative">
           <i class="bi bi-cart2 fs-4"></i>
         </a>
         <button
