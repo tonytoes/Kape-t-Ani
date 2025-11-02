@@ -35,6 +35,7 @@ include "config.php";
     </div>
     <ul class="nav-links">
       <li><a href="#">Dashboard</a></li>
+      <li><a  href="inventory.php">Alerts</a></li>
       <li><a href="user_admin.php">Users</a></li>
       <li><a href="product_admin.php">Products</a></li>
       <li><a href="#">Orders</a></li>
@@ -57,7 +58,7 @@ include "config.php";
         <div class="col-md-3 col-sm-6">
           <div class="card custom-card border-0 shadow-sm h-100">
             <div class="card-body text-center">
-              <button type="button" id="Coffee" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light" style="background-color:green;"> Add</button>
+              <button type="button" id="Coffee" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light"> Add</button>
             </div>
           </div>
         </div>
@@ -74,7 +75,7 @@ include "config.php";
         <div class="col-md-3 col-sm-6">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body text-center">
-              <button type="button" id="Cultural" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light" style="background-color:green;"> Add</button>
+              <button type="button" id="Cultural" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light" > Add</button>
             </div>
           </div>
         </div>
@@ -97,7 +98,7 @@ include "config.php";
         <div class="col-md-3 col-sm-6">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body text-center">
-              <button type="button" id="Seasonal" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light" style="background-color:green;"> Add</button>
+              <button type="button" id="Seasonal" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light"> Add</button>
             </div>
           </div>
         </div>
@@ -498,7 +499,7 @@ include "config.php";
         echo '"' . $row["name"] . '",';
         echo '"' . $row["description"] . '",';
         echo '"₱' . $row["price"] . '",';
-        echo '"' . $row["qty"] . '"';
+        echo '"' . $row["qty"] . '",';
         echo '"' . $imgBase64 . '",';
         echo '"' . $imageType . '",';
         echo '"Cultural"';
@@ -519,7 +520,7 @@ include "config.php";
         echo '"' . $row["name"] . '",';
         echo '"' . $row["description"] . '",';
         echo '"₱' . $row["price"] . '",';
-        echo '"' . $row["qty"] . '"';
+        echo '"' . $row["qty"] . '",';
         echo '"' . $imgBase64 . '",';
         echo '"' . $imageType . '",';
         echo '"Seasonal"';
