@@ -74,9 +74,6 @@ if ($row = mysqli_fetch_assoc($res)) {
       </div>
 
       <div class="nav-actions">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
-          <i class="bi bi-search"></i>
-        </a>
         <a href="login.html"><i class="fa-solid fa-user"></i></a>
         <a href="#" class="position-relative">
           <i class="bi bi-cart2 fs-4"></i>
@@ -106,7 +103,6 @@ if ($row = mysqli_fetch_assoc($res)) {
           <div class="text-start ps-3">
             <a href="userprofile.html" class="active"><i class="bi bi-person"></i> My Account</a>
             <a href="order_history.php"><i class="bi bi-cart"></i>Order History</a>
-            <a href="settings.html"><i class="bi bi-gear"></i> Settings</a>
             <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
           </div>
         </div>

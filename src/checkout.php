@@ -1,10 +1,15 @@
 <?php
-// checkout.php
-// Currency setup
 $currency_symbol = "₱";
 $currency_code = "PHP";
 
 include 'config.php';
+
+session_start();
+if (!isset($_SESSION['email'])) {
+  header("Location: login.php");
+  exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -41,25 +46,26 @@ include 'config.php';
           <!-- Payment -->
           <div class="section-block mb-4">
             <h5>Shipping Details</h5>
-            <form id="paymentForm" method="POST" action="">
+            <form id="paymentForm" method="POST" action="placeorder.php">
               <div class="mb-3">
                 <label class="form-label">Name</label>
                 <input type="text" class="form-control" name="first_name" placeholder="*Full Name" required />
               </div>
               <div class="mb-3">
                 <label class="form-label">Delivery Adress</label>
-                <input type="email" class="form-control" name="address" placeholder="Street Name, Building, House No." required />
+                <input type="text" class="form-control" name="address" placeholder="Street Name, Building, House No." required />
               </div>
               <div class="row">
                 <div class="col-6 mb-3">
                   <label class="form-label">Phone</label>
-                  <input type="text" class="form-control" name="phone" placeholder="09*********" maxlength="5" required />
+                  <input type="text" class="form-control" name="phone" placeholder="09*********" maxlength="11" required />
                 </div>
                 <div class="col-6 mb-3">
                   <label class="form-label">Postal Code</label>
                   <input type="text" class="form-control" name="postalcode" maxlength="4" placeholder="Postal Code" required />
                 </div>
               </div>
+              <input type="hidden" name="cart_data" id="cartData">
               <button type="submit" class="btn btn-custom w-100 mt-3">
                 PURCHASE <span id="totalAmount"><?= $currency_symbol ?>0.00 Php</span>
               </button>
@@ -93,7 +99,59 @@ include 'config.php';
       </div>
     </div>
   </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const orderItemsEl = document.getElementById('orderItems');
+      const subtotalEl = document.getElementById('subtotal');
+      const shippingEl = document.getElementById('shipping');
+      const totalEl = document.getElementById('total');
+      const totalAmountEl = document.getElementById('totalAmount');
 
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let subtotal = 0;
+      const shipping = 50;
+
+      orderItemsEl.innerHTML = cart.map(item => {
+        const priceNumber = parseFloat(item.price.replace("₱", ""));
+        const totalItem = priceNumber * item.qty;
+        subtotal += totalItem;
+
+        return `
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center">
+                <img src="${item.img}" alt="${item.name}" width="65" height="65" class="me-2 rounded">
+                <div>
+                    <strong>${item.name}</strong><br>
+                    <small>₱${priceNumber.toFixed(2)} x ${item.qty}</small>
+                </div>
+            </div>
+            <div>₱${totalItem.toFixed(2)}</div>
+        </div>
+        `;
+      }).join('');
+
+      subtotalEl.textContent = "₱" + subtotal.toFixed(2);
+      shippingEl.textContent = "₱" + shipping.toFixed(2);
+      totalEl.textContent = "₱" + (subtotal + shipping).toFixed(2);
+      totalAmountEl.textContent = "₱" + (subtotal + shipping).toFixed(2) + " Php";
+
+      const form = document.getElementById('paymentForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault(); // stop default form submission
+
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+          return;
+        }
+
+        document.getElementById('cartData').value = JSON.stringify(cart);
+
+        // Submit the form manually after setting cart_data
+        form.submit();
+      });
+
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="checkout.js"></script>
 </body>

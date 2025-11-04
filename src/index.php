@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+if (!isset($_SESSION['email'])) {
+  header("Location: login.php");
+  exit();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,27 +53,7 @@
 
 <body>
 
-  <div id="dialog" title="Subscribe Emails">
-    <button type="button" class="btn-close position-absolute" style="right:10px; top:10px;" aria-label="Close"></button>
-    <div class="d-flex align-items-center h-100 text-center">
-      <div class="me-3">
-        <img src="assets/images/kape3.png" alt="" style="width: 300px; height: 400px;">
-      </div>
-      <div class="d-flex flex-column justify-content-center align-items-center">
-        <h3>Subscribe Emails</h3>
-        <p class="mt-3">
-          Join over 1,000 people who get free and fresh content delivered automatically each time we publish
-        </p>
-        <div class="input-group">
-          <input type="email" class="form-control" placeholder="Email Address" />
-          <button class="btn btn-warning" style="background-color: #dcb764; border-color: #dcb764">
-            <i class="bi bi-send"></i>
-          </button>
-        </div>
-        <button class="btn btn-warning mt-3 fw-bold" style="background-color: #dcb764;">Subscribe Now</button>
-      </div>
-    </div>
-  </div>
+
 
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
@@ -81,9 +72,6 @@
       </div>
 
       <div class="nav-actions">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal">
-          <i class="bi bi-search"></i>
-        </a>
         <a href="user.php"><i class="fa-solid fa-user"></i></a>
         <a href="product_user.php" class="position-relative">
           <i class="bi bi-cart2 fs-4"></i>
@@ -113,7 +101,7 @@
       </div>
 
       <!-- RIGHT: Rainy Monday Specials Promo (now dynamic) -->
-      <!-- 
+
       <div class="promo-section">
         <div class="promo-card text-center text-light p-4 rounded-4 shadow" style="background: rgba(68, 40, 8, 0.85); max-width: 300px;">
           <h3>Promo Vouchers</h3>
@@ -121,13 +109,13 @@
           <button id="voucherBtn" class="btn btn-custom btn-sm" style="display: none;">Get Voucher</button>
         </div>
       </div>
-    </div> -->
+    </div>
 
-      <!-- Scroll Prompt -->
-      <div class="scroll-prompt position-absolute bottom-3 start-50 translate-middle-x text-center" style="z-index: 3;">
-        <span>Scroll to explore</span><br>
-        <i class="bi bi-chevron-double-down"></i>
-      </div>
+    <!-- Scroll Prompt -->
+    <div class="scroll-prompt position-absolute bottom-3 start-50 translate-middle-x text-center" style="z-index: 3;">
+      <span>Scroll to explore</span><br>
+      <i class="bi bi-chevron-double-down"></i>
+    </div>
   </section>
 
   <!-- Search Modal -->
