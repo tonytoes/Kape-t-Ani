@@ -63,9 +63,8 @@ if (isset($_POST['accept_order'])) {
     $order = $order_result->fetch_assoc();
     $total_price = $order['total_price'];
 
-    // Update the total sales in the database (only after confirmation)
     $update_sales = $conn->prepare("UPDATE sales SET total_sales = total_sales + ? WHERE id = 1");
-    $update_sales->bind_param("d", $total_price);  // Assuming there's a sales table with id=1
+    $update_sales->bind_param("d", $total_price);
     $update_sales->execute();
     $update_sales->close();
 
@@ -91,11 +90,9 @@ if (isset($_POST['accept_order'])) {
   }
 }
 
-// Handle order cancellation
 if (isset($_POST['cancel_order'])) {
   $order_id = $_POST['order_id'];
 
-  // Mark the order as cancelled (status = 2)
   $update_order_status = $conn->prepare("UPDATE orders SET status = 2 WHERE id = ?");
   $update_order_status->bind_param("i", $order_id);
   $update_order_status->execute();
