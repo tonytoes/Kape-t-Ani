@@ -4,17 +4,22 @@ function renderProducts(id, products) {
 
   container.innerHTML = products
     .map(
-      ([pid, name, desc, price, qty, img, type, category]) => `
+      ([pid, name, desc, price, qty, img, type, imgName, category]) => `
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
           <div class="product-card">
             <img src="data:${type};base64,${img}" alt="${name}" class="product-img">
             <div class="product-info">
               <h5 class="product-title">${name}</h5>
               <p class="product-desc">${desc}</p>
-              <span class="product-price">${price}</span>
+              <span class="product-price">₱${price}</span>
               <p class="product-qty">Stock: <strong>${qty}</strong></p>
               <div class="product-actions">
-                <button id="${pid}" name="${category}" data-bs-toggle="modal" data-bs-target="#editModal" class="edit-btn">
+                <button id="${pid}" name="${category}" 
+                        data-name="${name}" data-desc="${desc}" 
+                        data-price="${price}" data-qty="${qty}" 
+                        data-type="${type}" data-img="${img}"
+                        data-imgName="${imgName}"
+                data-bs-toggle="modal" data-bs-target="#editModal" class="edit-btn">
                   <i class="bi bi-pencil-square me-1"></i>Edit
                 </button>
                 <button id="${pid}" name="${category}" data-bs-toggle="modal" data-bs-target="#deleteModal" class="delete-btn">
@@ -72,8 +77,17 @@ editModal.addEventListener('show.bs.modal', function (event){
   const editButton = event.relatedTarget; 
   const submit = document.getElementById("update");
   submit.name = "update" + editButton.name;
-
+  
   document.getElementById('e_product_id').value = editButton.id; // set hidden input
+  document.getElementById('e_product_name').value = editButton.getAttribute('data-name');
+  document.getElementById('e_product_description').value = editButton.getAttribute('data-desc');
+  document.getElementById('e_product_price').value = editButton.getAttribute('data-price');
+  document.getElementById('e_product_qty').value = editButton.getAttribute('data-qty');
+  document.getElementById('oldImgType').value = editButton.getAttribute('data-type');
+  document.getElementById('oldImgName').value = editButton.getAttribute('data-imgName');
+  document.getElementById('oldImgData').value = editButton.getAttribute('data-img');
+
+  
   
 });
 
