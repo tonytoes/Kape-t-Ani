@@ -3,18 +3,15 @@ $currency_symbol = "₱";
 $currency_code = "PHP";
 
 include 'config.php';
-
 session_start();
 if (!isset($_SESSION['email'])) {
   header("Location: login.php");
   exit();
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,7 +40,6 @@ if (!isset($_SESSION['email'])) {
         <div class="col-lg-7 col-md-12">
           <h2 class="checkout-title mb-4">Checkout</h2>
 
-          <!-- Payment -->
           <div class="section-block mb-4">
             <h5>Shipping Details</h5>
             <form id="paymentForm" method="POST" action="placeorder.php">
@@ -52,7 +48,7 @@ if (!isset($_SESSION['email'])) {
                 <input type="text" class="form-control" name="first_name" placeholder="*Full Name" required />
               </div>
               <div class="mb-3">
-                <label class="form-label">Delivery Adress</label>
+                <label class="form-label">Delivery Address</label>
                 <input type="text" class="form-control" name="address" placeholder="Street Name, Building, House No." required />
               </div>
               <div class="row">
@@ -77,9 +73,7 @@ if (!isset($_SESSION['email'])) {
         <div class="col-lg-5 col-md-12">
           <div class="section-block">
             <h5>Your Order</h5>
-            <div id="orderItems" class="order-list">
-              <!-- Example cart items can be rendered here dynamically later -->
-            </div>
+            <div id="orderItems" class="order-list"></div>
 
             <hr>
             <div class="d-flex justify-content-between">
@@ -92,7 +86,7 @@ if (!isset($_SESSION['email'])) {
             </div>
             <div class="d-flex justify-content-between">
               <span>Discount</span>
-              <span id="discount"><?= $currency_symbol ?>50.00 Php</span>
+              <span id="discount"><?= $currency_symbol ?>0.00 Php</span>
             </div>
             <div class="d-flex justify-content-between fw-bold mt-2">
               <span>Total</span>
@@ -103,45 +97,73 @@ if (!isset($_SESSION['email'])) {
       </div>
     </div>
   </section>
+
+  <!-- ============ PROMO DETECTION ============ -->
+  <script>
+    function isPromoActive() {
+      const now = new Date();
+      const day = now.getDay(); // Monday = 1
+      const hour = now.getHours();
+      // ✅ Same rule as index page — Monday 8–9 PM
+      return day === 1 && hour >= 20 && hour < 21;
+    }
+    window.isPromoActive = isPromoActive;
+  </script>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const orderItemsEl = document.getElementById('orderItems');
       const subtotalEl = document.getElementById('subtotal');
       const shippingEl = document.getElementById('shipping');
+      const discountEl = document.getElementById('discount');
       const totalEl = document.getElementById('total');
       const totalAmountEl = document.getElementById('totalAmount');
 
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       let subtotal = 0;
       const shipping = 50;
+      let discount = 0;
 
+      // Check if promo is active
+      if (window.isPromoActive && window.isPromoActive()) {
+        discount = 50;
+        discountEl.innerHTML = `<span class="text-success">₱50.00 Php</span>`;
+      } else {
+        // Promo expired → show visually “struck through ₱50” and new ₱0.00
+        discountEl.innerHTML = `<span style="text-decoration: line-through; color: gray;">₱50.00</span> → <span class="text-danger">₱0.00 Php</span>`;
+      }
+
+      // Build order list and calculate subtotal
       orderItemsEl.innerHTML = cart.map(item => {
         const priceNumber = parseFloat(item.price.replace("₱", ""));
         const totalItem = priceNumber * item.qty;
         subtotal += totalItem;
 
         return `
-        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div class="d-flex justify-content-between align-items-center mb-2">
             <div class="d-flex align-items-center">
-                <img src="${item.img}" alt="${item.name}" width="65" height="65" class="me-2 rounded">
-                <div>
-                    <strong>${item.name}</strong><br>
-                    <small>₱${priceNumber.toFixed(2)} x ${item.qty}</small>
-                </div>
+              <img src="${item.img}" alt="${item.name}" width="65" height="65" class="me-2 rounded">
+              <div>
+                <strong>${item.name}</strong><br>
+                <small>₱${priceNumber.toFixed(2)} x ${item.qty}</small>
+              </div>
             </div>
             <div>₱${totalItem.toFixed(2)}</div>
-        </div>
+          </div>
         `;
       }).join('');
 
+      const total = subtotal + shipping - discount;
+
       subtotalEl.textContent = "₱" + subtotal.toFixed(2);
       shippingEl.textContent = "₱" + shipping.toFixed(2);
-      totalEl.textContent = "₱" + (subtotal + shipping).toFixed(2);
-      totalAmountEl.textContent = "₱" + (subtotal + shipping).toFixed(2) + " Php";
+      totalEl.textContent = "₱" + total.toFixed(2);
+      totalAmountEl.textContent = "₱" + total.toFixed(2) + " Php";
 
+      // Handle form submission
       const form = document.getElementById('paymentForm');
       form.addEventListener('submit', (e) => {
-        e.preventDefault(); // stop default form submission
+        e.preventDefault();
 
         if (cart.length === 0) {
           alert("Your cart is empty!");
@@ -149,15 +171,12 @@ if (!isset($_SESSION['email'])) {
         }
 
         document.getElementById('cartData').value = JSON.stringify(cart);
-
-        // Submit the form manually after setting cart_data
         form.submit();
       });
-
     });
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="checkout.js"></script>
 </body>
-
 </html>

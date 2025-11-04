@@ -86,7 +86,6 @@ if (!isset($_SESSION['email'])) {
         <a href="product.html" class="btn btn-custom" style="color: black;">ORDER NOW</a>
       </div>
 
-      <!-- RIGHT: Rainy Monday Specials Promo (now dynamic) -->
 
       <div class="promo-section">
         <div class="promo-card text-center text-light p-4 rounded-4 shadow" style="background: rgba(68, 40, 8, 0.85); max-width: 300px;">
@@ -247,54 +246,40 @@ if (!isset($_SESSION['email'])) {
     </div>
   </footer>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS --><!-- Promo Logic (simplified, no backend) -->
+<!-- Promo Logic (simplified, with redirect) -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const voucherBtn = document.getElementById("voucherBtn");
+  const promoMessage = document.getElementById("promoMessage");
 
-  <!-- Promo Logic (copied from product.html) -->
-  <script>
-    const voucherBtn = document.getElementById("voucherBtn");
-    const promoMessage = document.getElementById("promoMessage");
+  const now = new Date();
+  const day = now.getDay();  // 0 = Sunday, 1 = Monday, 2 = Tuesday
+  const hour = now.getHours();
 
-    const now = new Date();
-    const day = now.getDay(); // Monday = 1
-    const hour = now.getHours();
+  const isTuesday = day === 2;
+  const isPromoTime = hour >= 20 && hour < 21; // 8PM–9PM
 
-    const isMonday = day === 1;
-    const isPromoTime = hour >= 6 && hour < 8;
-    const lastClaim = localStorage.getItem("voucherClaimDate");
+  if (isTuesday && isPromoTime) {
+    // Show voucher during promo hour
+    promoMessage.textContent = "Use ChoosDay Voucher!";
+    voucherBtn.style.display = "inline-block";
+    voucherBtn.textContent = "Use Voucher";
 
-    function disableVoucherButton() {
-      voucherBtn.textContent = "Claimed";
-      voucherBtn.classList.add("btn-secondary");
-      voucherBtn.classList.remove("btn-custom");
-      voucherBtn.disabled = true;
-    }
+    voucherBtn.addEventListener("click", () => {
+      // Redirect user to product_user.php with voucher info (optional query)
+      window.location.href = "product_user.php?voucher=CHOOSDAY10";
+    });
+  } else {
+    // Default message when not in promo period
+    promoMessage.textContent =
+      "Tune in for the next ChoosDay Promo (Tuesdays 8–9 PM)!";
+    voucherBtn.style.display = "none";
+  }
+});
+</script>
 
-    if (isMonday && isPromoTime) {
-      promoMessage.textContent = "Claim your Monday Morning Voucher!";
-      voucherBtn.style.display = "inline-block";
 
-      if (lastClaim) {
-        const claimDate = new Date(lastClaim);
-        const sameMonday =
-          claimDate.getDay() === 1 &&
-          now.toDateString() === claimDate.toDateString();
-
-        if (sameMonday) disableVoucherButton();
-      }
-
-      voucherBtn.addEventListener("click", () => {
-        disableVoucherButton();
-        localStorage.setItem("voucherClaimDate", new Date().toISOString());
-      });
-    } else {
-      promoMessage.textContent =
-        "Tune in for the next timely Promo: \"Monday Mornings\" !";
-    }
-  </script>
-
-  <!-- Custom JS -->
-  <script src="main.js"></script>
 </body>
 
 </html>
