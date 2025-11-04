@@ -160,6 +160,21 @@ body {
   height: 100%;
 }
 
+.toast-container {
+  z-index: 1050;
+}
+
+.toast-header {
+  color: #721c24;
+}
+
+.toast {
+  min-width: 300px;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
 /* --- FOOTER --- */
 
 .footer_section {

@@ -151,6 +151,19 @@ include 'config.php';
     </div>
   </div>
 
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="stockAlert" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto btn-danger">STOCK ALERT</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        You can't add more than the available stock!
+      </div>
+    </div>
+  </div>
+
+
   <!-- JS SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -161,7 +174,7 @@ include 'config.php';
       while ($row = mysqli_fetch_array($table)) {
         $imgBase64 = base64_encode($row["image_blob"]);
         $imageType = $row["image_type"];
-        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '"],';
+        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
       }
       ?>
     ];
@@ -172,7 +185,7 @@ include 'config.php';
       while ($row = mysqli_fetch_array($table)) {
         $imgBase64 = base64_encode($row["image_blob"]);
         $imageType = $row["image_type"];
-        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '"],';
+        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
       }
       ?>
     ];
@@ -183,7 +196,7 @@ include 'config.php';
       while ($row = mysqli_fetch_array($table)) {
         $imgBase64 = base64_encode($row["image_blob"]);
         $imageType = $row["image_type"];
-        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '"],';
+        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
       }
       ?>
     ];
