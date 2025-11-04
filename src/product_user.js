@@ -25,6 +25,7 @@ function renderProducts(id, products, color = "#442808") {
     .join("");
 }
 
+
 renderProducts("coffee-products", coffeeProducts);
 renderProducts("kit-products", kitProducts);
 renderProducts("autumn-products", autumnProducts, "#b66d2f");

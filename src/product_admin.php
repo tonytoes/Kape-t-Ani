@@ -2,6 +2,16 @@
 
 include "config.php";
 
+/*$res = mysqli_query($conn, "SELECT * FROM $category WHERE product_id = '$product_id'");
+if ($row = mysqli_fetch_assoc($res)) {
+  $name = $row['name'];
+  $description = $row['description'];
+  $price = $price['price'];
+  $image_name = $image_name['image_name'];
+  $image_blob = $image_blob['image_blob'];
+  $image_type = $image_type['image_type'];
+}*/
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,12 +44,11 @@ include "config.php";
       <h1>Kape’t Ani Admin</h1>
     </div>
     <ul class="nav-links">
-      <li><a href="#">Dashboard</a></li>
-      <li><a  href="inventory.php">Alerts</a></li>
+      <li><a href="admin.php">Dashboard</a></li>
       <li><a href="user_admin.php">Users</a></li>
       <li><a href="product_admin.php">Products</a></li>
-      <li><a href="#">Orders</a></li>
-      <li><a href="#">Reports</a></li>
+      <li><a href="order_admin.php">Orders</a></li>
+      <li><a href="inventory.php">Alerts</a></li>
       <li><a href="logout.php" class="logout">Logout</a></li>
     </ul>
   </nav>
@@ -75,7 +84,7 @@ include "config.php";
         <div class="col-md-3 col-sm-6">
           <div class="card border-0 shadow-sm h-100">
             <div class="card-body text-center">
-              <button type="button" id="Cultural" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light" > Add</button>
+              <button type="button" id="Cultural" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light"> Add</button>
             </div>
           </div>
         </div>
@@ -180,6 +189,7 @@ include "config.php";
 
               <div class="mb-3">
                 <input type="hidden" id="e_product_id" name="product_id">
+                <input type="hidden" id="product_category" name="product_category">
               </div>
 
               <div class=mb-3>

@@ -44,7 +44,6 @@ include 'config.php';
       </div>
 
       <div class="nav-actions d-flex align-items-center gap-3">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="bi bi-search"></i></a>
         <a href="user.php"><i class="fa-solid fa-user"></i></a>
         <a href="#" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" class="position-relative">
           <i class="bi bi-cart2 fs-4"></i>

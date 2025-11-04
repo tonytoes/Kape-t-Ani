@@ -48,7 +48,6 @@ if (!isset($_SESSION['email'])) {
       </div>
 
       <div class="nav-actions">
-        <a href="#" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="bi bi-search"></i></a>
         <a href="user.php"><i class="fa-solid fa-user"></i></a>
 
         <a href="product_user.php" class="position-relative">
