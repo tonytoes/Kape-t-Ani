@@ -72,6 +72,20 @@ body {
   color: var(--deep-roast);
 }
 
+.card-body {
+  height: 45px;
+}
+
+.card-body button {
+  font-size: 1rem;
+  transform: all 0.25s ease;
+  transition: transform 0.3s ease;
+}
+
+.card-body button:hover {
+  transform: scale(1.1);
+}
+
 /* cards */
 .product-card {
   height: 100%;
@@ -80,9 +94,11 @@ body {
   box-shadow: 0 4px 10px rgba(60, 42, 33, 0.2);
   overflow: hidden;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
+  transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(60, 42, 33, 0.3);
 }
 
@@ -91,6 +107,7 @@ body {
   height: 220px;
   object-fit: contain;
   background-color: var(--text-light);
+  padding: 10px;
 }
 
 /* === Product Action Buttons === */
@@ -123,7 +140,7 @@ body {
 }
 
 .edit-btn:hover {
-  background-color: var(--velvet-cream);
+  background-color: var(--forest-sage);
   color: var(--deep-roast);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(212, 163, 115, 0.4);
@@ -140,7 +157,9 @@ body {
   box-shadow: 0 4px 12px rgba(60, 42, 33, 0.4);
 }
 
-#Coffee, #Cultural, #Seasonal{
+#Coffee,
+#Cultural,
+#Seasonal {
   background-color: var(--forest-sage);
 }
 /* --- RESPONSIVE --- */

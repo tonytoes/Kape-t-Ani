@@ -158,9 +158,29 @@ body {
 
 .card {
   height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  overflow: visible;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.add-to-cart-btn {
+  background-color: var(--deep-roast);
+  transition: transform 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--forest-sage);
+  transform: scale(1.05);
 }
 
 .toast-container {
+  position: fixed;
   z-index: 1050;
 }
 

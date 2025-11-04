@@ -65,10 +65,8 @@ if ($row = mysqli_fetch_assoc($res)) {
       <!-- Add Button -->
       <div class="row g-4 mt-3">
         <div class="col-md-3 col-sm-6">
-          <div class="card custom-card border-0 shadow-sm h-100">
-            <div class="card-body text-center">
-              <button type="button" id="Coffee" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light"> Add</button>
-            </div>
+          <div class="card-body text-center">
+            <button type="button" id="Cultural" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 h-100 text-light">ADD PRODUCT</button>
           </div>
         </div>
       </div>
@@ -82,10 +80,8 @@ if ($row = mysqli_fetch_assoc($res)) {
       <!-- Add Button -->
       <div class="row g-4 mt-3">
         <div class="col-md-3 col-sm-6">
-          <div class="card border-0 shadow-sm h-100">
-            <div class="card-body text-center">
-              <button type="button" id="Cultural" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light"> Add</button>
-            </div>
+          <div class="card-body text-center">
+            <button type="button" id="Cultural" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 h-100 text-light">ADD PRODUCT</button>
           </div>
         </div>
       </div>
@@ -105,10 +101,8 @@ if ($row = mysqli_fetch_assoc($res)) {
       <!-- Add Button -->
       <div class="row g-4 mt-3">
         <div class="col-md-3 col-sm-6">
-          <div class="card border-0 shadow-sm h-100">
-            <div class="card-body text-center">
-              <button type="button" id="Seasonal" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 text-light"> Add</button>
-            </div>
+          <div class="card-body text-center">
+            <button type="button" id="Cultural" data-bs-toggle="modal" data-bs-target="#addModal" class="btn btn-sm w-100 h-100 text-light">ADD PRODUCT</button>
           </div>
         </div>
       </div>
@@ -217,7 +211,7 @@ if ($row = mysqli_fetch_assoc($res)) {
 
               <div class="mb-3">
                 <label for="e_product_image" class="form-label">Image: </label>
-                <input type="file" id="e_product_image" name="e_product_image" accept="image/*" >
+                <input type="file" id="e_product_image" name="e_product_image" accept="image/*">
                 <div id="emailHelp" class="form-text">Old image is saved. Only input an image if you want to change.</div>
               </div>
 
@@ -343,7 +337,7 @@ if ($row = mysqli_fetch_assoc($res)) {
 
   if (isset($_POST["updateCoffee"])) {
     //Insert values to table
-    if(!empty($_FILES['product_image']['tmp_name'])){
+    if (!empty($_FILES['product_image']['tmp_name'])) {
       $image = file_get_contents($_FILES['e_product_image']['tmp_name']);
 
       $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
@@ -369,13 +363,67 @@ if ($row = mysqli_fetch_assoc($res)) {
       $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
       $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
       $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
+
+      $oldImgType = mysqli_real_escape_string($conn, $_POST['e_oldImgType']);
+      $oldImgName = mysqli_real_escape_string($conn, $_POST['e_oldImgName']);
+      $oldImgData = base64_decode($_POST['e_oldImgData']);
+      $oldImgData = mysqli_real_escape_string($conn, $oldImgData);
+
+      mysqli_query($conn, "UPDATE coffee_products SET 
+
+            `name` = '$name', 
+            `description` = '$description',  
+            `price` = '$price',  
+            `qty` = '$qty' ,
+            `image_name` = '$oldImgName',
+            `image_blob` = '$oldImgData',
+            `image_type` = '$oldImgType'  
+            WHERE id=$_POST[e_product_id]");
+    }
+  ?>
+    <script type="text/javascript">
+      window.location.href = window.location.href;
+    </script>
+
+  <?php
+  }
+
+  if (isset($_POST["updateCultural"])) {
+
+    //Insert values to table
+    if(!empty($_FILES['product_image']['tmp_name'])){
+      $image = file_get_contents($_FILES['e_product_image']['tmp_name']);
+
+      $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
+      $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
+      $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
+      $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
+      $imageName = mysqli_real_escape_string($conn, $_FILES['e_product_image']['name']);
+      $imageData = mysqli_real_escape_string($conn, $image);
+      $imageType = mysqli_real_escape_string($conn, $_FILES['e_product_image']['type']);
+
+      mysqli_query($conn, "UPDATE cultural_products SET 
+
+            `name` = '$name', 
+            `description` = '$description',  
+            `price` = '$price',  
+            `qty` = '$qty', 
+            `image_name` = '$imageName',
+            `image_blob` = '$imageData',
+            `image_type` = '$imageType' 
+            WHERE id=$_POST[product_id]");
+    } else {
+      $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
+      $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
+      $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
+      $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
       
       $oldImgType = mysqli_real_escape_string($conn, $_POST['e_oldImgType']);
       $oldImgName = mysqli_real_escape_string($conn, $_POST['e_oldImgName']);
       $oldImgData = base64_decode($_POST['e_oldImgData']);
       $oldImgData = mysqli_real_escape_string($conn, $oldImgData);
       
-      mysqli_query($conn, "UPDATE coffee_products SET 
+      mysqli_query($conn, "UPDATE cultural_products SET 
 
             `name` = '$name', 
             `description` = '$description',  
@@ -395,53 +443,21 @@ if ($row = mysqli_fetch_assoc($res)) {
   <?php
   }
 
-  if (isset($_POST["updateCultural"])) {
-
-    // To escape special chars. 
-    $image = file_get_contents($_FILES['e_product_image']['tmp_name']);
-
-    $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
-    $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
-    $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
-    $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
-    $imageName = mysqli_real_escape_string($conn, $_FILES['e_product_image']['name']);
-    $imageData = mysqli_real_escape_string($conn, $image);
-    $imageType = mysqli_real_escape_string($conn, $_FILES['e_product_image']['type']);
-
-    //Insert values to table
-    mysqli_query($conn, "UPDATE cultural_products SET 
-
-            `name` = '$name', 
-            `description` = '$description',  
-            `price` = '$price',  
-            `qty` = '$qty', 
-            `image_name` = '$imageName',
-            `image_blob` = '$imageData',
-            `image_type` = '$imageType' 
-            WHERE id=$_POST[product_id]");
-  ?>
-    <script type="text/javascript">
-      window.location.href = window.location.href;
-    </script>
-
-  <?php
-  }
-
   if (isset($_POST["updateSeasonal"])) {
 
-    // To escape special chars. 
-    $image = file_get_contents($_FILES['e_product_image']['tmp_name']);
-
-    $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
-    $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
-    $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
-    $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
-    $imageName = mysqli_real_escape_string($conn, $_FILES['e_product_image']['name']);
-    $imageData = mysqli_real_escape_string($conn, $image);
-    $imageType = mysqli_real_escape_string($conn, $_FILES['e_product_image']['type']);
-
     //Insert values to table
-    mysqli_query($conn, "UPDATE seasonal_products SET 
+    if(!empty($_FILES['product_image']['tmp_name'])){
+      $image = file_get_contents($_FILES['e_product_image']['tmp_name']);
+
+      $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
+      $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
+      $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
+      $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
+      $imageName = mysqli_real_escape_string($conn, $_FILES['e_product_image']['name']);
+      $imageData = mysqli_real_escape_string($conn, $image);
+      $imageType = mysqli_real_escape_string($conn, $_FILES['e_product_image']['type']);
+
+      mysqli_query($conn, "UPDATE seasonal_products SET 
 
             `name` = '$name', 
             `description` = '$description',  
@@ -451,6 +467,29 @@ if ($row = mysqli_fetch_assoc($res)) {
             `image_blob` = '$imageData',
             `image_type` = '$imageType' 
             WHERE id=$_POST[product_id]");
+    } else {
+      $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
+      $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
+      $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
+      $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
+      
+      $oldImgType = mysqli_real_escape_string($conn, $_POST['e_oldImgType']);
+      $oldImgName = mysqli_real_escape_string($conn, $_POST['e_oldImgName']);
+      $oldImgData = base64_decode($_POST['e_oldImgData']);
+      $oldImgData = mysqli_real_escape_string($conn, $oldImgData);
+      
+      mysqli_query($conn, "UPDATE seasonal_products SET 
+
+            `name` = '$name', 
+            `description` = '$description',  
+            `price` = '$price',  
+            `qty` = '$qty' ,
+            `image_name` = '$oldImgName',
+            `image_blob` = '$oldImgData',
+            `image_type` = '$oldImgType'  
+            WHERE id=$_POST[e_product_id]");
+
+    }
   ?>
     <script type="text/javascript">
       window.location.href = window.location.href;
@@ -568,7 +607,6 @@ if ($row = mysqli_fetch_assoc($res)) {
       }
       ?>
     ];
-
   </script>
   <script src="product_admin.js"></script>
 
