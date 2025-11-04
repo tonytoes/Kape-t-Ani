@@ -102,10 +102,9 @@ if (!isset($_SESSION['email'])) {
   <script>
     function isPromoActive() {
       const now = new Date();
-      const day = now.getDay(); // Monday = 1
+      const day = now.getDay();
       const hour = now.getHours();
-      // ✅ Same rule as index page — Monday 8–9 PM
-      return day === 1 && hour >= 20 && hour < 21;
+      return day === 2 && hour >= 20 && hour < 24;
     }
     window.isPromoActive = isPromoActive;
   </script>

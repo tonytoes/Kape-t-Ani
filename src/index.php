@@ -254,11 +254,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const promoMessage = document.getElementById("promoMessage");
 
   const now = new Date();
-  const day = now.getDay();  // 0 = Sunday, 1 = Monday, 2 = Tuesday
+  const day = now.getDay();
   const hour = now.getHours();
 
   const isTuesday = day === 2;
-  const isPromoTime = hour >= 20 && hour < 21; // 8PM–9PM
+  const isPromoTime = hour >= 20 && hour < 24;
 
   if (isTuesday && isPromoTime) {
     // Show voucher during promo hour

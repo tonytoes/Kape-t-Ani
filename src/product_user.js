@@ -30,12 +30,12 @@ function renderProducts(id, products, color = "#442808") {
     .join("");
 }
 
-
-
+/* getinng database from each category */
 renderProducts("coffee-products", coffeeProducts);
 renderProducts("kit-products", kitProducts);
 renderProducts("autumn-products", autumnProducts, "#b66d2f");
 
+/* for add to cart btn */
 document.addEventListener("click", (e) => {
   if (!e.target.classList.contains("add-to-cart-btn")) return;
 
@@ -45,14 +45,13 @@ document.addEventListener("click", (e) => {
     price: e.target.dataset.price,
     img: e.target.dataset.img,
     qty: 1,
+    stock: parseInt(e.target.dataset.stock),
   };
-
-  const stock = parseInt(e.target.dataset.stock);
 
   const existing = cart.find((item) => item.id === product.id);
 
   if (existing) {
-    if (existing.qty < stock) {
+    if (existing.qty < existing.stock) {  
       existing.qty++;
     } else {
       showToast("You can't add more than the available stock!");
@@ -64,6 +63,7 @@ document.addEventListener("click", (e) => {
 
   saveCart();
 });
+
 
 function showToast(message) {
   const toast = new bootstrap.Toast(document.getElementById('stockAlert'));
@@ -83,11 +83,18 @@ function removeFromCart(id) {
 /* qnty change */
 function changeQuantity(id, qty) {
   const item = cart.find((i) => i.id === id);
-  if (item) item.qty = Math.max(1, parseInt(qty) || 1);
+  if (item) {
+    const newQty = Math.max(1, parseInt(qty) || 1);
+    if (newQty > item.stock) {
+      alert("You cannot exceed the available stock!");
+      return;
+    }
+    item.qty = newQty;
+  }
   saveCart();
 }
 
-/* Updating the cart ui */
+/* Updating the cart side bar  */
 function updateCartUI() {
   const cartList = document.getElementById("cartItems");
   const totalEl = document.getElementById("cartTotal");
@@ -109,7 +116,7 @@ function updateCartUI() {
         <div>
           <strong>${item.name}</strong><br>
           <small>${item.price}</small><br>
-          <small>Stock: ${item.stock}</small>  <!-- Add stock display -->
+          <small>Stock: ${item.stock}</small> 
         </div>
       </div>
       <div class="d-flex align-items-center">
@@ -127,12 +134,13 @@ function updateCartUI() {
   countEl.textContent = count;
 }
 
-
+/* save cart data */
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartUI();
 }
 
+/* iniatilzie method here */
 updateCartUI();
 
 if (cart.length > 0 && coffeeProducts.length + kitProducts.length + autumnProducts.length === 0) {
