@@ -30,12 +30,12 @@ function renderProducts(id, products, color = "#442808") {
     .join("");
 }
 
-
-
+/* getinng database from each category */
 renderProducts("coffee-products", coffeeProducts);
 renderProducts("kit-products", kitProducts);
 renderProducts("autumn-products", autumnProducts, "#b66d2f");
 
+/* for add to cart btn */
 document.addEventListener("click", (e) => {
   if (!e.target.classList.contains("add-to-cart-btn")) return;
 
@@ -94,9 +94,7 @@ function changeQuantity(id, qty) {
   saveCart();
 }
 
-
-
-/* Updating the cart ui */
+/* Updating the cart side bar  */
 function updateCartUI() {
   const cartList = document.getElementById("cartItems");
   const totalEl = document.getElementById("cartTotal");
@@ -136,13 +134,13 @@ function updateCartUI() {
   countEl.textContent = count;
 }
 
-
-
+/* save cart data */
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   updateCartUI();
 }
 
+/* iniatilzie method here */
 updateCartUI();
 
 if (cart.length > 0 && coffeeProducts.length + kitProducts.length + autumnProducts.length === 0) {
