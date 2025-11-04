@@ -35,20 +35,6 @@ if (!isset($_SESSION['email'])) {
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-  <script>
-    $(function() {
-      $("#dialog").dialog({
-        width: 650,
-        height: 430,
-        modal: true,
-        create: function() {
-          $("#dialog .btn-close").on("click", function() {
-            $("#dialog").dialog("close");
-          });
-        }
-      });
-    });
-  </script>
 </head>
 
 <body>
