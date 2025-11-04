@@ -169,6 +169,16 @@ body {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
+.add-to-cart-btn {
+  background-color: var(--deep-roast);
+  transition: transform 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--forest-sage);
+  transform: scale(1.05);
+}
+
 .toast-container {
   position: fixed;
   z-index: 1050;

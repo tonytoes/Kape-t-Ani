@@ -17,7 +17,6 @@ function renderProducts(id, products, color = "#442808") {
               ${outOfStock ? 
                 `<span class="text-danger">Out of Stock</span>` : 
                 `<button class="btn btn-sm w-100 text-light add-to-cart-btn"
-                  style="background-color:${color};"
                   data-id="${pid}" data-name="${name}"
                   data-price="${price}" data-img="data:${type};base64,${img}"
                   data-stock="${stock}">
