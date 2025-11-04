@@ -94,9 +94,11 @@ body {
   box-shadow: 0 4px 10px rgba(60, 42, 33, 0.2);
   overflow: hidden;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
+  transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(60, 42, 33, 0.3);
 }
 
