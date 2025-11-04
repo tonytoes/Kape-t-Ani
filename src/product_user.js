@@ -11,7 +11,7 @@ function renderProducts(id, products, color = "#442808") {
           <div class="card-body text-center">
             <h6 class="fw-bold">${name}</h6>
             <p class="small text-muted mb-1">${desc}</p>
-            <p class="fw-semibold mb-2" style="color:${color};">${price}</p>
+            <p class="fw-semibold mb-2" style="color:${color};">₱${price}</p>
             <button class="btn btn-sm w-100 text-light add-to-cart-btn"
               style="background-color:${color};"
               data-id="${pid}" data-name="${name}"

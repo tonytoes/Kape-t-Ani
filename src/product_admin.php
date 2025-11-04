@@ -188,33 +188,37 @@ if ($row = mysqli_fetch_assoc($res)) {
             <form action="product_admin.php" name="addForm" method="POST" enctype="multipart/form-data">
 
               <div class="mb-3">
-                <input type="hidden" id="e_product_id" name="product_id">
+                <input type="hidden" id="e_product_id" name="e_product_id">
                 <input type="hidden" id="product_category" name="product_category">
+                <input type="hidden" id="oldImgType" name="e_oldImgType">
+                <input type="hidden" id="oldImgName" name="e_oldImgName">
+                <input type="hidden" id="oldImgData" name="e_oldImgData">
               </div>
 
               <div class=mb-3>
-                <label for="product_name" class="form-label">Product Name: </label>
-                <input type="text" class="form-control" id="product_name" name="product_name">
+                <label for="e_product_name" class="form-label">Product Name: </label>
+                <input type="text" class="form-control" id="e_product_name" name="e_product_name">
               </div>
 
               <div class=mb-3>
-                <label for="product_description" class="form-label">Description </label>
-                <input type="text" class="form-control" id="product_description" name="product_description">
+                <label for="e_product_description" class="form-label">Description </label>
+                <input type="text" class="form-control" id="e_product_description" name="e_product_description">
               </div>
 
               <div class=mb-3>
-                <label for="product_price" class="form-label">Price: </label>
-                <input type="text" class="form-control" id="product_price" name="product_price">
+                <label for="e_product_price" class="form-label">Price: </label>
+                <input type="text" class="form-control" id="e_product_price" name="e_product_price">
               </div>
 
               <div class="mb-3">
-                <label for="product_qty" class="form-label">Quantity:</label>
-                <input type="number" class="form-control" id="product_qty" name="product_qty" min="0" value="0">
+                <label for="e_product_qty" class="form-label">Quantity:</label>
+                <input type="number" class="form-control" id="e_product_qty" name="e_product_qty" min="0" value="0">
               </div>
 
               <div class="mb-3">
-                <label for="product_image" class="form-label">Image: </label>
-                <input type="file" id="product_image" name="product_image" accept="image/*" required>
+                <label for="e_product_image" class="form-label">Image: </label>
+                <input type="file" id="e_product_image" name="e_product_image" accept="image/*" >
+                <div id="emailHelp" class="form-text">Old image is saved. Only input an image if you want to change.</div>
               </div>
 
 
@@ -338,20 +342,19 @@ if ($row = mysqli_fetch_assoc($res)) {
 
 
   if (isset($_POST["updateCoffee"])) {
-
-    // To escape special chars. 
-    $image = file_get_contents($_FILES['product_image']['tmp_name']);
-
-    $name = mysqli_real_escape_string($conn, $_POST['product_name']);
-    $description = mysqli_real_escape_string($conn, $_POST['product_description']);
-    $price = mysqli_real_escape_string($conn, $_POST['product_price']);
-    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
-    $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
-    $imageData = mysqli_real_escape_string($conn, $image);
-    $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
-
     //Insert values to table
-    mysqli_query($conn, "UPDATE coffee_products SET 
+    if(!empty($_FILES['product_image']['tmp_name'])){
+      $image = file_get_contents($_FILES['e_product_image']['tmp_name']);
+
+      $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
+      $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
+      $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
+      $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
+      $imageName = mysqli_real_escape_string($conn, $_FILES['e_product_image']['name']);
+      $imageData = mysqli_real_escape_string($conn, $image);
+      $imageType = mysqli_real_escape_string($conn, $_FILES['e_product_image']['type']);
+
+      mysqli_query($conn, "UPDATE coffee_products SET 
 
             `name` = '$name', 
             `description` = '$description',  
@@ -361,6 +364,29 @@ if ($row = mysqli_fetch_assoc($res)) {
             `image_blob` = '$imageData',
             `image_type` = '$imageType' 
             WHERE id=$_POST[product_id]");
+    } else {
+      $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
+      $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
+      $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
+      $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
+      
+      $oldImgType = mysqli_real_escape_string($conn, $_POST['e_oldImgType']);
+      $oldImgName = mysqli_real_escape_string($conn, $_POST['e_oldImgName']);
+      $oldImgData = base64_decode($_POST['e_oldImgData']);
+      $oldImgData = mysqli_real_escape_string($conn, $oldImgData);
+      
+      mysqli_query($conn, "UPDATE coffee_products SET 
+
+            `name` = '$name', 
+            `description` = '$description',  
+            `price` = '$price',  
+            `qty` = '$qty' ,
+            `image_name` = '$oldImgName',
+            `image_blob` = '$oldImgData',
+            `image_type` = '$oldImgType'  
+            WHERE id=$_POST[e_product_id]");
+
+    }
   ?>
     <script type="text/javascript">
       window.location.href = window.location.href;
@@ -372,15 +398,15 @@ if ($row = mysqli_fetch_assoc($res)) {
   if (isset($_POST["updateCultural"])) {
 
     // To escape special chars. 
-    $image = file_get_contents($_FILES['product_image']['tmp_name']);
+    $image = file_get_contents($_FILES['e_product_image']['tmp_name']);
 
-    $name = mysqli_real_escape_string($conn, $_POST['product_name']);
-    $description = mysqli_real_escape_string($conn, $_POST['product_description']);
-    $price = mysqli_real_escape_string($conn, $_POST['product_price']);
-    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
-    $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
+    $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
+    $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
+    $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
+    $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
+    $imageName = mysqli_real_escape_string($conn, $_FILES['e_product_image']['name']);
     $imageData = mysqli_real_escape_string($conn, $image);
-    $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
+    $imageType = mysqli_real_escape_string($conn, $_FILES['e_product_image']['type']);
 
     //Insert values to table
     mysqli_query($conn, "UPDATE cultural_products SET 
@@ -404,15 +430,15 @@ if ($row = mysqli_fetch_assoc($res)) {
   if (isset($_POST["updateSeasonal"])) {
 
     // To escape special chars. 
-    $image = file_get_contents($_FILES['product_image']['tmp_name']);
+    $image = file_get_contents($_FILES['e_product_image']['tmp_name']);
 
-    $name = mysqli_real_escape_string($conn, $_POST['product_name']);
-    $description = mysqli_real_escape_string($conn, $_POST['product_description']);
-    $price = mysqli_real_escape_string($conn, $_POST['product_price']);
-    $qty = mysqli_real_escape_string($conn, $_POST['product_qty']);
-    $imageName = mysqli_real_escape_string($conn, $_FILES['product_image']['name']);
+    $name = mysqli_real_escape_string($conn, $_POST['e_product_name']);
+    $description = mysqli_real_escape_string($conn, $_POST['e_product_description']);
+    $price = mysqli_real_escape_string($conn, $_POST['e_product_price']);
+    $qty = mysqli_real_escape_string($conn, $_POST['e_product_qty']);
+    $imageName = mysqli_real_escape_string($conn, $_FILES['e_product_image']['name']);
     $imageData = mysqli_real_escape_string($conn, $image);
-    $imageType = mysqli_real_escape_string($conn, $_FILES['product_image']['type']);
+    $imageType = mysqli_real_escape_string($conn, $_FILES['e_product_image']['type']);
 
     //Insert values to table
     mysqli_query($conn, "UPDATE seasonal_products SET 
@@ -481,15 +507,17 @@ if ($row = mysqli_fetch_assoc($res)) {
       while ($row = mysqli_fetch_array($table)) {
         $imgBase64 = base64_encode($row["image_blob"]);
         $imageType = $row["image_type"];
+        $imageName = $row["image_name"];
 
         echo '[';
         echo '"' . $row["id"] . '",';
         echo '"' . $row["name"] . '",';
         echo '"' . $row["description"] . '",';
-        echo '"₱' . $row["price"] . '",';
+        echo '"' . $row["price"] . '",';
         echo '"' . $row["qty"] . '",';
         echo '"' . $imgBase64 . '",';
         echo '"' . $imageType . '",';
+        echo '"' . $imageName . '",';
         echo '"Coffee"';
         echo '],';
       }
@@ -508,10 +536,11 @@ if ($row = mysqli_fetch_assoc($res)) {
         echo '"' . $row["id"] . '",';
         echo '"' . $row["name"] . '",';
         echo '"' . $row["description"] . '",';
-        echo '"₱' . $row["price"] . '",';
+        echo '"' . $row["price"] . '",';
         echo '"' . $row["qty"] . '",';
         echo '"' . $imgBase64 . '",';
         echo '"' . $imageType . '",';
+        echo '"' . $imageName . '",';
         echo '"Cultural"';
         echo '],';
       }
@@ -529,15 +558,17 @@ if ($row = mysqli_fetch_assoc($res)) {
         echo '"' . $row["id"] . '",';
         echo '"' . $row["name"] . '",';
         echo '"' . $row["description"] . '",';
-        echo '"₱' . $row["price"] . '",';
+        echo '"' . $row["price"] . '",';
         echo '"' . $row["qty"] . '",';
         echo '"' . $imgBase64 . '",';
         echo '"' . $imageType . '",';
+        echo '"' . $imageName . '",';
         echo '"Seasonal"';
         echo '],';
       }
       ?>
     ];
+
   </script>
   <script src="product_admin.js"></script>
 
