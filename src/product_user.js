@@ -45,14 +45,13 @@ document.addEventListener("click", (e) => {
     price: e.target.dataset.price,
     img: e.target.dataset.img,
     qty: 1,
+    stock: parseInt(e.target.dataset.stock),
   };
-
-  const stock = parseInt(e.target.dataset.stock);
 
   const existing = cart.find((item) => item.id === product.id);
 
   if (existing) {
-    if (existing.qty < stock) {
+    if (existing.qty < existing.stock) {  
       existing.qty++;
     } else {
       showToast("You can't add more than the available stock!");
@@ -64,6 +63,7 @@ document.addEventListener("click", (e) => {
 
   saveCart();
 });
+
 
 function showToast(message) {
   const toast = new bootstrap.Toast(document.getElementById('stockAlert'));
@@ -83,9 +83,18 @@ function removeFromCart(id) {
 /* qnty change */
 function changeQuantity(id, qty) {
   const item = cart.find((i) => i.id === id);
-  if (item) item.qty = Math.max(1, parseInt(qty) || 1);
+  if (item) {
+    const newQty = Math.max(1, parseInt(qty) || 1);
+    if (newQty > item.stock) {
+      alert("You cannot exceed the available stock!");
+      return;
+    }
+    item.qty = newQty;
+  }
   saveCart();
 }
+
+
 
 /* Updating the cart ui */
 function updateCartUI() {
@@ -109,7 +118,7 @@ function updateCartUI() {
         <div>
           <strong>${item.name}</strong><br>
           <small>${item.price}</small><br>
-          <small>Stock: ${item.stock}</small>  <!-- Add stock display -->
+          <small>Stock: ${item.stock}</small> 
         </div>
       </div>
       <div class="d-flex align-items-center">
@@ -126,6 +135,7 @@ function updateCartUI() {
   totalEl.textContent = "₱" + total.toFixed(2);
   countEl.textContent = count;
 }
+
 
 
 function saveCart() {
