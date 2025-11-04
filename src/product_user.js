@@ -8,7 +8,7 @@ function renderProducts(id, products, color = "#442808") {
       const outOfStock = stock <= 0;
       return `
         <div class="col-md-3 col-sm-6">
-          <div class="card border-0 shadow-sm h-100">
+          <div class="card">
             <img src="data:${type};base64,${img}" class="card-img-top" alt="${name}">
             <div class="card-body text-center">
               <h6 class="fw-bold">${name}</h6>
@@ -75,7 +75,6 @@ function showToast(message) {
 }
 
 
-
 /* Remove from cart*/
 function removeFromCart(id) {
   cart = cart.filter((item) => item.id !== id);
@@ -128,7 +127,6 @@ function updateCartUI() {
   totalEl.textContent = "₱" + total.toFixed(2);
   countEl.textContent = count;
 }
-
 
 
 function saveCart() {

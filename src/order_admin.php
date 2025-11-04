@@ -16,7 +16,6 @@ $orders = [];
 while ($order = $orders_result->fetch_assoc()) {
   $order_id = $order['id'];
 
-  // Fetch order items
   $items_result = $conn->query("
         SELECT oi.qty, oi.price, oi.prod_id,
                COALESCE(cp.name, 'Unknown Product') AS product_name
@@ -33,48 +32,51 @@ while ($order = $orders_result->fetch_assoc()) {
   $orders[] = $order;
 }
 
-// Handle order acceptance
 if (isset($_POST['accept_order'])) {
   $order_id = $_POST['order_id'];
 
-  // Check if there is enough stock for each product in the order
   $stock_check_failed = false;
   $order_items_result = $conn->query("SELECT * FROM order_items WHERE order_id = $order_id");
 
-  // Loop through the items and check stock
   while ($item = $order_items_result->fetch_assoc()) {
     $prod_id = $item['prod_id'];
     $ordered_qty = $item['qty'];
 
-    // Fetch product details
     $product_result = $conn->query("SELECT qty FROM coffee_products WHERE id = $prod_id");
     $product = $product_result->fetch_assoc();
 
     if ($product['qty'] < $ordered_qty) {
       $stock_check_failed = true;
       echo "<script>alert('Not enough stock for product ID $prod_id.');</script>";
-      break;  // Exit loop if stock is insufficient for any item
+      break;
     }
   }
 
   if (!$stock_check_failed) {
-    // If stock is sufficient, proceed with order acceptance and update status
+
     $update_order_status = $conn->prepare("UPDATE orders SET status = 1 WHERE id = ?");
     $update_order_status->bind_param("i", $order_id);
     $update_order_status->execute();
     $update_order_status->close();
 
-    // Update inventory for each order item
-    $order_items_result->data_seek(0);  // Reset pointer to start of result set
+    $order_result = $conn->query("SELECT total_price FROM orders WHERE id = $order_id");
+    $order = $order_result->fetch_assoc();
+    $total_price = $order['total_price'];
+
+    // Update the total sales in the database (only after confirmation)
+    $update_sales = $conn->prepare("UPDATE sales SET total_sales = total_sales + ? WHERE id = 1");
+    $update_sales->bind_param("d", $total_price);  // Assuming there's a sales table with id=1
+    $update_sales->execute();
+    $update_sales->close();
+
+    $order_items_result->data_seek(0);
     while ($item = $order_items_result->fetch_assoc()) {
       $prod_id = $item['prod_id'];
       $qty = $item['qty'];
 
-      // Fetch product details
       $product_result = $conn->query("SELECT * FROM coffee_products WHERE id = $prod_id");
       $product = $product_result->fetch_assoc();
 
-      // Decrease the quantity in inventory
       $new_qty = $product['qty'] - $qty;
       $update_product_stock = $conn->prepare("UPDATE coffee_products SET qty = ? WHERE id = ?");
       $update_product_stock->bind_param("ii", $new_qty, $prod_id);
