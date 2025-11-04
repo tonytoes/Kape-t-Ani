@@ -9,7 +9,7 @@ if (!isset($_SESSION['email'])) {
 include 'config.php';
 
 // Total Sales
-$sales_result = $conn->query("SELECT SUM(total_price) AS total_sales FROM orders");
+$sales_result = $conn->query("SELECT SUM(total_sales) AS total_sales FROM sales");
 $sales_row = $sales_result->fetch_assoc();
 $total_sales = $sales_row['total_sales'] ?? 0;
 

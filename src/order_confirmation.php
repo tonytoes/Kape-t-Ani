@@ -65,9 +65,8 @@ include 'config.php';
         </div>
 
         <div class="confirmation-message mt-4">
-          <h3>Thank you for your purchase!</h3>
           <p>Your order is confirmed.</p>
-          <p>We are processing your order and will notify you once it ships.</p>
+          <p>We are processing your order and will notify you.</p>
         </div>
       </div>
     </div>

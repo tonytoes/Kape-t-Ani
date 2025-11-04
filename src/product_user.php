@@ -69,12 +69,12 @@ include 'config.php';
       <h2 class="fw-bold mb-4 text-center" style="color:#442808;">Our Products</h2>
       <p class="text-center mb-5 text-muted">Discover the heart of Filipino coffee and artisan culture — now featuring our cozy Autumn Specials!</p>
 
-      <h4 class="fw-bold mb-4" style="color:#442808;">Coffee and Matcha</h4>
+      <h4 class="fw-bold mb-4 text-center" style="color:#442808;">Coffee and Matcha</h4>
       <div class="row g-4" id="coffee-products"></div>
 
-      <hr class="my-5" style="border-top: 2px solid #dcb764; opacity: 0.5;" />
+      <hr class="my-5" style="border-top: 3px solid #dcb764; opacity: 0.5;" />
 
-      <h4 class="fw-bold mb-4" style="color:#442808;">Cultural Kits</h4>
+      <h4 class="fw-bold mb-4 text-center" style="color:#442808;">Cultural Kits</h4>
       <div class="row g-4" id="kit-products"></div>
 
       <hr class="my-5" style="border-top: 3px dashed #b66d2f; opacity: 0.8;" />
@@ -158,7 +158,6 @@ include 'config.php';
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">
-        You can't add more than the available stock!
       </div>
     </div>
   </div>

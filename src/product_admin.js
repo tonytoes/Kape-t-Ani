@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const addModal = document.getElementById('addModal');
 addModal.addEventListener('show.bs.modal', function (event) {
 
-  const addButton = event.relatedTarget; // button that opened the modal
+  const addButton = event.relatedTarget; 
   const submit = document.getElementById("insert");
 
   const updatedButton = "insert" + addButton.id;	
@@ -78,7 +78,7 @@ editModal.addEventListener('show.bs.modal', function (event){
   const submit = document.getElementById("update");
   submit.name = "update" + editButton.name;
   
-  document.getElementById('e_product_id').value = editButton.id; // set hidden input
+  document.getElementById('e_product_id').value = editButton.id; 
   document.getElementById('e_product_name').value = editButton.getAttribute('data-name');
   document.getElementById('e_product_description').value = editButton.getAttribute('data-desc');
   document.getElementById('e_product_price').value = editButton.getAttribute('data-price');
@@ -99,7 +99,7 @@ deleteModal.addEventListener('show.bs.modal', function (event){
   const submit = document.getElementById("delete");
   submit.name = "delete" + deleteButton.name;
 
-  document.getElementById('d_product_id').value = deleteButton.id; // set hidden input
+  document.getElementById('d_product_id').value = deleteButton.id; 
   
 });
 
