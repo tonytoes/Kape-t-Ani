@@ -90,6 +90,10 @@ if (!isset($_SESSION['email'])) {
               <span>Shipping</span>
               <span id="shipping"><?= $currency_symbol ?>0.00 Php</span>
             </div>
+            <div class="d-flex justify-content-between">
+              <span>Discount</span>
+              <span id="discount"><?= $currency_symbol ?>50.00 Php</span>
+            </div>
             <div class="d-flex justify-content-between fw-bold mt-2">
               <span>Total</span>
               <span id="total"><?= $currency_symbol ?>0.00 Php</span>

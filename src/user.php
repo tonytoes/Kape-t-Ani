@@ -45,7 +45,7 @@ if ($row = mysqli_fetch_assoc($res)) {
 
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
-      <a class="navbar-brand d-flex align-items-center" href="index.html">
+      <a class="navbar-brand d-flex align-items-center" href="index.php">
         <img
           src="assets/images/coffee.png"
           alt="Kape't Ani Logo"
@@ -74,7 +74,7 @@ if ($row = mysqli_fetch_assoc($res)) {
       </div>
 
       <div class="nav-actions">
-        <a href="login.html"><i class="fa-solid fa-user"></i></a>
+        <a href="login.php"><i class="fa-solid fa-user"></i></a>
         <a href="#" class="position-relative">
           <i class="bi bi-cart2 fs-4"></i>
         </a>
@@ -101,7 +101,7 @@ if ($row = mysqli_fetch_assoc($res)) {
           <a href="#" class="small text-decoration-none"><i class="bi bi-pencil"></i> Edit Profile</a>
           <hr>
           <div class="text-start ps-3">
-            <a href="userprofile.html" class="active"><i class="bi bi-person"></i> My Account</a>
+            <a href="userprofile.php" class="active"><i class="bi bi-person"></i> My Account</a>
             <a href="order_history.php"><i class="bi bi-cart"></i>Order History</a>
             <a href="logout.php"><i class="bi bi-box-arrow-right"></i> Logout</a>
           </div>
