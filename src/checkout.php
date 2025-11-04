@@ -110,73 +110,57 @@ if (!isset($_SESSION['email'])) {
     window.isPromoActive = isPromoActive;
   </script>
 
- <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const orderItemsEl = document.getElementById('orderItems');
-    const subtotalEl = document.getElementById('subtotal');
-    const shippingEl = document.getElementById('shipping');
-    const discountEl = document.getElementById('discount');
-    const totalEl = document.getElementById('total');
-    const totalAmountEl = document.getElementById('totalAmount');
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const orderItemsEl = document.getElementById('orderItems');
+      const subtotalEl = document.getElementById('subtotal');
+      const shippingEl = document.getElementById('shipping');
+      const discountEl = document.getElementById('discount');
+      const totalEl = document.getElementById('total');
+      const totalAmountEl = document.getElementById('totalAmount');
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let subtotal = 0;
-    const shipping = 50;
-    let discount = 0;
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let subtotal = 0;
+      const shipping = 50;
+      let discount = 0;
 
-    // Check if promo is active
-    if (window.isPromoActive && window.isPromoActive()) {
-      discount = 50;
-      discountEl.innerHTML = `<span class="text-success">₱50.00 Php</span>`;
-    } else {
-      // Promo expired → show visually “struck through ₱50” and new ₱0.00
-      discountEl.innerHTML = `<span style="text-decoration: line-through; color: gray;">₱50.00</span> → <span class="text-danger">₱0.00 Php</span>`;
-    }
-
-    // Build order list and calculate subtotal
-    orderItemsEl.innerHTML = cart.map(item => {
-      const priceNumber = parseFloat(item.price.replace("₱", ""));
-      const totalItem = priceNumber * item.qty;
-      subtotal += totalItem;
-
-      return `
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <div class="d-flex align-items-center">
-            <img src="${item.img}" alt="${item.name}" width="65" height="65" class="me-2 rounded">
-            <div>
-              <strong>${item.name}</strong><br>
-              <small>₱${priceNumber.toFixed(2)} x ${item.qty}</small>
-            </div>
-          </div>
-          <div>₱${totalItem.toFixed(2)}</div>
-        </div>
-      `;
-    }).join('');
-
-    const total = subtotal + shipping - discount;
-
-    subtotalEl.textContent = "₱" + subtotal.toFixed(2);
-    shippingEl.textContent = "₱" + shipping.toFixed(2);
-    totalEl.textContent = "₱" + total.toFixed(2);
-    totalAmountEl.textContent = "₱" + total.toFixed(2) + " Php";
-
-    // Handle form submission
-    const form = document.getElementById('paymentForm');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
+      // Check if promo is active
+      if (window.isPromoActive && window.isPromoActive()) {
+        discount = 50;
+        discountEl.innerHTML = `<span class="text-success">₱50.00 Php</span>`;
+      } else {
+        // Promo expired → show visually “struck through ₱50” and new ₱0.00
+        discountEl.innerHTML = `<span style="text-decoration: line-through; color: gray;">₱50.00</span> → <span class="text-danger">₱0.00 Php</span>`;
       }
 
-      document.getElementById('cartData').value = JSON.stringify(cart);
-      form.submit();
-    });
-  });
-</script>
+      // Build order list and calculate subtotal
+      orderItemsEl.innerHTML = cart.map(item => {
+        const priceNumber = parseFloat(item.price.replace("₱", ""));
+        const totalItem = priceNumber * item.qty;
+        subtotal += totalItem;
 
-      // ===== FORM SUBMISSION =====
+        return `
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center">
+              <img src="${item.img}" alt="${item.name}" width="65" height="65" class="me-2 rounded">
+              <div>
+                <strong>${item.name}</strong><br>
+                <small>₱${priceNumber.toFixed(2)} x ${item.qty}</small>
+              </div>
+            </div>
+            <div>₱${totalItem.toFixed(2)}</div>
+          </div>
+        `;
+      }).join('');
+
+      const total = subtotal + shipping - discount;
+
+      subtotalEl.textContent = "₱" + subtotal.toFixed(2);
+      shippingEl.textContent = "₱" + shipping.toFixed(2);
+      totalEl.textContent = "₱" + total.toFixed(2);
+      totalAmountEl.textContent = "₱" + total.toFixed(2) + " Php";
+
+      // Handle form submission
       const form = document.getElementById('paymentForm');
       form.addEventListener('submit', (e) => {
         e.preventDefault();
