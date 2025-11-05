@@ -105,7 +105,7 @@ function updateCartUI() {
   let count = 0;
 
   cart.forEach((item) => {
-    total += item.qty * parseInt(item.price.replace("₱", ""));
+    total += item.qty * parseFloat(item.price.replace("₱", "").replace(",",""));
     count += item.qty;
 
     const li = document.createElement("li");

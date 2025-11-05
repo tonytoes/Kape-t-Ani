@@ -1,6 +1,7 @@
 <?php
-
 session_start();
+date_default_timezone_set('Asia/Manila');
+
 if (!isset($_SESSION['email'])) {
   header("Location: login.php");
   exit();
@@ -8,63 +9,52 @@ if (!isset($_SESSION['email'])) {
 
 include 'config.php';
 
-// Total Sales
+// Database queries
 $sales_result = $conn->query("SELECT SUM(total_sales) AS total_sales FROM sales");
 $sales_row = $sales_result->fetch_assoc();
 $total_sales = $sales_row['total_sales'] ?? 0;
 
-// Total Orders
 $orders_result = $conn->query("SELECT COUNT(*) AS total_orders FROM orders");
 $orders_row = $orders_result->fetch_assoc();
 $total_orders = $orders_row['total_orders'] ?? 0;
 
-// Total Users
 $users_result = $conn->query("SELECT COUNT(*) AS total_users FROM users");
 $users_row = $users_result->fetch_assoc();
 $total_users = $users_row['total_users'] ?? 0;
 
-// Total Coffee Products
 $coffee_result = $conn->query("SELECT COUNT(*) AS total_coffee_products FROM coffee_products");
 $coffee_row = $coffee_result->fetch_assoc();
 $total_coffee_products = $coffee_row['total_coffee_products'] ?? 0;
 
-// Total Seasonal Products
 $seasonal_result = $conn->query("SELECT COUNT(*) AS total_seasonal_products FROM seasonal_products");
 $seasonal_row = $seasonal_result->fetch_assoc();
 $total_seasonal_products = $seasonal_row['total_seasonal_products'] ?? 0;
 
-// Total Cultural Products
 $cultural_result = $conn->query("SELECT COUNT(*) AS total_cultural_products FROM cultural_products");
 $cultural_row = $cultural_result->fetch_assoc();
 $total_cultural_products = $cultural_row['total_cultural_products'] ?? 0;
 
-// Calculate total products by summing all categories
 $total_products = $total_coffee_products + $total_seasonal_products + $total_cultural_products;
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="assets/images/coffee.png" type="image/x-icon" />
   <title>Kape't Ani Admin | Dashboard</title>
   <link rel="stylesheet" href="admin.css" />
-  <script src="main" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 </head>
-
 <body>
-  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">
       <img src="assets/images/kape't_ani_logo_white.png" alt="Kape't Ani Logo">
       <h1>Kape’t Ani Admin</h1>
     </div>
     <ul class="nav-links">
-      <li><a href="admin.php">Dashboard</a></li>
+      <li><a href="admin.php" class="active">Dashboard</a></li>
       <li><a href="user_admin.php">Users</a></li>
       <li><a href="product_admin.php">Products</a></li>
       <li><a href="order_admin.php">Orders</a></li>
@@ -73,9 +63,10 @@ $total_products = $total_coffee_products + $total_seasonal_products + $total_cul
     </ul>
   </nav>
 
-  <!-- MAIN CONTENT -->
   <main class="dashboard">
     <h2>Dashboard Overview</h2>
+    <p class="last-updated">Last updated: <?= date("F j, Y, g:i a") ?></p>
+
     <div class="cards">
       <div class="card">
         <i class="ri-shopping-bag-3-line"></i>
@@ -108,5 +99,4 @@ $total_products = $total_coffee_products + $total_seasonal_products + $total_cul
     </div>
   </main>
 </body>
-
 </html>

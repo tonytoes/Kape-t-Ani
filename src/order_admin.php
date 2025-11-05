@@ -1,14 +1,12 @@
 <?php
 include "config.php";
 
-// Start session and check if the admin is logged in
 session_start();
 if (!isset($_SESSION['email'])) {
   header("Location: login.php");
   exit();
 }
 
-// Fetch all pending orders
 $orders_result = $conn->query("SELECT * FROM orders WHERE status = 0 ORDER BY created_at DESC");
 
 $orders = [];
