@@ -4,7 +4,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 /* Render product cards */
 function renderProducts(id, products, color = "#442808") {
   document.getElementById(id).innerHTML = products
-    .map(([pid, name, desc, price, img, type, stock = 0]) => {
+    .map(([pid, name, desc, price, discount, img, type, stock = 0]) => {
       const outOfStock = stock <= 0;
       return `
         <div class="col-md-3 col-sm-6">
@@ -14,16 +14,23 @@ function renderProducts(id, products, color = "#442808") {
               <h6 class="fw-bold">${name}</h6>
               <p class="small text-muted mb-1">${desc}</p>
               <p class="fw-semibold mb-2" style="color:${color};">${price}</p>
+              
               ${
                 outOfStock
                   ? `<span class="text-danger">Out of Stock</span>`
-                  : `<button class="btn btn-sm w-100 text-light add-to-cart-btn"
+                  : `${
+                        discount != 0 
+                          ? `<p><span class="product-discount">Discount: ${discount}%</span></p>`
+                          : '' 
+                      }<button class="btn btn-sm w-100 text-light add-to-cart-btn"
                       data-id="${pid}" data-name="${name}"
                       data-price="${price}" data-img="data:${type};base64,${img}"
                       data-stock="${stock}">
                       Add to Cart
                     </button>`
+                    
               }
+           
             </div>
           </div>
         </div>
