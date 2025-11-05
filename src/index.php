@@ -8,7 +8,6 @@ if (!isset($_SESSION['email'])) {
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +29,9 @@ if (!isset($_SESSION['email'])) {
   <!-- Custom Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
   <!-- JQUERY -->
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
@@ -38,8 +40,6 @@ if (!isset($_SESSION['email'])) {
 </head>
 
 <body>
-
-
 
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid position-relative">
@@ -86,21 +86,11 @@ if (!isset($_SESSION['email'])) {
         <a href="product.html" class="btn btn-custom" style="color: black;">ORDER NOW</a>
       </div>
 
-
-      <div class="promo-section">
-        <div class="promo-card text-center text-light p-4 rounded-4 shadow" style="background: rgba(68, 40, 8, 0.85); max-width: 300px;">
-          <h3>Promo Vouchers</h3>
-          <p id="promoMessage" class="mb-3">Checking promo availability...</p>
-          <button id="voucherBtn" class="btn btn-custom btn-sm" style="display: none;">Get Voucher</button>
-        </div>
+      <!-- Scroll Prompt -->
+      <div class="scroll-prompt position-absolute bottom-3 start-50 translate-middle-x text-center" style="z-index: 3;">
+        <span>Scroll to explore</span><br>
+        <i class="bi bi-chevron-double-down"></i>
       </div>
-    </div>
-
-    <!-- Scroll Prompt -->
-    <div class="scroll-prompt position-absolute bottom-3 start-50 translate-middle-x text-center" style="z-index: 3;">
-      <span>Scroll to explore</span><br>
-      <i class="bi bi-chevron-double-down"></i>
-    </div>
   </section>
 
   <!-- Search Modal -->
@@ -112,17 +102,6 @@ if (!isset($_SESSION['email'])) {
     </div>
   </div>
 
-  <!-- Cart Offcanvas -->
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title">Your Cart</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-    </div>
-    <div class="offcanvas-body">
-      <p>No items in cart yet.</p>
-      <button class="btn btn-custom w-100" id="addToCartBtn">Add Sample Item</button>
-    </div>
-  </div>
 
   <!-- Discover Section -->
   <section class="discover_section py-5">
@@ -130,7 +109,7 @@ if (!isset($_SESSION['email'])) {
       <div class="row align-items-center">
         <!-- TEXT LEFT -->
         <div class="col-lg-6">
-          <h2 class="mb-4">Discover the best coffee and cultural products</h2>
+          <h1 class="mb-4">Discover the best coffee and cultural products</h1>
           <p>Kape’t Ani was founded to promote and sell curated kits that combine Filipino coffee with cultural harvest products such as handmade baskets and native mugs.</p>
           <a href="about.html" class="btn btn-custom" style="color: black;">Learn More</a>
         </div>
@@ -179,18 +158,16 @@ if (!isset($_SESSION['email'])) {
     </div>
   </section>
 
+
   <!-- Banner Section -->
-  <div class="banner container-fluid banner py-7 mt-5">
+  <div class="banner container-fluid py-7 mt-5 mb-5">
     <div class="row">
-      <h1 class="text-center mb-4" style="color: rgba(255, 254, 252, 1)">Subscribe to get the Latest News</h1>
-      <h5 class="text-center fs-6 mb-4">Don't Miss out on our latest news, updates, tips, and special offers</h5>
+      <h1 class="text-center mb-4">Promo Vouchers</h1>
+      <p id="promoMessage" class="mb-3">Checking promo availability...</p>
       <div class="col-12 d-flex justify-content-center">
         <div class="col-md-6 col-lg-4">
           <div class="input-group">
-            <input type="email" class="form-control" placeholder="Email Address" />
-            <button class="btn btn-warning" style="background-color: #dcb764; border-color: #dcb764">
-              <i class="bi bi-send"></i>
-            </button>
+            <button id="voucherBtn" class="btn btn-custom btn-sm" style="display: none;">Get Voucher</button>
           </div>
         </div>
       </div>
@@ -247,37 +224,37 @@ if (!isset($_SESSION['email'])) {
   </footer>
 
   <!-- Bootstrap JS --><!-- Promo Logic (simplified, no backend) -->
-<!-- Promo Logic (simplified, with redirect) -->
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const voucherBtn = document.getElementById("voucherBtn");
-  const promoMessage = document.getElementById("promoMessage");
+  <!-- Promo Logic (simplified, with redirect) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const voucherBtn = document.getElementById("voucherBtn");
+      const promoMessage = document.getElementById("promoMessage");
 
-  const now = new Date();
-  const day = now.getDay();
-  const hour = now.getHours();
+      const now = new Date();
+      const day = now.getDay();
+      const hour = now.getHours();
 
-  const isTuesday = day === 2;
-  const isPromoTime = hour >= 20 && hour < 24;
+      const isTuesday = day === 2;
+      const isPromoTime = hour >= 20 && hour < 24;
 
-  if (isTuesday && isPromoTime) {
-    // Show voucher during promo hour
-    promoMessage.textContent = "Use ChoosDay Voucher!";
-    voucherBtn.style.display = "inline-block";
-    voucherBtn.textContent = "Use Voucher";
+      if (isTuesday && isPromoTime) {
+        // Show voucher during promo hour
+        promoMessage.textContent = "Use ChoosDay Voucher!";
+        voucherBtn.style.display = "inline-block";
+        voucherBtn.textContent = "Use Voucher";
 
-    voucherBtn.addEventListener("click", () => {
-      // Redirect user to product_user.php with voucher info (optional query)
-      window.location.href = "product_user.php?voucher=CHOOSDAY10";
+        voucherBtn.addEventListener("click", () => {
+          // Redirect user to product_user.php with voucher info (optional query)
+          window.location.href = "product_user.php?voucher=CHOOSDAY10";
+        });
+      } else {
+        // Default message when not in promo period
+        promoMessage.textContent =
+          "Tune in for the next ChoosDay Promo (Tuesdays 8–9 PM)!";
+        voucherBtn.style.display = "none";
+      }
     });
-  } else {
-    // Default message when not in promo period
-    promoMessage.textContent =
-      "Tune in for the next ChoosDay Promo (Tuesdays 8–9 PM)!";
-    voucherBtn.style.display = "none";
-  }
-});
-</script>
+  </script>
 
 
 </body>

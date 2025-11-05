@@ -7,9 +7,16 @@
   --light-coffee: #ffffff;
 }
 
+@font-face {
+  font-family: "Raleway";
+  src: url(assets/fonts/Raleway-VariableFont_wght.ttf);
+  font-weight: normal; /* Define font weight if applicable */
+  font-style: normal; /* Define font style if applicable */
+}
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
+  font-family: "Raleway";
 }
 
 .navbar {
@@ -85,7 +92,7 @@ body {
 }
 
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   background: url("assets/images/thumbnail5.jpeg") no-repeat center center/cover;
   display: flex;
   align-items: center;
@@ -142,15 +149,26 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
-.discover_section h2 {
-  color: var(--golden-caramel);
+.discover_section h1 {
+  color: var(--deep-roast);
   font-weight: bold;
+  font-family: "Raleway", sans-serif;
+}
+
+.discover_section p {
+  font-family: "Raleway", sans-serif;
 }
 
 /* --- Product Carousel --- */
 
-.product_section h2 {
-  color: var(--golden-caramel);
+.product_section h1 {
+  color: var(--deep-roast);
+  font-weight: bold;
+  font-family: "Raleway", sans-serif;
+}
+
+.product_section p {
+  font-family: "Raleway", sans-serif;
 }
 
 .carousel-inner,
@@ -171,8 +189,9 @@ body {
 }
 
 .banner {
-  background: #442808;
-  height: 40vh;
+  background: #8b7e6f;
+  height: 25vh;
+  width: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -180,6 +199,7 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
+  border-radius: 15px;
 }
 
 .banner::before {
@@ -194,6 +214,21 @@ body {
 .banner > * {
   position: relative;
   z-index: 1;
+}
+
+.banner h1 {
+  font-family: "Raleway", sans-serif;
+  color: var(--text-light);
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.banner p {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
 }
 
 .footer_section {
@@ -263,32 +298,6 @@ body {
   to {
     opacity: 1;
   }
-}
-
-/* --- Promo Section Bar --- */
-.promo-section {
-  background: rgba(0, 0, 0, 0.6); /* translucent overlay bar */
-  padding: 2rem;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(6px);
-  max-width: 380px;
-  color: #fff;
-  position: relative;
-  z-index: 2;
-}
-
-.promo-card h3 {
-  color: var(--golden-caramel);
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-}
-
-.promo-card p {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--text-light);
-  margin-bottom: 1.5rem;
 }
 
 .promo-card .btn-custom {

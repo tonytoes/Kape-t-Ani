@@ -30,9 +30,8 @@ while ($order = $orders_result->fetch_assoc()) {
   $orders[] = $order;
 }
 
-if (isset($_POST['accept_order'])) {
+if (isset($_POST['accept_order']) && isset($_POST['order_id'])) {
   $order_id = $_POST['order_id'];
-
   $stock_check_failed = false;
   $order_items_result = $conn->query("SELECT * FROM order_items WHERE order_id = $order_id");
 
@@ -40,18 +39,27 @@ if (isset($_POST['accept_order'])) {
     $prod_id = $item['prod_id'];
     $ordered_qty = $item['qty'];
 
-    $product_result = $conn->query("SELECT qty FROM coffee_products WHERE id = $prod_id");
+    $product_result = $conn->query("SELECT name, qty, price FROM coffee_products WHERE id = $prod_id");
     $product = $product_result->fetch_assoc();
 
-    if ($product['qty'] < $ordered_qty) {
+    if (!$product) {
+      $product_result = $conn->query("SELECT name, qty, price FROM seasonal_products WHERE id = $prod_id");
+      $product = $product_result->fetch_assoc();
+    }
+
+    if (!$product) {
+      $product_result = $conn->query("SELECT name, qty, price FROM cultural_products WHERE id = $prod_id");
+      $product = $product_result->fetch_assoc();
+    }
+
+    if ($product && $product['qty'] < $ordered_qty) {
       $stock_check_failed = true;
-      echo "<script>alert('Not enough stock for product ID $prod_id.');</script>";
+      echo "<script>alert('Not enough stock for product " . htmlspecialchars($product['name']) . ".');</script>";
       break;
     }
   }
 
   if (!$stock_check_failed) {
-
     $update_order_status = $conn->prepare("UPDATE orders SET status = 1 WHERE id = ?");
     $update_order_status->bind_param("i", $order_id);
     $update_order_status->execute();
@@ -88,7 +96,7 @@ if (isset($_POST['accept_order'])) {
   }
 }
 
-if (isset($_POST['cancel_order'])) {
+if (isset($_POST['cancel_order']) && isset($_POST['order_id'])) {
   $order_id = $_POST['order_id'];
 
   $update_order_status = $conn->prepare("UPDATE orders SET status = 2 WHERE id = ?");
@@ -100,6 +108,30 @@ if (isset($_POST['cancel_order'])) {
               alert('Order cancelled!');
               window.location.href = 'order_admin.php';
           </script>";
+}
+
+if (isset($_POST['update_order_item'])) {
+  if (isset($_POST['order_id'], $_POST['prod_id'], $_POST['new_qty'], $_POST['new_price'])) {
+    $order_id = $_POST['order_id'];
+    $prod_id = $_POST['prod_id'];
+    $new_qty = $_POST['new_qty'];
+    $new_price = $_POST['new_price'];
+
+    $new_qty = (int)$new_qty;
+    $new_price = (float)$new_price;
+    $order_id = (int)$order_id;
+    $prod_id = (int)$prod_id;
+
+    $update_item = $conn->prepare("UPDATE order_items SET qty = ?, price = ? WHERE order_id = ? AND prod_id = ?");
+    $update_item->bind_param("idii", $new_qty, $new_price, $order_id, $prod_id);
+    $update_item->execute();
+    $update_item->close();
+
+    echo "<script>
+              alert('Order item updated successfully!');
+              window.location.href = 'order_admin.php';
+          </script>";
+  }
 }
 ?>
 
@@ -161,7 +193,9 @@ if (isset($_POST['cancel_order'])) {
                 <td>
                   <ul class="mb-0">
                     <?php foreach ($order['items'] as $item): ?>
-                      <li><?= htmlspecialchars($item['product_name']) ?> x <?= $item['qty'] ?> (<?= '₱' . number_format($item['price'], 2) ?>)</li>
+                      <li><?= htmlspecialchars($item['product_name']) ?> x <?= $item['qty'] ?> (<?= '₱' . number_format($item['price'], 2) ?>)
+                        <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editOrderItemModal<?= $item['prod_id'] ?>">Edit</button>
+                      </li>
                     <?php endforeach; ?>
                   </ul>
                 </td>
@@ -185,6 +219,38 @@ if (isset($_POST['cancel_order'])) {
                   <?php endif; ?>
                 </td>
               </tr>
+
+              <?php foreach ($order['items'] as $item): ?>
+                <div class="modal fade" id="editOrderItemModal<?= $item['prod_id'] ?>" tabindex="-1" aria-labelledby="editOrderItemModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="editOrderItemModalLabel">Edit Order Item</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form method="POST">
+                          <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                          <input type="hidden" name="prod_id" value="<?= $item['prod_id'] ?>">
+
+                          <div class="mb-3">
+                            <label for="new_qty" class="form-label">Quantity</label>
+                            <input type="number" name="new_qty" class="form-control" id="new_qty" value="<?= $item['qty'] ?>" min="1" required>
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="new_price" class="form-label">Price (₱)</label>
+                            <input type="number" name="new_price" class="form-control" id="new_price" value="<?= $item['price'] ?>" step="0.01" required>
+                          </div>
+
+                          <button type="submit" name="update_order_item" class="btn btn-primary">Update Item</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+
             <?php endforeach; ?>
           </tbody>
         </table>
