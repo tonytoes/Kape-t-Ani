@@ -9,7 +9,6 @@ if (!isset($_SESSION['email'])) {
 
 include 'config.php';
 
-// Database queries
 $sales_result = $conn->query("SELECT SUM(total_sales) AS total_sales FROM sales");
 $sales_row = $sales_result->fetch_assoc();
 $total_sales = $sales_row['total_sales'] ?? 0;
@@ -39,6 +38,7 @@ $total_products = $total_coffee_products + $total_seasonal_products + $total_cul
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,6 +47,7 @@ $total_products = $total_coffee_products + $total_seasonal_products + $total_cul
   <link rel="stylesheet" href="admin.css" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 </head>
+
 <body>
   <nav class="navbar">
     <div class="logo">
@@ -99,4 +100,5 @@ $total_products = $total_coffee_products + $total_seasonal_products + $total_cul
     </div>
   </main>
 </body>
+
 </html>
