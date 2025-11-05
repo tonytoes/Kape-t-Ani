@@ -17,6 +17,27 @@ if (!isset($_SESSION['email'])) {
   exit();
 }
 
+if (isset($_POST["insert"])) {
+  // Escape special characters in user input
+  $firstname = mysqli_real_escape_string($link, $_POST['firstname']);
+  $lastname = mysqli_real_escape_string($link, $_POST['lastname']);
+  $title = mysqli_real_escape_string($link, $_POST['title']);
+  $description = mysqli_real_escape_string($link, $_POST['descriptionInPHP']);
+  $rating = (int) $_POST['rating'];  // Ensure rating is an integer
+
+  // Perform the query
+  $query = "INSERT INTO reviewcard (`id`, `first_name`, `last_name`, `review_rating`, `review_title`, `description`) 
+              VALUES (NULL, '$firstname', '$lastname', '$rating', '$title', '$description')";
+
+  mysqli_query($link, $query) or die(mysqli_error($link));
+?>
+  <script type="text/javascript">
+    window.location.href = window.location.href;
+  </script>
+<?php
+}
+
+
 ?>
 
 
