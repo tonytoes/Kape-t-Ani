@@ -4,7 +4,7 @@
   --golden-caramel: #d4a373;
   --forest-sage: #6b8d73;
   --text-light: #ffffff;
-  --light-coffee: #f7ebdd; /* lighter background */
+  --light-coffee: #f7ebdd;
 }
 
 body {
@@ -14,14 +14,18 @@ body {
   color: var(--deep-roast);
 }
 
-/* --- NAVBAR --- */
+/* ================= NAVBAR ================= */
 .navbar {
-  background-color: var(--deep-roast);
+  background: linear-gradient(90deg, var(--deep-roast), #2b1d15);
   color: var(--text-light);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7rem 5%;
+  padding: 0.8rem 5%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo {
@@ -36,8 +40,8 @@ body {
 }
 
 .logo h1 {
-  font-size: 1.2rem;
-  color: var(--velvet-cream);
+  font-size: 1.3rem;
+  color: var(--golden-caramel);
 }
 
 .nav-links {
@@ -51,86 +55,59 @@ body {
   text-decoration: none;
   color: var(--velvet-cream);
   font-weight: 500;
-  transition: 0.3s;
+  transition: color 0.3s, transform 0.2s;
 }
 
 .nav-links a:hover {
   color: var(--golden-caramel);
+  transform: scale(1.05);
+}
+
+.nav-links .active {
+  color: var(--golden-caramel);
+  font-weight: 600;
 }
 
 .logout {
-  color: var(--golden-caramel);
-}
-
-/* --- DASHBOARD --- */
-.dashboard {
-  padding: 2rem 5%;
-}
-
-.dashboard h2 {
-  margin-bottom: 2rem;
-  color: var(--deep-roast);
-}
-
-/* --- CARDS --- */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-
-.card {
-  background-color: var(--text-light);
-  border-radius: 15px;
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  box-shadow: 0 4px 10px rgba(60, 42, 33, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(60, 42, 33, 0.3);
-}
-
-.card i {
-  font-size: 2.5rem;
-  color: var(--golden-caramel);
-}
-
-.card h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: var(--deep-roast);
-}
-
-.card p {
-  margin: 0.3rem 0 0 0;
-  font-size: 1.5rem;
-  font-weight: 600;
   color: var(--forest-sage);
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 768px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
+/* ================= MAIN SECTION ================= */
+.table-section {
+  padding-top: 3rem;
 }
 
-/* --- TABLE DESIGN --- */
 .table-section h2 {
-  font-weight: bold;
+  font-weight: 700;
+  color: var(--deep-roast);
+  text-align: center;
+  position: relative;
+  margin-bottom: 2rem;
 }
 
+.table-section h2::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: var(--golden-caramel);
+  display: block;
+  margin: 0.5rem auto;
+  border-radius: 2px;
+}
+
+/* ================= TABLE ================= */
 .table-container {
   background-color: var(--text-light);
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(60, 42, 33, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 6px 14px rgba(60, 42, 33, 0.25);
   padding: 1.5rem;
   overflow-x: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(60, 42, 33, 0.3);
 }
 
 .styled-table {
@@ -141,32 +118,40 @@ body {
 }
 
 .styled-table thead {
-  background-color: var(--golden-caramel);
+  background: linear-gradient(90deg, var(--golden-caramel), var(--forest-sage));
   color: var(--text-light);
 }
 
 .styled-table th,
 .styled-table td {
-  padding: 12px 15px;
+  padding: 14px 16px;
   text-align: left;
-  border-bottom: 1px solid var(--velvet-cream);
+  border-bottom: 1px solid #d8c3a5;
+}
+
+.styled-table tbody tr {
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .styled-table tbody tr:hover {
-  background-color: var(--light-coffee);
-  transition: background-color 0.3s ease;
+  background-color: rgba(212, 163, 115, 0.15);
+  transform: scale(1.01);
 }
 
-/* --- RESPONSIVE TABLE --- */
+/* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
+  .nav-links {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
   .styled-table th,
   .styled-table td {
     font-size: 0.85rem;
     padding: 10px;
   }
 
-  .btn {
-    padding: 6px 10px;
-    font-size: 0.8rem;
+  .table-container {
+    padding: 1rem;
   }
 }
