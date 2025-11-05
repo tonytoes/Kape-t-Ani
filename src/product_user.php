@@ -174,7 +174,7 @@ include 'config.php';
       while ($row = mysqli_fetch_array($table)) {
         $imgBase64 = base64_encode($row["image_blob"]);
         $imageType = $row["image_type"];
-        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
+        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"]. '","' . $row["discount"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
       }
       ?>
     ];
@@ -185,7 +185,7 @@ include 'config.php';
       while ($row = mysqli_fetch_array($table)) {
         $imgBase64 = base64_encode($row["image_blob"]);
         $imageType = $row["image_type"];
-        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
+        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"]. '","' . $row["discount"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
       }
       ?>
     ];
@@ -196,7 +196,7 @@ include 'config.php';
       while ($row = mysqli_fetch_array($table)) {
         $imgBase64 = base64_encode($row["image_blob"]);
         $imageType = $row["image_type"];
-        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
+        echo '["' . $row["id"] . '","' . $row["name"] . '","' . $row["description"] . '","₱' . $row["price"]. '","' . $row["discount"] . '","' . $imgBase64 . '","' . $imageType . '","' . $row["qty"] . '"],';
       }
       ?>
     ];
