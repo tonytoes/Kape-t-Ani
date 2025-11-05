@@ -40,7 +40,7 @@ include 'config.php';
   <section class="order-confirmation-container">
     <div class="order-confirmation-card">
       <div class="return-bar mb-4">
-        <button class="btn-return" onclick="history.back()">← Return</button>
+        <button class="btn-return" onclick="window.location.href='product_user.php';">← Return</button>
       </div>
       <!-- Order Details -->
       <div class="order-details">
