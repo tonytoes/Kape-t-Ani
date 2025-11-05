@@ -1,13 +1,14 @@
 <?php
-
 session_start();
+
 if (!isset($_SESSION['email'])) {
+  // Clear localStorage cart if user is not logged in
+  echo "<script>localStorage.removeItem('cart');</script>";
   header("Location: login.php");
   exit();
 }
 
 include 'config.php';
-
 ?>
 
 <!DOCTYPE html>
