@@ -8,37 +8,30 @@ if (!isset($_SESSION['email'])) {
 
 include 'config.php';
 
-// Total Sales
 $sales_result = $conn->query("SELECT SUM(total_sales) AS total_sales FROM sales");
 $sales_row = $sales_result->fetch_assoc();
 $total_sales = $sales_row['total_sales'] ?? 0;
 
-// Total Orders
 $orders_result = $conn->query("SELECT COUNT(*) AS total_orders FROM orders");
 $orders_row = $orders_result->fetch_assoc();
 $total_orders = $orders_row['total_orders'] ?? 0;
 
-// Total Users
 $users_result = $conn->query("SELECT COUNT(*) AS total_users FROM users");
 $users_row = $users_result->fetch_assoc();
 $total_users = $users_row['total_users'] ?? 0;
 
-// Total Coffee Products
 $coffee_result = $conn->query("SELECT COUNT(*) AS total_coffee_products FROM coffee_products");
 $coffee_row = $coffee_result->fetch_assoc();
 $total_coffee_products = $coffee_row['total_coffee_products'] ?? 0;
 
-// Total Seasonal Products
 $seasonal_result = $conn->query("SELECT COUNT(*) AS total_seasonal_products FROM seasonal_products");
 $seasonal_row = $seasonal_result->fetch_assoc();
 $total_seasonal_products = $seasonal_row['total_seasonal_products'] ?? 0;
 
-// Total Cultural Products
 $cultural_result = $conn->query("SELECT COUNT(*) AS total_cultural_products FROM cultural_products");
 $cultural_row = $cultural_result->fetch_assoc();
 $total_cultural_products = $cultural_row['total_cultural_products'] ?? 0;
 
-// Calculate total products by summing all categories
 $total_products = $total_coffee_products + $total_seasonal_products + $total_cultural_products;
 
 ?>

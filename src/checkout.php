@@ -12,6 +12,7 @@ if (!isset($_SESSION['email'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +25,6 @@ if (!isset($_SESSION['email'])) {
 </head>
 
 <body>
-  <!-- BRAND LOGO -->
   <header class="brand-header">
     <img src="assets/images/KA LOGO.png" alt="Kape’t Ani Logo" class="brand-logo" onclick="window.location.href='index.php'">
   </header>
@@ -36,7 +36,6 @@ if (!isset($_SESSION['email'])) {
       </div>
 
       <div class="row g-5">
-        <!-- LEFT SIDE: SHIPPING + PAYMENT -->
         <div class="col-lg-7 col-md-12">
           <h2 class="checkout-title mb-4">Checkout</h2>
 
@@ -63,13 +62,12 @@ if (!isset($_SESSION['email'])) {
               </div>
               <input type="hidden" name="cart_data" id="cartData">
               <button type="submit" class="btn btn-custom w-100 mt-3">
-                PURCHASE <span id="totalAmount"><?= $currency_symbol ?>0.00 Php</span>
+                PURCHASE <span id="totalAmount">₱</span>
               </button>
             </form>
           </div>
         </div>
 
-        <!-- RIGHT SIDE: ORDER SUMMARY -->
         <div class="col-lg-5 col-md-12">
           <div class="section-block">
             <h5>Your Order</h5>
@@ -78,7 +76,7 @@ if (!isset($_SESSION['email'])) {
             <hr>
             <div class="d-flex justify-content-between">
               <span>Subtotal</span>
-              <span id="subtotal"><?= $currency_symbol ?>0.00 Php</span>
+              <span id="subtotal" data-subtotal="<?= $currency_symbol ?>0.00 Php"><?= $currency_symbol ?>0.00 Php</span>
             </div>
             <div class="d-flex justify-content-between">
               <span>Shipping</span>
@@ -98,7 +96,6 @@ if (!isset($_SESSION['email'])) {
     </div>
   </section>
 
-  <!-- ============ PROMO DETECTION ============ -->
   <script>
     function isPromoActive() {
       const now = new Date();
@@ -123,33 +120,30 @@ if (!isset($_SESSION['email'])) {
       const shipping = 50;
       let discount = 0;
 
-      // Check if promo is active
       if (window.isPromoActive && window.isPromoActive()) {
         discount = 50;
         discountEl.innerHTML = `<span class="text-success">₱50.00 Php</span>`;
       } else {
-        // Promo expired → show visually “struck through ₱50” and new ₱0.00
-        discountEl.innerHTML = `<span style="text-decoration: line-through; color: gray;">₱50.00</span> → <span class="text-danger">₱0.00 Php</span>`;
+        discountEl.innerHTML = `<span style="text-decoration: line-through; color: gray;">₱50.00</span> → <span class="text-danger">₱0.00 Php (No Discount Active)</span>`;
       }
 
-      // Build order list and calculate subtotal
       orderItemsEl.innerHTML = cart.map(item => {
         const priceNumber = parseFloat(item.price.replace("₱", ""));
         const totalItem = priceNumber * item.qty;
         subtotal += totalItem;
 
         return `
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="d-flex align-items-center">
-              <img src="${item.img}" alt="${item.name}" width="65" height="65" class="me-2 rounded">
-              <div>
-                <strong>${item.name}</strong><br>
-                <small>₱${priceNumber.toFixed(2)} x ${item.qty}</small>
-              </div>
-            </div>
-            <div>₱${totalItem.toFixed(2)}</div>
-          </div>
-        `;
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <div class="d-flex align-items-center">
+        <img src="${item.img}" alt="${item.name}" width="65" height="65" class="me-2 rounded">
+        <div>
+          <strong>${item.name}</strong><br>
+          <small>₱${priceNumber.toFixed(2)} x ${item.qty}</small>
+        </div>
+      </div>
+      <div>₱${totalItem.toFixed(2)}</div>
+    </div>
+  `;
       }).join('');
 
       const total = subtotal + shipping - discount;
@@ -159,7 +153,6 @@ if (!isset($_SESSION['email'])) {
       totalEl.textContent = "₱" + total.toFixed(2);
       totalAmountEl.textContent = "₱" + total.toFixed(2) + " Php";
 
-      // Handle form submission
       const form = document.getElementById('paymentForm');
       form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -178,4 +171,5 @@ if (!isset($_SESSION['email'])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="checkout.js"></script>
 </body>
+
 </html>

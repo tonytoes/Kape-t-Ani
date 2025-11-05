@@ -1,35 +1,45 @@
-// ======== TOTAL PRICE CALCULATION ========
 document.addEventListener("DOMContentLoaded", () => {
-  const qtyInputs = document.querySelectorAll(".qty-input");
   const subtotalElement = document.getElementById("subtotal");
   const shippingElement = document.getElementById("shipping");
   const totalElement = document.getElementById("total");
   const totalAmountButton = document.getElementById("totalAmount");
+  const orderItemsEl = document.getElementById("orderItems");
 
-  // Set shipping fee (change this later if you want a fixed rate)
-  const shippingFee = 0.00; // Example: 50.00 for standard shipping
+  const shippingFee = 50.00;
 
-  function updateTotal() {
-    let subtotal = 0;
-    qtyInputs.forEach((input) => {
-      const price = parseFloat(input.dataset.price);
-      const qty = parseInt(input.value) || 0;
-      subtotal += price * qty;
-    });
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let subtotal = 0;
+  let discount = 0;
 
-    const total = subtotal + shippingFee;
-
-    subtotalElement.textContent = `₱${subtotal.toFixed(2)} Php`;
-    shippingElement.textContent = `₱${shippingFee.toFixed(2)} Php`;
-    totalElement.textContent = `₱${total.toFixed(2)} Php`;
-    totalAmountButton.textContent = `₱${total.toFixed(2)} Php`;
+  if (window.isPromoActive && window.isPromoActive()) {
+    discount = 50; 
   }
 
-  qtyInputs.forEach((input) => {
-    input.addEventListener("input", updateTotal);
-  });
+  orderItemsEl.innerHTML = cart.map(item => {
+    const priceNumber = parseFloat(item.price.replace("₱", ""));
+    const totalItem = priceNumber * item.qty;
+    subtotal += totalItem;
 
-  updateTotal();
+    return `
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex align-items-center">
+          <img src="${item.img}" alt="${item.name}" width="65" height="65" class="me-2 rounded">
+          <div>
+            <strong>${item.name}</strong><br>
+            <small>₱${priceNumber.toFixed(2)} x ${item.qty}</small>
+          </div>
+        </div>
+        <div>₱${totalItem.toFixed(2)}</div>
+      </div>
+    `;
+  }).join('');
+
+  const total = subtotal + shippingFee - discount;
+
+  subtotalElement.textContent = `₱${subtotal.toFixed(2)} Php`;
+  shippingElement.textContent = `₱${shippingFee.toFixed(2)} Php`;
+  totalElement.textContent = `₱${total.toFixed(2)} Php`;
+  totalAmountButton.textContent = `₱${total.toFixed(2)} Php`;
 
   // ======== PAYMENT FORM ========
   const paymentForm = document.getElementById("paymentForm");
@@ -58,7 +68,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.history.length > 1) {
       window.history.back();
     } else {
-      window.location.href = "shop.html";
+      window.location.href = "product_user.php";
     }
   });
+
+  function updateTotal() {
+    let updatedSubtotal = 0;
+
+    cart.forEach((item) => {
+      const price = parseFloat(item.price.replace("₱", ""));
+      updatedSubtotal += price * item.qty;
+    });
+
+    const updatedTotal = updatedSubtotal + shippingFee - discount;
+    subtotalElement.textContent = `₱${updatedSubtotal.toFixed(2)} Php`;
+    shippingElement.textContent = `₱${shippingFee.toFixed(2)} Php`;
+    totalElement.textContent = `₱${updatedTotal.toFixed(2)} Php`;
+    totalAmountButton.textContent = `₱${updatedTotal.toFixed(2)} Php`;
+  }
 });

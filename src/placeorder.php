@@ -26,14 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $shipping = 50;
   $total_amount += $shipping;
 
-  // Insert order into the database
   $stmt = $conn->prepare("INSERT INTO orders (tracking_no, user_id, name, email, address, phone, postalcode, total_price, status, created_at) VALUES (?, 0, ?, ?, ?, ?, ?, ?, 0, NOW())");
   $stmt->bind_param("ssssssd", $tracking_no, $name, $user_email, $address, $phone, $postalcode, $total_amount);
   $stmt->execute();
   $order_id = $stmt->insert_id;
   $stmt->close();
 
-  // Insert order items into the database
   foreach ($cart_data as $item) {
     $prod_id = $item['id'];
     $qty = $item['qty'];
@@ -45,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $stmt->close();
 
-    // Update stock based on category
     $tableName = null;
     switch ($category) {
       case 'coffee':
@@ -67,15 +64,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
 
-  // Store order details in session for frontend display
   $_SESSION['order_details'] = [
     'tracking_no' => $tracking_no,
     'total_amount' => $total_amount,
     'cart_data' => $cart_data,
-    'created_at' => date("Y-m-d H:i:s") // Add created_at timestamp
+    'created_at' => date("Y-m-d H:i:s")
   ];
 
-  // Redirect to the order confirmation page
   header("Location: order_confirmation.php");
   exit();
 }
