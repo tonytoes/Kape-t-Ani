@@ -82,10 +82,6 @@ if (!isset($_SESSION['email'])) {
               <span>Shipping</span>
               <span id="shipping"><?= $currency_symbol ?>0.00 Php</span>
             </div>
-            <div class="d-flex justify-content-between">
-              <span>Discount</span>
-              <span id="discount"><?= $currency_symbol ?>0.00 Php</span>
-            </div>
             <div class="d-flex justify-content-between fw-bold mt-2">
               <span>Total</span>
               <span id="total"><?= $currency_symbol ?>0.00 Php</span>
@@ -96,36 +92,20 @@ if (!isset($_SESSION['email'])) {
     </div>
   </section>
 
-  <script>
-    function isPromoActive() {
-      const now = new Date();
-      const day = now.getDay();
-      const hour = now.getHours();
-      return day === 2 && hour >= 20 && hour < 24;
-    }
-    window.isPromoActive = isPromoActive;
-  </script>
+
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const orderItemsEl = document.getElementById('orderItems');
       const subtotalEl = document.getElementById('subtotal');
       const shippingEl = document.getElementById('shipping');
-      const discountEl = document.getElementById('discount');
       const totalEl = document.getElementById('total');
       const totalAmountEl = document.getElementById('totalAmount');
 
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       let subtotal = 0;
       const shipping = 50;
-      let discount = 0;
 
-      if (window.isPromoActive && window.isPromoActive()) {
-        discount = 50;
-        discountEl.innerHTML = `<span class="text-success">₱50.00 Php</span>`;
-      } else {
-        discountEl.innerHTML = `<span style="text-decoration: line-through; color: gray;">₱50.00</span> → <span class="text-danger">₱0.00 Php (No Discount Active)</span>`;
-      }
 
       orderItemsEl.innerHTML = cart.map(item => {
         const priceNumber = parseFloat(item.price.replace("₱", ""));
@@ -146,7 +126,7 @@ if (!isset($_SESSION['email'])) {
   `;
       }).join('');
 
-      const total = subtotal + shipping - discount;
+      const total = subtotal + shipping;
 
       subtotalEl.textContent = "₱" + subtotal.toFixed(2);
       shippingEl.textContent = "₱" + shipping.toFixed(2);
