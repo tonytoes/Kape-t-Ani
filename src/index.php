@@ -158,22 +158,6 @@ if (!isset($_SESSION['email'])) {
     </div>
   </section>
 
-
-  <!-- Banner Section -->
-  <div class="banner container-fluid py-7 mt-5 mb-5">
-    <div class="row">
-      <h1 class="text-center mb-4">Promo Vouchers</h1>
-      <p id="promoMessage" class="mb-3">Checking promo availability...</p>
-      <div class="col-12 d-flex justify-content-center">
-        <div class="col-md-6 col-lg-4">
-          <div class="input-group">
-            <button id="voucherBtn" class="btn btn-custom btn-sm" style="display: none;">Get Voucher</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Footer -->
   <footer class="footer_section text-light pt-5 pb-5">
     <div class="container">

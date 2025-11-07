@@ -52,27 +52,51 @@ while ($row = mysqli_fetch_array($table)) {
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./inventory.css">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="inventory.css">
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="logo">
-      <img src="assets/images/kape't_ani_logo_white.png" alt="Kape't Ani Logo">
-      <h1>Kape’t Ani Admin</h1>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="user_admin.php">Users</a></li>
-      <li><a href="product_admin.php">Products</a></li>
-      <li><a href="order_admin.php">Orders</a></li>
-      <li><a href="inventory.php">Alerts</a></li>
-      <li><a href="logout.php" class="logout">Logout</a></li>
-    </ul>
-  </nav>
+  <header class="top-bar d-flex align-items-center">
+    <button
+      class="btn sidebar-toggle-btn me-3"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#sidebarNav"
+      aria-controls="sidebarNav">
+      <i class="ri-menu-line"></i>
+    </button>
+    <h1 class="logo-title">Kape’t Ani Admin</h1>
+  </header>
 
+  <nav
+    class="sidebar offcanvas offcanvas-start"
+    tabindex="-1"
+    id="sidebarNav"
+    aria-labelledby="sidebarNavLabel">
+    <div class="offcanvas-header justify-content-end">
+      <button
+        type="button"
+        class="btn-close text-reset"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="logo sidebar-logo">
+        <img src="assets/images/kape't_ani_logo_white.png" alt="Kape't Ani Logo" />
+        <h1 class="h3">Kape’t Ani Admin</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="admin.php">Dashboard</a></li>
+        <li><a href="user_admin.php">Users</a></li>
+        <li><a href="product_admin.php">Products</a></li>
+        <li><a href=" order_admin.php">Orders</a></li>
+        <li><a href="inventory.php" class="active">Alerts</a></li>
+        <li><a href="logout.php" class="logout">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <!-- Alert Modal -->
   <div class="modal fade" id="inventory_alert" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
