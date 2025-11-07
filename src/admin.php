@@ -67,6 +67,7 @@ $product_counts = json_encode([$total_coffee_products, $total_seasonal_products,
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -77,6 +78,7 @@ $product_counts = json_encode([$total_coffee_products, $total_seasonal_products,
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 </head>
+
 <body>
 
     <header class="top-bar d-flex align-items-center">
@@ -105,7 +107,7 @@ $product_counts = json_encode([$total_coffee_products, $total_seasonal_products,
             </ul>
         </div>
     </nav>
-    
+
     <div id="main-content-wrapper">
         <main class="dashboard dashboard-content">
             <h2>Dashboard Overview</h2>
@@ -113,7 +115,7 @@ $product_counts = json_encode([$total_coffee_products, $total_seasonal_products,
 
             <section class="main-metrics-grid mb-5">
                 <div class="row g-4">
-                    
+
                     <div class="col-lg-6 col-md-6">
                         <h3 class="metric-title">ORDERS</h3>
                         <div class="chart-box card chart-1">
@@ -127,14 +129,14 @@ $product_counts = json_encode([$total_coffee_products, $total_seasonal_products,
                             <canvas id="productsChart"></canvas>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-6 col-md-6">
                         <h3 class="metric-title">SALES</h3>
                         <div class="chart-box card chart-3">
                             <canvas id="salesChart"></canvas>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-6 col-md-6">
                         <h3 class="metric-title">USERS</h3>
                         <div class="chart-box card chart-4 d-flex flex-column justify-content-center align-items-center text-center">
@@ -146,88 +148,162 @@ $product_counts = json_encode([$total_coffee_products, $total_seasonal_products,
 
                 </div>
             </section>
-            
+
             <hr class="my-4">
-            
+
         </main>
-    </div> 
-    
+    </div>
+
     <script>
+        const chartDates = <?= $chart_dates ?>;
+        const chartSales = <?= $chart_sales ?>;
+        const chartOrders = <?= $chart_orders ?>;
+        const productLabels = <?= $product_labels ?>;
+        const productCounts = <?= $product_counts ?>;
 
-const chartDates = <?= $chart_dates ?>;
-    const chartSales = <?= $chart_sales ?>;
-    const chartOrders = <?= $chart_orders ?>;
-    const productLabels = <?= $product_labels ?>;
-    const productCounts = <?= $product_counts ?>;
+        const DEEP_ROAST = '#3c2a21';
+        const VELVET_CREAM = '#ffbb00ff';
+        const GOLDEN_CARAMEL = '#af5800ff';
+        const TEXT_LIGHT = '#ffffff';
 
-    const DEEP_ROAST = '#3c2a21';
-    const VELVET_CREAM = '#94855d';
-    const GOLDEN_CARAMEL = '#d4a373';
-    const TEXT_LIGHT = '#ffffff'; 
+        Chart.defaults.color = TEXT_LIGHT;
+        Chart.defaults.backgroundColor = 'transparent';
+        Chart.defaults.font.family = 'Poppins, sans-serif';
 
-    Chart.defaults.color = TEXT_LIGHT; 
-    Chart.defaults.backgroundColor = 'transparent';
-    Chart.defaults.font.family = 'Poppins, sans-serif';
+        const GRID_COLOR = 'rgba(255, 255, 255, 0.2)';
 
-    const GRID_COLOR = 'rgba(255, 255, 255, 0.2)';
-    
-    new Chart(document.getElementById('salesChart'), {
-        type: 'line',
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: { 
-                    beginAtZero: true, 
-                    title: { display: true, text: 'Sales', color: TEXT_LIGHT },
-                    grid: { color: GRID_COLOR },
-                    ticks: { color: TEXT_LIGHT }
-                },
-            }
-        }
-    });
-
-    new Chart(document.getElementById('ordersChart'), {
-        type: 'line',
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: { 
-                    beginAtZero: true, 
-                    title: { display: true, text: 'Orders', color: TEXT_LIGHT },
-                    grid: { color: GRID_COLOR },
-                    ticks: { color: TEXT_LIGHT }
-                },
-                x: {
-                    grid: { color: GRID_COLOR },
-                    ticks: { color: TEXT_LIGHT }
+        new Chart(document.getElementById('salesChart'), {
+            type: 'line',
+            data: {
+                labels: chartDates,
+                datasets: [{
+                    label: 'Daily Sales (₱)',
+                    data: chartSales,
+                    borderColor: GOLDEN_CARAMEL,
+                    backgroundColor: 'rgba(212, 163, 115, 0.3)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Sales (₱)',
+                            color: TEXT_LIGHT
+                        },
+                        grid: {
+                            color: GRID_COLOR
+                        },
+                        ticks: {
+                            color: TEXT_LIGHT
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: GRID_COLOR
+                        },
+                        ticks: {
+                            color: TEXT_LIGHT
+                        }
+                    }
                 }
             }
-        }
-    });
+        });
 
-    new Chart(document.getElementById('productsChart'), {
-        type: 'bar',
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: { 
-                    beginAtZero: true, 
-                    title: { display: true, text: 'Count', color: TEXT_LIGHT },
-                    grid: { color: GRID_COLOR },
-                    ticks: { color: TEXT_LIGHT }
-                },
-                x: {
-                    grid: { color: GRID_COLOR },
-                    ticks: { color: TEXT_LIGHT }
+        // === ORDERS CHART ===
+        new Chart(document.getElementById('ordersChart'), {
+            type: 'line',
+            data: {
+                labels: chartDates,
+                datasets: [{
+                    label: 'Orders per Day',
+                    data: chartOrders,
+                    borderColor: VELVET_CREAM,
+                    backgroundColor: 'rgba(148, 126, 93, 0.3)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Orders',
+                            color: TEXT_LIGHT
+                        },
+                        grid: {
+                            color: GRID_COLOR
+                        },
+                        ticks: {
+                            color: TEXT_LIGHT
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: GRID_COLOR
+                        },
+                        ticks: {
+                            color: TEXT_LIGHT
+                        }
+                    }
                 }
             }
-        }
-    });
+        });
+
+        // === PRODUCTS CHART ===
+        new Chart(document.getElementById('productsChart'), {
+            type: 'bar',
+            data: {
+                labels: productLabels,
+                datasets: [{
+                    label: 'Product Count',
+                    data: productCounts,
+                    backgroundColor: [DEEP_ROAST, GOLDEN_CARAMEL, VELVET_CREAM],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Count',
+                            color: TEXT_LIGHT
+                        },
+                        grid: {
+                            color: GRID_COLOR
+                        },
+                        ticks: {
+                            color: TEXT_LIGHT
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: GRID_COLOR
+                        },
+                        ticks: {
+                            color: TEXT_LIGHT
+                        }
+                    }
+                }
+            }
+        });
     </script>
-    
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>
